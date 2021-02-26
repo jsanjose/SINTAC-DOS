@@ -1,0 +1,355 @@
+; -------------------------------------
+;	TUTOR men£ ficheros.
+; -------------------------------------
+tutor_menu_fich:
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_nuevo
+
+	databegin
+		"NUEVO"
+		"La primera opci¢n de este men£,"
+		"etiquetada como 'Nuevo' permite crear"
+		"una nueva base de datos."
+		""
+		"Si la seleccionamos aparecer  un cuadro"
+		"de selecci¢n de ficheros."
+	dataend
+	vtexto 99,99,6,1
+
+	nuevo_fich
+	waitkey 1000
+
+	databegin
+		"NUEVO"
+		"En la casilla etiquetada como 'Fichero'"
+		"se introducir  el nombre de la base de"
+		"datos que se desea crear."
+	dataend
+	vtexto 99,99,3,1
+
+	color 0,7
+	text 31,17,"                      "
+	text 31,17,"AVENTURA.BD",50
+
+	databegin
+		"NUEVO"
+		"Tras pulsar sobre el bot¢n 'Vale' se"
+		"presentar  un cuadro de di logo en el"
+		"que se debe especificar si queremos o"
+		"no usar la base de datos de inicio."
+	dataend
+	vtexto 99,99,4,1
+
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_nuevo
+	bd_inic
+	waitkey 1000
+
+	databegin
+		"NUEVO"
+		"Si pulsamos sobre el bot¢n 'Si' se"
+		"crear  una nueva base de datos pero"
+		"cuyo contenido vendr  definido por"
+		"el fichero INICIO.BD."
+		"Junto al sistema SINTAC se suministra"
+		"un fichero de base de datos de inicio,"
+		"que contiene las definiciones b sicas"
+		"comunes a la mayor¡a de la aventuras"
+		"conversacionales."
+		""
+		"Pulsando sobre el bot¢n 'No' se crear "
+		"una base de datos completamente vac¡a."
+	dataend
+	vtexto 99,99,12,1
+
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_abrir
+
+	databegin
+		"ABRIR"
+		"La siguiente opci¢n del men£ de"
+		"ficheros, 'Abrir', permite cargar"
+		"una base de datos existente."
+	dataend
+	vtexto 99,99,3,1
+
+	abrir_fich
+	waitkey 1000
+
+	databegin
+		"ABRIR"
+		"Al igual que en el caso anterior"
+		"podemos teclear el nombre del fichero"
+		"en la casilla correspondiente."
+	dataend
+	vtexto 99,99,3,1
+
+	color 0,7
+	text 31,17,"                      "
+	text 31,17,"CASTRO.BD",50
+	waitkey 1000
+
+	databegin
+		"ABRIR"
+		"Otra posibilidad consiste en"
+		"seleccionar un fichero de la lista"
+		"de ficheros."
+		""
+		"Esto se consigue bien pulsando"
+		"con el rat¢n sobre un nombre de fichero"
+		"o bien pulsando TAB hasta situarnos en"
+		"la lista y seleccionar un fichero con"
+		"las teclas de cursor. Otra forma de"
+		"situarnos sobre la lista de ficheros es"
+		"usando la combinaci¢n de teclas ALT+L."
+	dataend
+	vtexto 99,99,11,1
+
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_abrir
+
+	databegin
+		"ABRIR"
+		"Una vez seleccionado el fichero, y si"
+		"no se produce alg£n error, la base de"
+		"datos ser  cargada."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,menu_fich
+	opc_grabar
+
+	databegin
+		"GRABAR"
+		"La opci¢n 'Grabar' nos permite guardar"
+		"las modificaciones que hayamos"
+		"realizado sobre la base de datos."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,menu_fich
+	opc_grabar_como
+
+	databegin
+		"GRABAR COMO..."
+		"La opci¢n 'Grabar como...' es similar a"
+		"'Grabar' s¢lo que ahora se preguntar ,"
+		"mediante el cuadro de di logo"
+		"correspondiente, por el nombre del"
+		"fichero donde queremos guardar la base"
+		"de datos."
+	dataend
+	vtexto 99,99,6,1
+
+	grabar_fich
+	waitkey 1000
+
+	databegin
+		"GRABAR COMO..."
+		"Una vez introducido el nombre del"
+		"fichero se proceder  a grabar la"
+		"base de datos en ‚l."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_grabar_bloque
+
+	databegin
+		"GRABAR BLOQUE"
+		"La opci¢n 'Grabar bloque' permite"
+		"grabar el £ltimo bloque de texto"
+		"que fue seleccionado dentro del"
+		"editor del entorno."
+		"Presenta un cuadro de di logo similar"
+		"a todas las opciones de ficheros."
+	dataend
+	vtexto 99,99,6,1
+
+	grabar_blq
+	waitkey 1000
+
+	databegin
+		"GRABAR BLOQUE"
+		"El bloque de texto se grabar  en un"
+		"fichero en formato ASCII por lo que"
+		"podr  ser editado por cualquier editor"
+		"de textos."
+		""
+		"Esta opci¢n no funcionar  si no hay"
+		"ning£n bloque de texto seleccionado."
+	dataend
+	vtexto 99,99,7,1
+
+	call SG2,fondo
+	call SG2,menu_fich
+	opc_liberar_bloque
+
+	databegin
+		"LIBERAR BLOQUE"
+		"La opci¢n 'Liberar bloque' permite"
+		"liberar la memoria ocupada por el"
+		"£ltimo bloque de texto seleccionado"
+		"en el editor."
+		""
+		"En caso de que hubiese sido"
+		"seleccionado un bloque de texto muy"
+		"grande, esta opci¢n permite recuperar"
+		"la memoria que est  ocupando."
+		""
+		"Hay que tener en cuenta, sin embargo,"
+		"que con ello se pierde el bloque de"
+		"texto y por ello no podr  ser copiado"
+		"o pegado desde el editor."
+	dataend
+	vtexto 99,99,14,1
+
+	call SG2,menu_fich
+	opc_salir
+
+	databegin
+		"SALIR"
+		"La opci¢n 'Salir' permite abandonar el"
+		"entorno y regresar al DOS."
+		""
+		"Si la base de datos ha resultado"
+		"modificada se avisar  por si quieren"
+		"guardarse las modificaciones."
+	dataend
+	vtexto 99,99,6,1
+
+	call SG2,fondo
+
+	return
+
+opc_nuevo:
+	color 7,0
+	text 8,21," Nuevo          "
+	return
+
+opc_abrir:
+	color 7,0
+	text 8,20," Abrir          "
+	return
+
+opc_grabar:
+	color 7,0
+	text 8,19," Grabar         "
+	return
+
+opc_grabar_como:
+	color 7,0
+	text 8,18," Grabar como... "
+	return
+
+opc_grabar_bloque:
+	color 7,0
+	text 8,16," Grabar bloque  "
+	return
+
+opc_liberar_bloque:
+	color 7,0
+	text 8,15," Liberar bloque "
+	return
+
+opc_salir:
+	color 7,0
+	text 8,13," Salir          "
+	return
+
+; -------------------------------------
+;	Nuevo fichero.
+; -------------------------------------
+nuevo_fich:
+	cload SG2CNUEV,3
+	cfade 3,20,5,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Base de datos de inicio.
+; -------------------------------------
+bd_inic:
+	cload SG2BDINI,3
+	cfade 4,12,8,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Abrir fichero.
+; -------------------------------------
+abrir_fich:
+	cload SG2CABRI,3
+	cfade 5,20,5,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+;	Grabar fichero.
+; -------------------------------------
+grabar_fich:
+	cload SG2CGRAB,3
+	cfade 6,20,5,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+;	Grabar bloque.
+; -------------------------------------
+grabar_blq:
+	cload SG2CGBLQ,3
+	cfade 7,20,5,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+

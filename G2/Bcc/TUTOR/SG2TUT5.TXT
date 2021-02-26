@@ -1,0 +1,115 @@
+; -------------------------------------
+;	TUTOR men£ utilidades.
+; -------------------------------------
+tutor_menu_util:
+	call SG2,fondo
+	call SG2,menu_util
+	opc_gcs
+
+	databegin
+		"GENERADOR DE CARACTERES"
+		"La opci¢n 'Generador de caracteres'"
+		"del men£ de utilidades llama al"
+		"programa que sirve para crear o"
+		"modificar los juegos de caracteres"
+		"del SINTAC."
+	dataend
+	vtexto 99,99,5,1
+
+	ifvideo G,scr_gcs
+	goto noscr_gcs
+scr_gcs:
+	video G
+	text 0,341,"Espera un momento..."
+	pload SG2GCS.GIF,1
+	pfade 20,1
+	pfree 1
+	waitkey 1000
+	video 1
+noscr_gcs:
+	
+	call SG2,fondo	
+	call SG2,menu_util
+	opc_listador
+
+	databegin
+		"LISTADOR"
+		"La opci¢n 'Listador' invoca a una"
+		"utilidad del SINTAC que permite ver"
+		"el contenido de las bases de datos"
+		"ya compiladas."
+	dataend
+	vtexto 99,99,4,1
+
+	listador
+	waitkey 1000
+
+	call SG2,fondo
+
+	return
+
+opc_gcs:
+	color 7,0
+	text 44,21," Generador de caracteres "
+	return
+
+opc_listador:
+	color 7,0
+	text 44,20," Listador                "
+	return
+
+; -------------------------------------
+;	Pantalla del listador.
+; -------------------------------------
+listador:
+	cload SG2LST,3
+	cfade 21,0,0,3,300
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+

@@ -1,0 +1,154 @@
+
+
+
+
+
+
+
+
+                  ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+                  ³ GENERADOR DE CARACTERES SINTAC versi¢n 1.0 ³
+                  ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   1. Introducci¢n:
+
+   El generador de  caracteres permite editar juegos de caracteres de 8x14 para
+   su  uso con  el  condacto  CHARSET del  SINTAC  versi¢n  T2. Los  juegos  de
+   caracteres  generados son almacenados en  un fichero que posteriormente ser 
+   cargado en una aventura usando dicho condacto.
+   Se puede modificar la tabla de 256 caracteres en su totalidad.
+   El programa  est  enteramente  controlado por  rat¢n por  lo que  su uso  es
+   extremadamente sencillo.
+
+   2. Requerimientos hardware:
+
+   El  programa funciona con tarjeta EGA, VGA o compatibles y es imprescindible
+   tener un rat¢n compatible Microsoft.
+   El controlador del rat¢n debe estar cargado antes de ejecutar el programa.
+
+   3. Inicio del programa:
+
+   El programa  se ejecuta desde la  l¡nea del DOS escribiendo GCS.  Si todo va
+   bien se deber¡a mostrar una pantalla como la siguiente:
+                                                                    
+   ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·
+   ³             GENERADOR DE CARACTERES SINTAC versi¢n 1.0                º
+   ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+   ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ·ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ· (1)                                       
+   ³ Cargar fuen º³ Grabar fuen º                                           
+   ÔÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ÔÍÍÍÍÍÍÍÍÍÍÍÍÍ¼                                   (5)     
+   ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸ ÉÍÍ¸      ÚÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ¿  ÚÄÄÄÄÄÄÄÄÄÄÄ·
+   º                            ³ º  ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³ Almacena  º
+   º            (2)             ³ ÓÄÄÙ      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º                            ³  (3)      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³ Borra rej º
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º         T A B L A          ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³ Llena rej º
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º            D E             ³           ÃÄÅÄÅÄÅ(4)ÅÄÅÄÅÄ´  ³  <Arriba> º
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º     C A R A C T E R E S    ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³  <Abajo>  º
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³<Izquierda>º
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ÆÍÍÍÍÍÍÍÍÍÍÍ¹
+   º                            ³           ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´  ³ <Derecha> º
+   º                            ³           ÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙ  ÔÍÍÍÍÍÍÍÍÍÍÍ¼
+   ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ                                      (6)
+   ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸ÚÄÄÄÄÄ·
+   º                             (7)                                ³³     º
+   ÌÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ³Salirº
+   º                             (8)                                ³³     º
+   ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÔÍÍÍÍÍ¼
+
+
+
+
+
+
+
+   4. Manejo del programa:
+
+   Como ya se ha dicho el programa se maneja enteramente mediante el rat¢n.
+   La  pulsaci¢n con  el  rat¢n en  cada  uno de  los  botones de  la  pantalla
+   producir  una  acci¢n. Cada  bot¢n tiene  asociado un  r¢tulo que indica  la
+   acci¢n que produce. Adem s se puede ejecutar  la acci¢n asociada a un  bot¢n
+   sin  m s que pulsar  la tecla  correspondiente al  car cter resaltado  de su
+   r¢tulo.  As¡ la tecla S  permitir  que salgamos al  DOS, la C permite cargar
+   una fuente, la G grabarla...
+   Lo que sigue a  continuaci¢n es una explicaci¢n de cada una de  las  reas de
+   la pantalla tal y como se muestran en la figura anterior:
+
+        (1) Estos dos  botones permiten cargar y grabar  un fichero de juego de
+             caracteres.  Se  pedir  el  nombre  de  dicho  fichero  y este  se
+             cargar  o  grabar . Si al  grabar se encuentra  que el fichero  ya
+             existe se  indicar   mediante  un mensaje  de  aviso  que  permite
+             rectificar si  nos hemos  equivocado al  introducir el nombre  del
+             fichero.
+        (2)  En esta zona  se presentar   la tabla  con los 256  caracteres que
+             componen un  juego.  Pulsando  en  uno  de  estos  caracteres,  su
+             representaci¢n gr fica  se colocar   en la  rejilla de dibujo  (4)
+             permitiendo  su modificaci¢n.  Adem s un  recuadro  marca en  todo
+             momento el car cter actual.
+        (3) Esta  peque¤a  ventana contendr   en  todo  momento el  car cter  a
+             tama¤o real  que est  siendo editado en la  rejilla de dibujo (4).
+             Adem s de esto tiene  otra funci¢n. Si pulsamos aqu¡ con  el bot¢n
+             del rat¢n, el borde de la ventana cambiar  de color  indicando que
+             podemos  pulsar en un car cter de la tabla, y este ser  sustituido
+             por el  contenido de  la ventana  (3). Esto  permite trasladar  un
+             car cter de su  posici¢n a  otro de la  tabla sin  m s que  pulsar
+             sobre el car cter  a trasladar, pulsar  sobre (3)  y luego  pulsar
+             sobre la posici¢n  de la tabla a  la que queremos trasladarlo.  Si
+             despu‚s de pulsar sobre (3)  se pulsa en otro sitio que no sea  la
+             tabla de caracteres, el efecto se anula.
+        (4)  Esta zona  es  la rejilla  de dibujo  y  en ella  se  editar n los
+             caracteres  sin m s  que  activar  y desactivar  cuadros  mediante
+             pulsaciones del  rat¢n. Si un cuadro  est  vac¡o  y pulsamos sobre
+             el con el rat¢n se rellena, y viceversa.
+        (5) Estos  botones  afectan al  car cter  que  estemos editando  en  la
+             rejilla de  dibujo (4).  A continuaci¢n  se explica  el efecto  de
+             cada uno:
+                  - Almacena: traslada  el car cter de la rejilla a la posici¢n
+                  actual de la  tabla de caracteres  (2), es  decir, a  aquella
+                  marcada por un recuadro
+                  - Borra rejilla: limpia la rejilla de dibujo
+                  - Llena rejilla: rellena toda la rejilla de dibujo
+                  -  <Arriba>: desplaza  todo el  car cter  de  la rejilla  una
+                  posici¢n  hacia  arriba.  La l¡nea  que  sale  por  la  parte
+                  superior de la rejilla se  introduce por la inferior  como si
+                  la rejilla fuese circular.
+                  - <Abajo>: lo  mismo que el anterior pero desplaza la rejilla
+                  en sentido descendente.
+                  - <Izquierda>: ¡dem pero hacia la izquierda.
+                  -  <Derecha>:  lo  mismo  que los  anteriores  pero  hacia la
+                  derecha.
+        (6) Este bot¢n permite finalizar el programa y regresar al DOS.
+        (7)  Esta  ventana  es usada  por  el  programa  para  pedir datos  por
+             teclado.
+
+
+
+
+
+
+
+        (8) Esta ventana es usada por el programa para emitir mensajes.
+
+   5. Ficheros de juegos de caracteres:
+
+   Junto  al programa se suministran una  serie de ficheros con extensi¢n .FNT.
+   Se trata de diversos tipos de juegos  de caracteres que pueden ser  editados
+   o  incluidos en las aventuras.  Recuerda, sin embargo,  que para incluir uno
+   de  estos fichero de fuentes en la  aventura deber s copiarlos al directorio
+   d¢nde  est‚n  localizados  los  ficheros  de  la  aventura.  Adem s  deber s
+   renombrarlos para que  el condacto CHARSET  los reconozca  como ficheros  de
+   fuentes de caracteres.  Para m s informaci¢n consulta el apartado dedicado a
+   este condacto en el manual del SINTAC.
+
+   6. Versiones del programa:
+
+   La  primera versi¢n, la  1.0, acompa¤a al SINTAC  versi¢n T2. Permite editar
+   ficheros conteniendo  las definiciones de los  256 caracteres  en un formato
+   de 8x14. Este formato es adecuado tanto para la tarjeta EGA como para VGA.
+   Incluye  las  funciones  b sicas  de  edici¢n  de  caracteres  y  se  maneja
+   f cilmente  con  rat¢n.  No admite  teclado,  excepto  para  elegir opciones
+   disponibles en los botones.
+

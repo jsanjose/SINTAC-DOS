@@ -1,0 +1,3929 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+            Sistema Integrado de creaci¢n de Aventuras Conversacionales
+
+                              S.I.N.T.A.C versi¢n T2
+
+
+
+                              (c)1992-93 JSJ Soft Ltd
+
+    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+
+
+
+
+                                    I N D I C E
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+
+
+
+   PARTE I: Introducci¢n al sistema SINTAC . . . . . . . . . . . . . . . .    1
+        1 PROLOGO  . . . . . . . . . . . . . . . . . . . . . . . . . . . .    1
+             1.1 Agradecimientos . . . . . . . . . . . . . . . . . . . . .    1
+             1.2 Presentaci¢n  . . . . . . . . . . . . . . . . . . . . . .    1
+             1.3 Contenido de los discos del programa  . . . . . . . . . .    1
+             1.4 Instalaci¢n del programa  . . . . . . . . . . . . . . . .    2
+             1.5 Requerimientos de hardware  . . . . . . . . . . . . . . .    3
+             1.6 Comienzo r pido . . . . . . . . . . . . . . . . . . . . .    3
+        2 INTRODUCCION . . . . . . . . . . . . . . . . . . . . . . . . . .    3
+             2.1 La base de datos  . . . . . . . . . . . . . . . . . . . .    3
+             2.2 Vocabulario . . . . . . . . . . . . . . . . . . . . . . .    4
+             2.3 Localidades . . . . . . . . . . . . . . . . . . . . . . .    4
+             2.4 Mensajes del Sistema  . . . . . . . . . . . . . . . . . .    4
+             2.5 Mensajes  . . . . . . . . . . . . . . . . . . . . . . . .    5
+             2.6 Objetos . . . . . . . . . . . . . . . . . . . . . . . . .    5
+             2.7 Procesos  . . . . . . . . . . . . . . . . . . . . . . . .    5
+        3 VARIABLES y BANDERAS . . . . . . . . . . . . . . . . . . . . . .    6
+             3.1 Variables del sistema . . . . . . . . . . . . . . . . . .    6
+             3.2 Banderas del sistema  . . . . . . . . . . . . . . . . . .    6
+        4 INDIRECCION  . . . . . . . . . . . . . . . . . . . . . . . . . .    6
+        5 ETIQUETAS Y SALTOS . . . . . . . . . . . . . . . . . . . . . . .    7
+        6 VENTANAS . . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
+        7 EL TEXTO Y LOS COLORES . . . . . . . . . . . . . . . . . . . . .    8
+             7.1 Atributos en modo texto . . . . . . . . . . . . . . . . .    8
+             7.2 Valor de atributo . . . . . . . . . . . . . . . . . . . .    8
+
+   PARTE II: Compilador, int‚rprete y debugger . . . . . . . . . . . . .     10
+        8 EL COMPILADOR  . . . . . . . . . . . . . . . . . . . . . . . .     10
+             8.1 C¢mo compilar la base de datos  . . . . . . . . . . . .     10
+                  8.1.1 Los ficheros . . . . . . . . . . . . . . . . . .     10
+                  8.1.2 Los mensajes de error  . . . . . . . . . . . . .     10
+                  8.1.3 El proceso de compilaci¢n  . . . . . . . . . . .     11
+             8.2 Estructura de la base de datos  . . . . . . . . . . . .     12
+             8.3 Comentarios en la base de datos . . . . . . . . . . . .     12
+             8.4 Constantes simb¢licas . . . . . . . . . . . . . . . . .     13
+             8.5 Descripci¢n de las distintas secciones  . . . . . . . .     14
+                  8.5.1 La secci¢n de Vocabulario  . . . . . . . . . . .     14
+                  8.5.2 Las secciones de Mensajes y Mensajes del Sistema     16
+                  8.5.3 Secci¢n de Localidades . . . . . . . . . . . . .     17
+                  8.5.4 Secci¢n de Objetos . . . . . . . . . . . . . . .     18
+                  8.5.5 Secciones de Procesos  . . . . . . . . . . . . .     19
+        9 EL INTERPRETE  . . . . . . . . . . . . . . . . . . . . . . . .     20
+             9.1 Ejecutar la base de datos compilada . . . . . . . . . .     20
+                  9.1.1 C¢mo entrar en el int‚rprete . . . . . . . . . .     20
+                  9.1.2 Mensajes de error  . . . . . . . . . . . . . . .     21
+             9.2 Frase y sentencia l¢gica  . . . . . . . . . . . . . . .     21
+             9.3 La sentencia l¢gica . . . . . . . . . . . . . . . . . .     22
+                  9.3.1 Acciones encadenadas . . . . . . . . . . . . . .     22
+                  9.3.2  Variables del  sistema asociadas  a la  sentencia
+                       l¢gica  . . . . . . . . . . . . . . . . . . . . .     22
+                  9.3.3  Introducci¢n de la sentencia l¢gica . . . . . .     23
+                  9.3.4  Di logo con personajes  . . . . . . . . . . . .     23
+
+
+                                        i
+
+
+
+
+
+
+
+        10 EL DEBUGGER . . . . . . . . . . . . . . . . . . . . . . . . .     24
+             10.1 Conceptos b sicos  . . . . . . . . . . . . . . . . . .     24
+             10.2 La ventana de depuraci¢n . . . . . . . . . . . . . . .     24
+             10.3 Opciones del debugger  . . . . . . . . . . . . . . . .     24
+                  10.3.1 Visualizar y editar variables . . . . . . . . .     25
+                  10.3.2 Visualizar y editar banderas  . . . . . . . . .     25
+        11 CONDACTOS . . . . . . . . . . . . . . . . . . . . . . . . . .     25
+             PROCESS . . . . . . . . . . . . . . . . . . . . . . . . . .     26
+             DONE  . . . . . . . . . . . . . . . . . . . . . . . . . . .     26
+             NOTDONE . . . . . . . . . . . . . . . . . . . . . . . . . .     26
+             RESP  . . . . . . . . . . . . . . . . . . . . . . . . . . .     26
+             NORESP  . . . . . . . . . . . . . . . . . . . . . . . . . .     26
+             DEFWIN  . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             WINDOW  . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             CLW . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             LET . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             EQ  . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             NOTEQ . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             LT  . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             GT  . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             NEWLINE . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             MES . . . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             MESSAGE . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             SYSMESS . . . . . . . . . . . . . . . . . . . . . . . . . .     27
+             DESC  . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             ADD . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             SUB . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             INC . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             DEC . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             SET . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             CLEAR . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             ZERO  . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             NOTZERO . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             PLACE . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             GET . . . . . . . . . . . . . . . . . . . . . . . . . . . .     28
+             DROP  . . . . . . . . . . . . . . . . . . . . . . . . . . .     29
+             INPUT . . . . . . . . . . . . . . . . . . . . . . . . . . .     29
+             PARSE . . . . . . . . . . . . . . . . . . . . . . . . . . .     29
+             SKIP  . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             AT  . . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             NOTAT . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             ATGT  . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             ATLT  . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             ADJECT1 . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             NOUN2 . . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             ADJECT2 . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             LISTAT  . . . . . . . . . . . . . . . . . . . . . . . . . .     30
+             ISAT  . . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             ISNOTAT . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             PRESENT . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             ABSENT  . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             WORN  . . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             NOTWORN . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             CARRIED . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             NOTCARR . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             WEAR  . . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             REMOVE  . . . . . . . . . . . . . . . . . . . . . . . . . .     31
+             CREATE  . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             DESTROY . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             SWAP  . . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+
+
+                                        ii
+
+
+
+
+
+
+
+             RESTART . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             WHATO . . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             MOVE  . . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             ISMOV . . . . . . . . . . . . . . . . . . . . . . . . . . .     32
+             GOTO  . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             PRINT . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             DPRINT  . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             CLS . . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             ANYKEY  . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             PAUSE . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             LISTOBJ . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             FIRSTO  . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             NEXTO . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+             SYNONYM . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             HASAT . . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             HASNAT  . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             LIGHT . . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             NOLIGHT . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             RANDOM  . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             SEED  . . . . . . . . . . . . . . . . . . . . . . . . . . .     34
+             PUTO  . . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             INKEY . . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             COPYOF  . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             CHANCE  . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             RAMSAVE . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             RAMLOAD . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             ABILITY . . . . . . . . . . . . . . . . . . . . . . . . . .     35
+             AUTOG . . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             AUTOD . . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             AUTOW . . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             AUTOR . . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             ISDOALL . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             ASK . . . . . . . . . . . . . . . . . . . . . . . . . . . .     36
+             QUIT  . . . . . . . . . . . . . . . . . . . . . . . . . . .     37
+             SAVE  . . . . . . . . . . . . . . . . . . . . . . . . . . .     37
+             LOAD  . . . . . . . . . . . . . . . . . . . . . . . . . . .     37
+             EXIT  . . . . . . . . . . . . . . . . . . . . . . . . . . .     37
+             END . . . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             PRINTAT . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             SAVEAT  . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             BACKAT  . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             NEWTEXT . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             PRINTC  . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             INK . . . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             PAPER . . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             BRIGHT  . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             BLINK . . . . . . . . . . . . . . . . . . . . . . . . . . .     38
+             COLOR . . . . . . . . . . . . . . . . . . . . . . . . . . .     39
+             DEBUG . . . . . . . . . . . . . . . . . . . . . . . . . . .     39
+             WBORDER . . . . . . . . . . . . . . . . . . . . . . . . . .     39
+             CHARSET . . . . . . . . . . . . . . . . . . . . . . . . . .     39
+             EXTERN  . . . . . . . . . . . . . . . . . . . . . . . . . .     39
+
+   PARTE III: Ap‚ndices  . . . . . . . . . . . . . . . . . . . . . . . .     41
+        APENDICE A: Mensajes de aviso del compilador . . . . . . . . . .     41
+        APENDICE B: Mensajes de error del compilador . . . . . . . . . .     41
+        APENDICE C: Variables y banderas del sistema . . . . . . . . . .     47
+        APENDICE D: Mensajes del sistema . . . . . . . . . . . . . . . .     47
+        APENDICE E: Resumen de los condactos . . . . . . . . . . . . . .     48
+        APENDICE F: C¢digos de teclado . . . . . . . . . . . . . . . . .     50
+
+
+                                       iii
+
+
+
+
+
+
+
+        APENDICE G: Tabla de conversi¢n decimal-hexadecimal  . . . . . .     52
+        APENDICE H: Versiones del SINTAC . . . . . . . . . . . . . . . .     52
+
+   INDICE ALFABETICO . . . . . . . . . . . . . . . . . . . . . . . . . .     54
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        iv
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        1
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                     PARTE I: Introducci¢n al sistema SINTAC
+
+                                    1 PROLOGO
+
+   1.1 Agradecimientos:
+
+   Quisiera  agradecer la  desinteresada colaboraci¢n  de  varias personas.  En
+   primer lugar  a Juan Mu¤oz,  director del club  de aventuras  AD el cual  ha
+   hecho posible que este parser se distribuya  por varias BBS. A Juan  Antonio
+   Paz  Salgado  que  teste¢ una  primera  versi¢n  de  este  parser. A  Carles
+   Serrano,  editor de Z for Zero por su apoyo  y su colaboraci¢n en distribuir
+   este parser entre los socios del Year Zero Club.
+   A todos ellos, GRACIAS...
+
+   Este  sistema  est    dedicado  a  todos  los  aventureros  que  en  su  d¡a
+   preguntaron por los  parsers disponibles para  PC; espero  que este  sistema
+   satisfaga sus inquietudes.
+
+   1.2 Presentaci¢n:
+
+   El  sistema  SINTAC es  un  sistema  integrado  de  desarrollo de  aventuras
+   conversacionales para ordenadores  PC y compatibles. La  versi¢n actual,  la
+   T2, permite el desarrollo de aventuras en modo texto.
+   El SINTAC est  compuesto de varios programas  entre los que se encuentra  el
+   propio  int‚rprete, un  int‚rprete-debugger  para  analizar paso  a  paso la
+   aventura creada y un compilador de bases de datos.
+   Adem s  de  estos  que  constituyen  el  n£cleo  principal  del  sistema  se
+   suministran algunas  utilidades  de  apoyo  como  un  editor  de  juegos  de
+   caracteres.
+
+   1.3 Contenido de los discos del programa:
+
+   El  programa se  compone de  varios ficheros  ejecutables y  alg£n  que otro
+   fichero  de apoyo.  Los  ficheros  que encontrar s  en  los discos  son  los
+   siguientes:
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        2
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+        Directorio ra¡z:
+             - CS.EXE       : el compilador
+             - IS.EXE       : el int‚rprete
+             - DS.EXE       : el int‚rprete-debugger
+             - INICIO.DB    : base de datos de inicio
+             - SINTAC.TXT   : este manual en formato ASCII
+             - SINTAC.DOC   : este manual en formato WordPerfect 5.1
+        Directorio \AVDEMO
+             - AV.DB        : base de datos de la aventura de demostraci¢n
+             - EPICO1FS.1   :  juego de  caracteres usado  por  la aventura  de
+             demostraci¢n
+             - *.GRF        : ficheros gr ficos de la aventura de demostraci¢n
+             - EXTER0.BAT   : programa externo de la aventura de demostraci¢n
+             - GRAF.EXE     : visualizador para los gr ficos de  la aventura de
+             demostraci¢n
+        Directorio \GENCAR:
+             - GCS.EXE      : el editor de juegos de caracteres
+             - HELVB.FON    : fichero de apoyo de GCS.EXE
+             - *.FNT        : archivos diferentes juegos de caracteres
+             - GCS.TXT      : fichero con  las instrucciones de uso  del editor
+             de juegos de caracteres
+        Directorio \UTIL:
+             - PCXHEAD.COM  :  utilidad para  explorar la  cabecera de ficheros
+             de im genes PCX
+             - PCXVIDEO.EXE : utilidad para visualizar im genes en formato PCX
+             - UTIL.TXT     : fichero con  las instrucciones de uso de cada una
+             de las utilidades de este directorio
+
+   Aparte  de estos  archivos  pueden aparecer  otros  archivos o  programas de
+   soporte. Es  recomendable mirar el contenido  del fichero  LEEME (si aparece
+   en  tu disco  de  programa)  ya que  puede  contener notas  sobre  cambios o
+   actualizaciones de £ltima hora.
+   Si quieres  obtener una  copia en  papel de  este manual  puedes seguir  dos
+   caminos:
+
+        -  si tienes el programa WordPerfect 5.1, carga el fichero SINTAC.DOC y
+             impr¡melo (Shift+F7, 1).
+        - si no tienes el programa WordPerfect 5.1  imprime el archivo desde el
+             sistema operativo con  PRINT SINTAC.TXT. El fichero  SINTAC.TXT es
+             un  fichero  de texto  ya formateado  y con  los saltos  de p gina
+             insertados adecuadamente.
+
+   1.4 Instalaci¢n del programa:
+
+   El programa  puede funcionar  tanto desde  disco flexible  como desde  disco
+   duro (aunque  se  recomienda instalarlo  en  disco  duro por  cuestiones  de
+   comodidad).
+   Para instalar el programa en  disco flexible simplemente copia  los archivos
+   ejecutables (*.EXE) a un disco formateado.
+   Si  quieres instalarlo  en disco  duro crea  un directorio  (MD SINTAC,  por
+   ejemplo)  y   copia  los   archivos  ejecutables  en   ese  directorio.  Los
+   directorios  con utilidades  de  soporte  (editor de  juegos  de caracteres,
+   visualizador  PCX,...) tambi‚n  pueden  copiarse  en este  mismo  directorio
+   aunque es recomendable  crear directorios diferentes (GENCAR para  el editor
+   de juegos de caracteres y UTIL para las utilidades de apoyo, por ejemplo).
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        3
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   1.5 Requerimientos de hardware:
+
+   Esta versi¢n  funciona en  cualquier ordenador  compatible PC  con al  menos
+   512K de memoria  instaladas, aunque es recomendable tener 640K. Esto es para
+   que el compilador pueda funcionar a su m xima  capacidad; de todas formas el
+   compilador incluido en esta versi¢n  se ajusta autom ticamente a  la memoria
+   disponible.
+   Las aventuras  compiladas precisan  tanta cantidad  de memoria  como la  que
+   ocupe  la base  de  datos compilada  m s la  que  ocupe el  int‚rprete. Esta
+   cantidad de memoria no es fija y var¡a de una aventura a otra.
+   La  versi¢n  T2 funciona  con  todos  los  adaptadores  compatibles CGA.  No
+   obstante para usar el  cambio de juegos de caracteres es  necesario disponer
+   de una tarjeta gr fica EGA, VGA o compatible.
+
+   1.6 Comienzo r pido:
+
+   Si  quieres  ver  una  r pida  demostraci¢n  del  sistema  SINTAC,  una  vez
+   instalado este puedes compilar la aventura de prueba mediante el comando:
+
+        cs av.db aventura.dat
+
+   Una vez  compilada la  base de  datos, para  jugar a la  aventura teclea  lo
+   siguiente:
+
+        is aventura.dat
+
+   Podr s observar  algunas  de las  capacidades  del  sistema. Espero  que  te
+   diviertas jugando a esta peque¤a aventura de demostraci¢n.
+
+                                  2 INTRODUCCION
+
+   A continuaci¢n se  expondr n brevemente una serie de conceptos b sicos sobre
+   el sistema SINTAC que habr  que tener en cuenta a la hora de programar.
+
+   2.1 La base de datos:
+
+   La  base  de  datos  es  un fichero  de  texto  que  contiene  una  serie de
+   secciones, cada una  de las cuales definen distintos apartados del programa,
+   como son las descripciones  de las localidades, los mensajes, los  objetos y
+   el programa  que  controla todo.  Hay  una  serie de  comandos,  denominados
+   condactos,   que   permiten   la   programaci¢n   de   complejas   aventuras
+   conversacionales. Una  explicaci¢n m s detallada de  la base  de datos puede
+   encontrarse en el apartado correspondiente.
+   El  fichero de texto  que compone  la base  de datos  ser  procesado  por el
+   compilador, el cual compactar   y codificar  el fichero de texto  creando un
+   fichero de datos para el int‚rprete.
+   Este fichero de  datos podr  ser ejecutado tanto  por el int‚rprete (IS.EXE)
+   como por  el int‚rprete-debugger  (DS.EXE), nunca  por  s¡ mismo  ya que  se
+   trata de un fichero de datos solamente.
+   Para crear  el fichero de texto hace falta  disponer de un editor ASCII o de
+   un procesador de textos. Si se emplea  este £ltimo habr  que tener  especial
+   cuidado  al salvar  el  fichero.  Habr  que  usar  el  modo NO  DOCUMENTO  o
+   EXPORTAR el  texto en formato  Texto del  DOS dependiendo del  procesador de
+   textos que estemos  usando. Si no se hace  as¡ el procesador de textos puede
+   incluir  c¢digos de  control y  formato en  el fichero  que  confundir¡an al
+   compilador.
+   Una elecci¢n  adecuada, para  los que  dispongan del  sistema operativo  DOS
+   5.00 o  superior  es  emplear  el  editor (EDIT)  que  incorpora  el  propio
+   sistema.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        4
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   2.2 Vocabulario:
+
+   El vocabulario est  compuesto por  una serie de palabras a las cuales se les
+   asigna un n£mero y un tipo. El tipo determinar  si la palabra  es un nombre,
+   un verbo,  un adjetivo o  una conjunci¢n. Los  verbos normalmente  se usar n
+   para indicar acciones. Los nombres  ser n asignados a objetos,  personajes o
+   lugares.  Los adjetivos  permiten  que dos  objetos  (o personas  o lugares)
+   cuyos nombres  coincidan puedan ser  diferenciados. Las conjunciones  act£an
+   como separadores dentro de la frase tecleada por el jugador.
+   Normalmente  dos  palabras  del  mismo  tipo  cuyo   n£mero  coincida  ser n
+   consideradas como sin¢nimos.  Esto permite dar variedad al vocabulario y que
+   el  jugador no tenga que  encontrar la palabra exacta a  la hora de realizar
+   una acci¢n.
+   Cuando se  inserta una  palabra en  el vocabulario  s¢lo se  consideran como
+   significativos los  6 primeros  caracteres. Esto  quiere decir  que palabras
+   como NONTAR  y MONTARSE  son equivalentes.  Ten muy  en  cuenta esto  cuando
+   crees el vocabulario.
+   Adem s  hay   que  destacar  tres  tipos   especiales  de   palabras  en  el
+   vocabulario:  las  palabras de  movimiento, los  nombres convertibles  y los
+   nombres propios.  Las palabras  de movimiento  son usadas  para indicar  las
+   conexiones entre  las distintas localidades. Palabras de movimiento son, por
+   ejemplo, NORTE, SUBIR, SALIR. Pueden ser tanto verbos como nombres.
+   Los nombre convertibles  se denominan as¡ ya  que si en la  sentencia l¢gica
+   no  aparece  un   verbo,  pero  aparece  uno  de  estos  autom ticamente  se
+   convierten  en  verbos. Los  nombres  propios  son  usados  para nombres  de
+   lugares,  de personajes. Estos nombres  no son sustituidos  cuando se usa un
+   verbo con terminaci¢n (COGELO, COGELA, COGELE).
+
+   2.3 Localidades:
+
+   Una  localidad es un  lugar, una  habitaci¢n o  un territorio  en el  que el
+   jugador de la aventura  puede estar en un momento determinado. Una localidad
+   se  define dentro de  la base de datos  mediante un texto  que es  el que se
+   imprimir  cuando  se  pida una  descripci¢n  de  esa localidad.  Este  texto
+   deber¡a  ser lo m s  descriptivo, y valga la  redundancia, posible; debe dar
+   al jugador una idea exacta de d¢nde se encuentra.
+   Un aspecto importante  a tener en cuenta  respecto a las localidades  es que
+   estas no  tiene por qu‚  tener una extensi¢n  fija. Pueden ser tan  peque¤as
+   como el interior de una maleta  o tan grandes como un  valle entre monta¤as.
+   Este aspecto se debe tener en cuenta a la hora de dise¤ar la aventura.
+   Adem s en la base de datos tambi‚n se incluir  una lista con las  conexiones
+   de la localidad con las que le rodean.
+
+   2.4 Mensajes del Sistema:
+
+   Los mensajes  del  sistema son  empleados, como  su  nombre indica,  por  el
+   propio int‚rprete para  informar de ciertas condiciones cuando se ejecuta un
+   condacto. As¡, por ejemplo,  el condacto GET informa con un mensaje del tipo
+   'Has cogido una manzana.' cuando,  efectivamente, se pudo coger  la manzana.
+   Este es  un mensaje del  sistema. Todos los  mensajes del sistema se  pueden
+   modificar  libremente  o  insertar  nuevos.  Hay 256  mensajes  del  sistema
+   disponibles, del 0 al 255, de los cuales  algunos deben ser fijos ya que son
+   usados por  los condactos  del SINTAC. A  parte de  estos el programador  es
+   libre de insertar los  mensajes del sistema que m s le convengan o modificar
+   los que son fijos para que se adapten  a su gusto. Los mensajes del  sistema
+   se imprimen por medio del condacto SYSMESS.
+   Hay  un car cter  especial  com£n a  todo tipo  de  mensajes, el  s¡mbolo de
+   subrayado  (_).  Si es  encontrado  este  car cter  ser   sustituido por  la
+   descripci¢n del £ltimo  objeto referenciado (cuyo n£mero est  en la variable
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        5
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   del sistema  8). Esta  caracter¡stica es  £til para  acciones gen‚ricas  del
+   tipo COGER.  As¡ el  mensaje  del sistema  que indica  que se  ha cogido  un
+   objeto  es, en  realidad,  'Has cogido  _.', el  cual  sirve para  todos los
+   objetos existentes en el juego.
+
+   2.5 Mensajes:
+
+   Aparte de  los  256 mensajes  del  sistema,  existen otros  tantos  mensajes
+   disponibles para el programador. Estos  mensajes son generales y  pueden ser
+   usados para cualquier prop¢sito.  Se imprimen por medio de dos condactos MES
+   y MESSAGE.  Las mismas consideraciones, en  cuanto al  s¡mbolo de subrayado,
+   hechas para los mensajes del sistema, se consideran tambi‚n para estos.
+
+   2.6 Objetos:
+
+   Un  elemento  importante  de  cualquier  aventura   conversacional  son  los
+   objetos.  Los  objetos dentro  el  sistema  SINTAC  est n  definidos por  un
+   n£mero, adem s cada objeto  lleva asociado un nombre y un adjetivo que deben
+   ser palabras  presentes en el vocabulario.  Puede haber  definidos hasta 255
+   objetos, del  0 al 254. El n£mero  de objeto 255 queda reservado como n£mero
+   de objeto no v lido.
+   Aparte de esto un objeto tambi‚n tiene definido un mensaje que es el que  se
+   imprimir  en  vez del s¡mbolo  de subrayado  o cuando se  pida una  lista de
+   objetos.
+   Junto a todo  esto un objeto viene definido  tambi‚n por una serie banderas,
+   las  cuales indican  si  es una  fuente  de luz,  una prenda  (banderas  del
+   sistema) o  cualquier  otra cosa  gracias  a la  posibilidad  de definir  16
+   banderas  de  usuario  para  cada objeto.  Las  banderas  de  un  objeto  se
+   comprueban mediante  los condactos HASAT y  HASNAT. Las  banderas de usuario
+   permiten definir distintas propiedades de un objeto, si es pesado o  ligero,
+   si es  grande o peque¤o, si es fr gil o robusto,...  lo cual permite un gran
+   flexibilidad a la hora de programar una aventura.
+
+   2.7 Procesos:
+
+   Los  procesos  son el  coraz¢n  de  la aventura  ya  que ellos  son  los que
+   controlan  el  mundo creado  por  el  programador.  En  los procesos  quedan
+   reflejadas todas las posibles acciones  del jugador, as¡ como las rutina que
+   dan vida a los personajes que interaccionan con ‚l.
+   Un proceso consta de una serie de entradas, cada una de  las cuales a su vez
+   consta de una serie de condactos. Los condactos  se ejecutan en orden dentro
+   de una  entrada. Cuando  una de  los condactos  falla (una  condici¢n no  se
+   cumple  o  una acci¢n  no pudo  llevarse a  cabo) el  flujo del  programa se
+   dirige a la siguiente entrada y as¡ sucesivamente  hasta que se produzca una
+   salida del procesos en  curso. Esta salida puede estar ocasionada por que se
+   alcanz¢ el  £ltimo condacto  de  la £ltima  entrada del  proceso, o  por  la
+   ejecuci¢n de un condacto  que ocasione la salida del proceso en  curso; como
+   por ejemplo los condactos DONE y NOTDONE.  Dentro de la descripci¢n de  cada
+   condacto se explican los  efectos de que una condici¢n se cumpla o  no, o de
+   que una acci¢n se ejecute o no.
+   El  sistema,  cuando se  inicializa,  empieza  la  ejecuci¢n  en la  primera
+   entrada del  Proceso 0,  esto es  importante ya  que todas  las acciones  de
+   inicializaci¢n  deben  ejecutarse  en este  proceso  (imprimir  pantalla  de
+   presentaci¢n, definir las ventanas, colocar ciertas  variables del sistema a
+   sus valores adecuados, etc...).
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        6
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                              3 VARIABLES y BANDERAS
+
+   El sistema SINTAC posee  dos tipos de datos  con los que se  puede trabajar,
+   se trata de las variables y las banderas. Hay disponibles  al usuario 256 de
+   cada  una de  ellas (256  variables y  256  banderas). Las  variables y  las
+   banderas  son totalmente independientes; cuando  se modifica una variable no
+   se afecta  a ninguna  bandera y  viceversa. La  diferencia est   en que  las
+   variables  pueden contener valores  en una rango de  0 a  255 y las banderas
+   solamente pueden contener 0 o 1.
+   Las operaciones que  se pueden realizar con variables son bastante diversas:
+   darles un  valor, compararlas con otras  variables, sumarles  o restarles un
+   valor, etc...  En cambio,  las operaciones  que se pueden  realizar con  las
+   banderas son limitadas  (pero suficientes): ponerlas a  1 o a 0  y comprobar
+   si est n a 1 o a 0.
+   Hay ciertas variables  y banderas denominadas  del sistema,  que son  usadas
+   por   el  int‚rprete  internamente.  A  continuaci¢n  se  listan  por  orden
+   num‚rico:
+
+   3.1 Variables del sistema:
+        0 -> n£mero de ventana activa
+        1 -> n£mero de localidad actual
+        2 -> n£mero de verbo de la £ltima sentencia analizada por PARSE
+        3 -> ¡dem pero nombre
+        4 -> ¡dem pero adjetivo
+        5 -> ¡dem pero nombre 2
+        6 -> ¡dem pero adjetivo 2
+        7 -> m ximo n£mero de objetos que se pueden llevar (0=ilimitados)
+        8 -> n£mero de objeto actual
+        9 -> primer c¢digo ASCII IBM (usado por el condacto INKEY)
+        10 -> segundo c¢digo ASCII IBM
+        11 -> variable interna usada por QUIT, SAVE y END
+        12 -> c¢digo devuelto por el condacto INPUT
+        13 -> c¢digo de salida de un programa externo ejecutado con EXTERN
+        14 a 20 -> reservadas
+
+   3.2 Banderas del sistema:
+        0 -> indicador de oscuridad (1=si, 0=no)
+        1 ->  si es  1 LISTAT imprime en  formato encolumnado, si  es 0 imprime
+             los objetos seguidos
+        2 ->  indicador usado  para evitar  las inicializaciones  en Proceso  0
+             (DESC lo pone a 0)
+        3 -> bandera de usuario
+        4 -> puesta a 1 si la tarjeta de video es EGA o VGA
+        5 a 20 -> reservadas
+
+                                  4 INDIRECCION
+
+   El t‚rmino  indirecci¢n se  refiere a  la  posibilidad de  usar los  valores
+   almacenados  en las  variables  como par metros  de  los condactos.  De esta
+   forma se consigue que los par metros  indireccionados dependan del contenido
+   de las variables que se usan para indireccionar.
+   S¢lo los 2 primeros par metros de  un condacto (si tiene m s  de dos) pueden
+   ser indireccionados. Un ejemplo:
+        DESC 1, describir  siempre la localidad n£mero 1, en cambio,
+        DESC [1],  describir  la  localidad cuyo  n£mero est‚  contenido en  la
+   variable n£mero 1.
+   Para indicar que un par metro  es indireccionado se escribe  entre corchetes
+   []; as¡ se indica  que se usar  el contenido de la variable cuyo n£mero est 
+   entre corchetes, en vez del n£mero directamente.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        7
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   La indirecci¢n  permite mucha  flexibilidad a  la hora de  programar ya  que
+   mediante ella se pueden crear bucles. Por ejemplo:
+
+       _         _         LET       100   101
+       $repite
+       _         _         LET       [100] 10
+                           INC       100
+                           EQ        100   106
+                           DONE
+       _         _         SKIP      $repite
+
+   Esta secuencia  de condactos  pone a 10  las variables  101 a 105  usando la
+   indirecci¢n para  crear un  sencillo  bucle. La  l¡nea clave  es en  la  que
+   aparece:
+
+       _         _         LET       [100] 10
+
+   Mediante  esta  l¡nea conseguimos  que la  variable cuyo  n£mero est   en la
+   variable 100 sea puesta  a 10. Esto  que puede sonar muy  lioso es  bastante
+   f cil de  asimilar.  Aseg£rate  que  entiendes  lo  que  hace  este  peque¤o
+   ejemplo.
+
+                               5 ETIQUETAS Y SALTOS
+
+   El sistema SINTAC  posee la capacidad de  realizar saltos desde un  punto de
+   un proceso a otro punto dentro del mismo  proceso. Esto se consigue mediante
+   el uso del  condacto SKIP. El condacto SKIP  debe ir seguido siempre  de una
+   etiqueta. Las etiquetas se colocan al inicio de una entrada, y solamente  al
+   inicio.  No  est    permitido  colocarlas  en  mitad  de  una  entrada.  Las
+   etiquetas, adem s, pueden  estar colocadas antes o despu‚s del condacto SKIP
+   que realiza el salto a ellas.
+   Una etiqueta  se define por el s¡mbolo $ seguido del  nombre de la etiqueta.
+   Aunque  el nombre  de  la etiqueta  puede ser  tan largo  como una  l¡nea de
+   texto, s¢lo los primeros  14 caracteres son significativos. El nombre  de la
+   etiqueta  puede contener  todos los caracteres  alfab‚ticos y  num‚ricos as¡
+   como los siguientes caracteres especiales: '+', '-', '*' y '_'
+   As¡ son v lidas etiquetas como $saltar_aqu¡, $ad+d, $coger-cosa, $123-456.
+   Las  etiquetas son  locales al proceso.  Es decir,  s¢lo existen  dentro del
+   proceso  en el  que  se definieron.  As¡ se  pueden  tener dos  etiquetas de
+   nombre  igual en  procesos diferentes  sin que  se interfieran entre  s¡; el
+   condacto SKIP saltar  a la etiqueta que se encuentre en su mismo proceso.
+   El m ximo  n£mero de etiquetas  que puede haber dentro  de un  proceso es de
+   100; adem s el m ximo n£mero de llamadas, dentro de un proceso, a  etiquetas
+   definidas posteriormente al condacto SKIP que las llama es de 100.
+
+                                    6 VENTANAS
+
+   Las   ventanas  permiten   dividir  la   pantalla   en  zonas   separadas  e
+   independientes unas de  otras. Estas zonas de pantalla son rectangulares con
+   unas dimensiones definidas mediante el condacto  DEFWIN. Adem s cada ventana
+   tiene unos  atributos  por  defecto  que  son  tambi‚n  definidos  por  este
+   condacto. El m ximo  n£mero de ventanas que  pueden ser definidas es  de 10,
+   numeradas de la 0 a la 9.
+   Todos los  textos que se impriman se mandar n a la ventana activa la cual se
+   selecciona por medio del condacto WINDOW. La ventana es activa hasta que  se
+   cambie por  medio de  otro condacto  WINDOW o  hasta que  se modifique,  por
+   cualquier medio, el contenido de la variable del sistema 0.
+   Adem s cada  ventana tiene  unos colores independientes,  as¡ los  condactos
+   INK, PAPER, BRIGHT y BLINK s¢lo afectan a  la ventana activa. Estos condacto
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        8
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   seleccionan los  colores actuales  de impresi¢n  en la  ventana activa.  Los
+   colores de la ventana activa s¢lo se modificar n si se cambian por medio  de
+   estos condactos, o si se ejecuta alguno de los condactos siguientes:
+        -  CLW que  restaurar  los colores de  la ventana a  los colores que se
+             dieron en el condacto DEFWIN.
+        - DEFWIN que colocar   los colores de la ventana al  color especificado
+             en su par metro.
+
+   Las ventanas  pueden tener  borde; inicialmente  cuando son  creadas por  el
+   condacto DEFWIN las ventanas no  tienen borde. Mediante el  condacto WBORDER
+   se puede definir un tipo de borde para la ventana. Si se  quiere definir una
+   ventana con  borde es aconsejable colocar el condacto WBORDER inmediatamente
+   a continuaci¢n del DEFWIN que la define.
+
+                             7 EL TEXTO Y LOS COLORES
+
+   7.1 Atributos en modo texto:
+
+   El modo texto de los ordenadores de  la familia PC y compatibles permite una
+   amplia  gama de  colores si  se  dispone de  la configuraci¢n  adecuada para
+   visualizarlos, es  decir de una  tarjeta gr fica  de color  (CGA, EGA,  VGA,
+   MCGA,...) y de un monitor que permita visualizar la pantalla en color.
+   Bajo estos requisitos se  podr n visualizar un total de 16  combinaciones de
+   colores, 8 sin  brillo y otras  8 con brillo. Adem s  es posible  definir la
+   capacidad de que el texto parpadee.
+   Los colores disponibles  en modo texto y  sus valores num‚ricos se  listan a
+   continuaci¢n:
+
+                   SIN BRILLO             CON BRILLO
+                Valor       Color      Valor       Color
+                  0         Negro        8         Gris
+                  1         Azul         9      Azul p lido
+                  2         Verde       10     Verde p lido
+                  3         C¡an        11      C¡an p lido
+                  4         Rojo        12      Rojo p lido
+                  5        Magenta      13     Magenta p lido
+                  6        Marr¢n       14       Amarillo
+                  7        Blanco       15     Blanco intenso
+
+   7.2 Valor de atributo:
+
+   Algunos condactos como  DEFWIN precisan  que uno  de sus  par metros sea  un
+   valor de atributo en el rango 0 a 255. Este valor  de atributo se calcula de
+   la siguiente forma:
+
+        - cogemos el n£mero del color para la TINTA
+        - si queremos brillo le sumamos 8
+        - al total obtenido le sumamos el color del fondo multiplicado por 16
+        - finalmente, si queremos parpadeo le sumamos 128
+
+   Siguiendo estos  pasos se obtendr  un  valor en el rango  0 a 255  (si no es
+   que est  mal calculado) que ser  el valor del atributo requerido.
+   La estructura de un byte de atributo es como sigue:
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                        9
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+        7    6 5 4     3    2 1 0
+       ÚÄÂÄÄÄÄÄÄÄÄÄÄÄÄÂÄÂÄÄÄÄÄÄÄÄÄ¿
+       ³P³   Fondo    ³B³   Tinta ³
+       ÀÄÁÄÄÄÄÄÄÄÄÄÄÄÄÁÄÁÄÄÄÄÄÄÄÄÄÙ
+
+   D¢nde B indica el brillo y P el parpadeo.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       10
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                   PARTE II: Compilador, int‚rprete y debugger
+
+                                 8 EL COMPILADOR
+
+   8.1 C¢mo compilar la base de datos:
+
+   8.1.1 Los ficheros:
+
+   El compilador permite codificar el fichero de  texto que compone la base  de
+   datos y  transformarlo  en un  formato  compacto  listo para  ser  ejecutado
+   mediante el int‚rprete.  Para compilar una base  de datos se debe  entrar al
+   compilador con la siguiente l¡nea desde el sistema operativo:
+
+        CS [base_de_datos] [fichero_salida]
+
+   Si  no  se  introducen  nombres  de  ficheros  en  la l¡nea  de  llamada  el
+   compilador preguntar  por ellos, de la forma:
+
+        Nombre del fichero a compilar:
+        Fichero de salida [nombre_por_defecto]:
+
+   Si introducimos en  la l¡nea de llamada  s¢lo el nombre de la  base de datos
+   s¢lo preguntar  por:
+
+        Fichero de salida [nombre_por_defecto]:
+
+   El  nombre por defecto para el fichero de salida  es el nombre de la base de
+   datos pero  con la extensi¢n  cambiada a .DAT.  Podemos aceptar este  nombre
+   pulsando  RETURN  simplemente,  o  introducir  uno  nuevo.  Por  ejemplo  si
+   introducimos:
+
+        CS AVENTURA.DB
+
+   Aparecer  el mensaje:
+
+        Fichero de salida [AVENTURA.DAT]:
+
+   Inform ndonos de  que  si no  introducimos  otro nombre,  la  base de  datos
+   compilada se almacenar  en el fichero AVENTURA.DAT.
+
+   8.1.2 Los mensajes de error:
+
+   Si se produce alg£n error al intentar abrir el fichero con la base de  datos
+   (este no existe, es defectuoso, etc...) se imprimir  el mensaje de error:
+
+        Error de apertura de fichero de entrada [base_de_datos].
+
+   D¢nde base_de_datos es el nombre del fichero que dimos como base de datos.
+   Si el fichero de  salida del compilador ya existe,  se nos informar  de ello
+   de la siguiente forma:
+
+        Fichero nombre_de_fichero ya existe. ¨Continuar?
+
+   Si se responde  con el car cter 's'  o 'S' se continuar  la  compilaci¢n, si
+   se responde con cualquier otro car cter se finalizar  el proceso.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       11
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   El compilador reserva memoria  para compilar cada una de las  secciones, por
+   defecto la memoria reservada  para cada secci¢n se da en la  siguiente tabla
+   (en bytes):
+
+        Mensajes                  65500
+        Mensajes del Sistema      65500
+        Localidades               65500
+        Conexiones                 8187
+        Objetos                   32750
+        Procesos                  65500
+        TOTAL                    302937
+
+   Si  no hay suficiente memoria el  compilador ir  ajustando hacia abajo estas
+   cantidades  hasta que  disponga  de memoria  suficiente.  Si la  cantidad de
+   memoria  disponible es tan  escasa que  el compilador  no pudo  encontrar un
+   cantidad m¡nima adecuada se producir  el error:
+
+        No hay suficiente memoria para ejecutar el programa.
+
+   El compilador  informar   de la  cantidad  de  memoria reservada  para  cada
+   secci¢n mediante los mensajes:
+
+        MEMORIA DISPONIBLE:
+        Secci¢n de Mensajes                : xxxxx
+        Secci¢n de Mensajes del sistema    : xxxxx
+        Secci¢n de Localidades             : xxxxx
+        Secci¢n de Conexiones              : xxxxx
+        Secci¢n de Objetos                 : xxxxx
+        Secci¢n de Procesos                : xxxxx
+
+   Si te aparece el  mensaje de error  de memoria insuficiente intenta  liberar
+   memoria  eliminando  programas  residentes  como  controladores  de   rat¢n,
+   emuladores  de  memoria  expandida,  discos ram,...  e  intenta  compilar de
+   nuevo.
+
+   8.1.3 El proceso de compilaci¢n:
+
+   Durante  la  compilaci¢n   se  ir n   presentando  una  serie   de  mensajes
+   informativos sobre lo que est  haciendo el compilador en ese momento.
+   Durante la compilaci¢n pueden aparecer  diversos mensajes de error  y avisos
+   del compilador. Los avisos se presentan de la forma:
+
+        *** AVISO: mensaje_de_aviso, l¡nea nnnnn.
+        Proceso ppp
+
+   D¢nde mensaje_de_aviso es  el aviso producido  por el  compilador, nnnnn  el
+   n£mero de l¡nea  dentro del fichero de  entrada d¢nde se produjo  el aviso y
+   ppp  el n£mero  de Proceso  en  el que  se detect¢  la  anomal¡a. Estos  dos
+   £ltimos campos pueden aparecer o  no dependiendo de la naturaleza del aviso.
+   Los  avisos no  interrumpen  el proceso  del  compilaci¢n, s¢lo  informan de
+   posibles irregularidades en la base de datos que deber¡an ser corregidas.
+   Los mensajes de error se presentan de la forma:
+
+        *** ERROR: mensaje_de_error
+
+   Al contrario  que  los  avisos  los errores  interrumpen  inmediatamente  el
+   proceso  de  compilaci¢n,   no  pudiendo  seguir  hasta  que  el  error  sea
+   corregido.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       12
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   8.2 Estructura de la base de datos:
+
+   Como ya se coment¢  anteriormente la base de  datos es un fichero  de texto,
+   el cual puede ser creado por cualquier editor o procesador de textos.
+   En  la base de datos, las distintas  secciones del programa est n claramente
+   delimitadas unas de otras; esto es as¡  para que luego el compilador sepa de
+   qu‚ secci¢n se trata a la hora de compilar y codificar la base de datos.
+   Normalmente  el inicio  de una  secci¢n se  indica mediante  la secuencia de
+   caracteres \XXX, d¢nde XXX  indica el tipo  de secci¢n. Los distintos  tipos
+   de secciones se listan a continuaci¢n:
+
+             \VOC : secci¢n de vocabulario
+             \OBJ : secci¢n de descripci¢n de objetos
+             \LOC : secci¢n de localidades
+             \MSG : secci¢n de mensajes
+             \MSY : secci¢n de mensajes del sistema
+             \PRO : secci¢n de procesos
+
+   De esta £ltima  hay que decir que existen  tantas secciones de procesos como
+   procesos haya en el programa.
+   El final de una  secci¢n tambi‚n debe ser indicado; esto se realiza mediante
+   la secuencia  de caracteres \END. Estas  secuencias de  caracteres, tanto la
+   de  inicio  como la  de  final,  deben  siempre estar  colocadas  en  l¡neas
+   separadas; as¡:
+
+       \LOC
+       ..... aqu¡ ir¡an las descripciones de localidades .....
+       \END
+
+   8.3 Comentarios en la base de datos:
+
+   Los comentarios normalmente deben  ir precedidos de un punto y coma  (;). Se
+   pueden colocar  comentarios en pr cticamente cualquier  lugar de  la base de
+   datos; teniendo en cuenta que cualquier l¡nea que comience por punto y  coma
+   es  considerada  un  comentario.  Se debe  tener  cuidado  con  esto ya  que
+   cualquier l¡nea  de un texto de  descripci¢n de  localidad, mensaje, mensaje
+   del  sistema o descripci¢n de  objeto, que contenga  como primer car cter un
+   punto y coma es considerada como comentario. Por ejemplo:
+
+       @001 Esta descripci¢n de localidad no es correcta
+       ; ya que esta l¡nea es considerada como comentario
+       y por tanto la siguiente l¡nea real de texto es esta
+
+   Adem s se  pueden  colocar  comentarios  tras  la  definici¢n  de  cualquier
+   elemento como  palabras  de  vocabulario,  conexiones,  objetos,  condactos;
+   incluso detr s de las secuencias de inicio y final de secci¢n:
+
+       \VOC
+       ; secci¢n de vocabulario
+       NORTE         5   Nombre      ; verbo de movimiento
+
+       _         _         MESSAGE   7     ; imprime mensaje
+                           DONE
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       13
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   8.4 Constantes simb¢licas:
+
+   Dentro de  la base  de datos  se pueden  definir constantes  simb¢licas. Una
+   constante simb¢lica puede  ser usada en cualquier lugar  de la base de datos
+   d¢nde  ser¡a usado un n£mero  con la comodidad de  que es m s f cil recordar
+   un nombre que un n£mero.
+   Las constantes  simb¢licas pueden estar definidas  en cualquier  lugar de la
+   base de datos; tanto al principio como  al final como en medio  de cualquier
+   secci¢n.
+   El compilador realiza una  primera pasada  en busca de  constantes y las  va
+   almacenando en una tabla. El m ximo n£mero de constantes es de 1000.
+   La  definici¢n de  una constante debe  ir en  una l¡nea  que debe ser  de la
+   forma:
+
+             \\nombre_de_constante    valor
+
+   d¢nde los caracteres '\\'  indican el inicio de la definici¢n  de constante,
+   'nombre_de_constante' es el  nombre que queremos  asignar a  la constante  y
+   que no debe tener  m s de 14 caracteres de longitud.  EL campo 'valor' es un
+   valor num‚rico de 0 a 255 que queremos asignar a la constante.
+   El  nombre de la  constante NO DEBE empezar  con un  n£mero y puede contener
+   letras, n£meros y los caracteres '_', '+', '-' y '*'.
+   No es necesario definir  una constante antes del  lugar de uso de la  misma;
+   una  constante que  est‚ definida  al final de  la base  de datos  puede ser
+   usada incluso al principio de la misma.
+   A continuaci¢n unos ejemplos de uso de constantes simb¢licas:
+
+       \\HABLAR_PSIS       15
+       ...
+       \PRO 3
+
+       DECIR     _         PROCESS HABLAR_PSIS
+                           DONE
+       ...
+       \END
+
+       \PRO HABLAR_PSIS
+
+       ; constantes con los n£meros de mensajes usados en conversaciones
+       \\MENS_CAMARERO     18
+       \\MENS_CRIADA       23
+       \\VAR_CAMARERO      100       ; variable con la localidad del camarero
+       \\VAR_CRIADA        101       ; idem para la criada
+
+       _         CAMARERO  EQ        [VAR_CAMARERO]    [1]
+                           MESSAGE   MENS_CAMARERO
+                           DONE
+       _         CRIADA    EQ        [VAR_CRIADA]      [1]
+                           MESSAGE   MENS_CRIADA
+                           DONE
+       ...
+
+       \END
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       14
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+       \\VAR_INPUT         12        ; var. con el c¢digo devuelto por INPUT
+       \\TECLA_F1          255       ; c¢digo de tecla F1
+       \\TECLA_F2          254       ; c¢digo de tecla F2
+       \\INVENTARIO        24        ; proceso que imprime inventario
+       \\MIRAR             25        ; proceso que imprime descripci¢n
+
+       \PRO 23
+
+       _         _         EQ        VAR_INPUT   TECLA_F1
+                           PROCESS   INVENTARIO
+                           DONE
+       _         _         EQ        VAR_INPUT   TECLA_F2
+                           PROCESS   MIRAR
+                           DONE
+       ...
+
+       \END
+
+   Hay una  serie de constantes simb¢licas  con un  significado especial; estas
+   son las siguientes:
+
+        V_MOV     : su valor  indica el m ximo n£mero de palabra de vocabulario
+                  que ser  considerado  como verbo de movimiento. Su  valor por
+                  defecto es 14.
+        N_CONV    : su valor  indica el m ximo n£mero de palabra de vocabulario
+                  que ser  considerador  como nombre convertible. Su  valor por
+                  defecto es 20.
+        N_PROP    : su valor  indica el m ximo n£mero de palabra de vocabulario
+                  que  ser   considerado  como  nombre  propio.  Su  valor  por
+                  defecto es 50.
+
+   Si estas constantes no  son definidas se  tomar  su valor por  defecto y  se
+   producir  un mensaje de aviso.
+
+   8.5 Descripci¢n de las distintas secciones:
+
+   Seguidamente se  describen una  a una  las distintas  secciones. Los  campos
+   encerrados entre corchetes  ([]) son opcionales y  pueden o no  aparecer. El
+   resto de los  campos deben aparecer siempre,  adem s en  el orden en que  se
+   indican. Los campos deben ir separados unos de otros  por uno o m s espacios
+   en blanco o por uno o m s c¢digos de tabulaci¢n.
+
+   8.5.1 La secci¢n de Vocabulario:
+
+   La secci¢n de vocabulario se inicia con  \VOC seguido de una serie de l¡neas
+   de la forma:
+
+       palabra  n£mero   tipo        [;comentario]
+
+   Los distintos campos se comentan a continuaci¢n:
+
+        - palabra : es la  palabra que se  quiere insertar  en el  vocabulario.
+             Puede  estar escrita  tanto en may£sculas  como en  min£sculas, el
+             compilador la  convertir  autom ticamente  a may£sculas. S¢lo  son
+             significativos los 6 primeros caracteres.
+        - n£mero  : es  el n£mero  que se  quiere asignar  a la  palabra en  el
+             rango 1 a 254 inclusive.
+        - tipo    : indica  el tipo  de palabra  de que  se trata.  El tipo  de
+             palabra puede ser V  para verbo, N para nombre, A para  adjetivo y
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       15
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+             C  para   conjunci¢n.  Puede  estar   en  may£scula  o   min£scula
+             indiferentemente.  Si  en  este  campo  se  especifica m s  de  un
+             car cter,  s¢lo se  considera el  primero.  As¡ son  equivalentes:
+             Nombre, nombre, nomb,  nada y n;  verbo, V,  v, verdadero y  verb;
+             etc...
+
+   Unos ejemplos de definici¢n de la secci¢n de vocabulario:
+
+       \VOC
+
+       NORTE         1   nombre
+       SUR           2   n
+       SUBIR         9   verbo
+       ; acci¢n de coger cosas
+       COGER        20   verbo       ; coger
+       coge         20   VERB
+       CoJo         20   V
+       COGELO       20   verbosio
+       COGeLa       20   verbum
+       PREGUNtar    29   verbo
+       vieja         1   adj
+       Y             1   conjunci¢n
+       luego         1   conj.
+
+       \END
+
+   Dentro del campo palabra s¢lo  son admitidos como caracteres  v lidos letras
+   y n£meros  (ABC..XYZ, 01..9)  nunca otro  tipo de caracteres.  Adem s no  se
+   podr n insertar  en el  vocabulario palabras  repetidas, es  decir, cuyos  6
+   primeros caracteres del campo palabra coincidan.
+   A  parte de  esto hay  que tener  en  cuenta que  el n£mero  asignado  a una
+   palabra puede modificar el tipo de esta; as¡:
+
+        - nombres y verbos cuyo n£mero sea  menor que el valor de  la constante
+             V_MOV son considerados como palabras de movimiento.
+        -  los nombres  cuyo  n£mero sea  menor que  el  valor de  la constante
+             N_CONV son considerados nombres convertibles.
+        -  los nombres  cuyo n£mero  sea menor  que  el valor  de la  constante
+             N_PROP son considerados nombres propios.
+
+   Para m s informaci¢n ver la secci¢n 8.4, p gina 13.
+
+   Dos  palabras del  mismo  tipo cuyo  n£mero  coincida son  considerados como
+   sin¢nimos; pueden ser usadas indistintamente una de otra.
+   Si el campo palabra de un  verbo tiene menos de 6 letras se deben a¤adir las
+   correspondientes  entradas de ese  mismo verbo con terminaci¢n  LA, LO o LE.
+   Por ejemplo:
+
+       DEJAR        21   verbo
+       DEJARL       21   verbo
+       DEJA         21   verbo
+       DEJALO       21   verbo
+       DEJALA       21   verbo
+       DEJALE       21   verbo
+       PONER        22   verbo
+       PONERL       22   verbo
+       PON          22   verbo
+       PONLO        22   verbo
+       PONLA        22   verbo
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       16
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Como  se puede observar  si un  verbo tiene  al menos 5  letras en  su campo
+   palabra s¢lo hay  que insertar una entrada  m s a¤adiendo una 'L'  final. En
+   cambio,  si tiene 4 o menos  letras en su campo palabra  hay que insertar el
+   verbo  con  su  correspondiente  terminaci¢n.  En  el  ejemplo  anterior  se
+   reconocer¡an las formas  con terminaci¢n PONLO y  PONLA del verbo  PON, pero
+   no la forma PONLE ya que esta no ha sido insertada.
+
+   8.5.2 Las secciones de Mensajes y Mensajes del Sistema:
+
+   Estas  dos secciones  por su  similitud se  explican  juntas. La  secci¢n de
+   Mensajes se  inicia con  la secuencia de  caracteres \MSG  y las secci¢n  de
+   Mensajes del Sistema con la  secuencia \MSY. Seguidamente se  definir n cada
+   una de los mensajes de la forma:
+
+       @nnn ..... Texto del mensaje .....
+       que puede ocupar varias l¡neas
+       seguidas. Al final se pondr  el car cter@
+
+   Se inicia el mensaje con el car cter @ seguido de un  n£mero en el rango 0 a
+   255. Los mensajes  deben ir  seguidos uno tras otro  y en orden  num‚rico es
+   decir  primero el @1, luego el @2 y por  £ltimo el @255. No es necesario que
+   est‚n definidos  los 256  mensajes, pero aquellos  que especifiquemos  deben
+   estar ordenados.
+   Seguidamente, separado por  un espacio o por una tabulaci¢n, escribiremos el
+   mensaje que  puede  ocupar varias  l¡neas  consecutivas.  Hay que  tener  en
+   cuenta que los  retornos de carro no  se insertar n como parte  del mensaje,
+   as¡ el mensaje:
+
+       @1 Este mensaje se imprimir 
+        en una sola l¡nea.@
+
+   Se imprimir  en pantalla:
+
+        Este mensaje se imprimir  en una sola l¡nea.
+
+   Adem s las  sucesivas l¡neas  a partir  de la  primera se  tomar n tal  cual
+   desde su primera  columna, si hay espacios iniciales estos se respetar n, si
+   no sencillamente no se insertar n. La primera l¡nea  es un tanto especial ya
+   que el texto de esta se tomar  a partir del car cter siguiente  al espacio o
+   tabulaci¢n que sigue  al campo @nnn. As¡  si queremos un espacio  inicial al
+   principio del mensaje deberemos poner:
+
+       @1  Este mensaje tiene un espacio inicial.@
+
+   El  cual se imprimir  con un  espacio al inicio. Adem s  hay un car cter con
+   significado especial,  el car cter  (|) cuyo  c¢digo ASCII  es el 124.  Este
+   car cter ser   sustituido por un  avance de l¡nea  con lo  que el resto  del
+   mensaje se imprimir  en la siguiente l¡nea de pantalla. Por ejemplo:
+
+       @1 Esto va en la primera l¡nea|
+       y esto en la segunda|
+        esto en la tercera.@
+
+   Se imprimir  en pantalla:
+
+        Esto va en la primera l¡nea
+        y esto en la segunda
+         esto en la tercera.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       17
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Se pueden insertar  cuantos caracteres de  avance de  l¡nea sean  necesarios
+   sin l¡mite alguno.  Recordar tambi‚n que  cualquier l¡nea  que comience  por
+   una  serie de  espacios o tabulaciones  seguidos de un  punto y  coma (;) se
+   considera un comentario. As¡ mismo las l¡neas en blanco se desechan.
+   Seguidamente se incluyen unos cuantos ejemplos de secciones de mensajes:
+
+       \MSG
+       @01  Mensaje con espacio inicial.@
+       @002 Mensaje con avance de l¡nea|intermedio.@
+       @4 este mensaje dar  error ya que su n£mero debiera ser el 3 no el 4@
+       @5 @      ; mensaje nulo
+          @6 Antes del @nnn inicial puede haber cuantos espacios
+       o tabulaciones se precisen.@
+       @007 ; esto no se considera comentario y se introducir  como parte
+        del mensaje.
+       ; en cambio esto es un comentario que no se incluir 
+           ; ni esto tampoco
+       @
+       @8 Este mensaje en realidad ocupa solamente
+
+
+        dos l¡neas, ya que las dos anteriores son desechadas.@
+       \END
+
+   8.5.3 Secci¢n de Localidades:
+
+   La secci¢n de  localidades se  inicia con la  secuencia \LOC  seguida de  la
+   descripci¢n de localidad de la forma:
+
+       @nnn ..... Texto de localidad .....
+       que igual que los texto de mensajes
+       puede ocupar varias l¡neas.@
+   Luego van las conexiones de la forma:
+       # palabra_de_movimiento       nnn   [;comentario]
+       # palabra_de_movimiento       nnn   [;comentario]
+       # palabra_de_movimiento       nnn   [;comentario]
+       ...
+
+   El texto de la localidad se  define de la misma forma que los mensajes  (ver
+   8.5.2, p gina 16). Tras el  texto de localidad se colocar n las  conexiones.
+   Cada conexi¢n est  compuesta  de una palabra de movimiento seguida de  uno o
+   varios  espacios,  o una  o  varias  tabulaciones, y  despu‚s  el  n£mero de
+   localidad con la que conecta en el rango 0 a 251.
+   Cada conexi¢n debe ir en una  l¡nea separada, comenzando con varios espacios
+   o  tabulaciones  opcionales,   seguidos  del  car cter  (#).   Se  considera
+   finalizada la lista  de conexiones para  esa localidad  cuando se  encuentra
+   una  l¡nea  que no  sea  ni comentario,  ni  est‚  en blanco  y  cuyo primer
+   car cter no  blanco (ni  espacio ni  tabulaci¢n) sea  distinto del  car cter
+   (#).
+   La lista de conexiones es opcional  y puede aparecer o no. A continuaci¢n se
+   incluyen algunos ejemplos de definiciones de localidades:
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       18
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+       \LOC
+
+       @0 Est s en un castillo medieval. Ves una herrumbrosa
+        armadura apoyada contra una pared.@
+       # NORTE   1         ; al patio de armas
+       # SUR     4         ; al sal¢n del trono
+       # SUBIR   6         ; al torre¢n
+
+       @1 El patio de armas est  vac¡o y desolado. Desde aqu¡ ves la puerta
+        de entrada al castillo.@
+       # SUR     0         ; al interior del castillo
+
+       ; Ahora van unas cuantas localidades sin usar
+
+       @2 @      ; reservada para establos
+       @3 @      ; reservada para armer¡a
+       @4 El sal¢n del trono est  lleno de polvo y telara¤as.@
+       # NORTE   0
+       @5 Est s en el fondo de un oscuro pozo. Parece que no hay salida.@
+       @6 Desde el torre¢n divisas el desolado paisaje exterior.@
+       # BAJAR   0
+
+       \END
+
+   8.5.4 Secci¢n de Objetos:
+
+   La secci¢n de  objetos se inicia con \OBJ  seguida de la descripci¢n  de los
+   objetos de la forma:
+
+       @nnn    nombre    adjetivo  l.i    [tipo]  banderas_usuario [;coment.]
+       texto_de_descripci¢n_del_objeto
+
+   El  campo @nnn indica el n£mero del objeto en el rango 0 a 254 (el 255 es un
+   n£mero  de  objeto  reservado).  Seguidamente  y  separado  por  espacios  o
+   tabulaciones va el  nombre del objeto el  cual debe ser un  nombre insertado
+   en el  vocabulario. Luego  va el  adjetivo el  cual deber  ser, tambi‚n,  un
+   adjetivo v lido del vocabulario o  en s¡mbolo del subrayado (_),  que indica
+   que  no hay  adjetivo.  Tras este  va  la localidad  inicial, un  n£mero  de
+   localidad  v lido o  los  valores especiales  para  objeto no  creado (252),
+   objeto puesto (253) o objeto cogido (254).
+   Tras la localidad  inicial va el tipo del  objeto que viene indicado por una
+   serie de caracteres separados por espacios o tabulaciones.  Estos caracteres
+   puede ir en may£scula o min£scula indiferentemente; y son:
+
+        -  P para  indicar que  el objeto  es una  prenda; es  decir  puede ser
+             puesto y quitado (WEAR, REMOVE).
+        -  L para  indicar que el  objeto es  una fuente  de luz; es  decir que
+             permite  la   descripci¢n  de  localidades   oscuras  cuando  est 
+             presente.
+
+   Si aparecen varios caracteres seguidos, sin separaci¢n, se  tomar  solamente
+   el primero de  ello; as¡: p, P, prenda,  Poner son equivalentes, tambi‚n: l,
+   L, luz, luminosos son equivalentes.
+   Luego  van las banderas  de usuario que son  una secuencia  de 16 caracteres
+   seguidos,  sin espacios  intermedios.  El car cter  (x)  o (X)  se  usa para
+   indicar bandera activa,  el car cter (o) u  (O) se usa para  indicar bandera
+   inactiva. El orden de  colocaci¢n de las banderas de usuario es de izquierda
+   a derecha, con el primer car cter  indicando el estado de la bandera  0 y el
+   £ltimo el de la bandera 15.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       19
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   En la  l¡nea  siguiente  a  las  definiciones del  objeto  va  el  texto  de
+   descripci¢n, el  cual ser  impreso  en los listados  de objetos as¡ como  en
+   sustituci¢n al  s¡mbolo de  subrayado (_)  que aparece  en los  mensajes. El
+   texto de descripci¢n del objeto no puede ocupar m s de una l¡nea.
+   A continuaci¢n unos cuantos ejemplos de definici¢n de objetos:
+
+       \OBJ
+
+                         ; Pesado                 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+                         ; Peque¤o                ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+                         ; El stico               ÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³³
+                         ; Inflamable             ÄÄÄÄÄÄÄÄÄÄÄÄ¿³³³
+                         ;                                    ³³³³
+       @0      LINTERNA  VIEJA       1    L       OOOOOOOOOOOOOOOO
+       una vieja linterna
+       @1      ESPADA    _           2            ooooooooooooooox
+       una espada
+       @2      GUANTE    ROJO      252    P       ooooooooOOOOOOXO
+       un guante de lana rojo
+       @3      GUANTE    VERDE       3    prenda  OOOOooooOOOOxxxo
+       un guante verde, de nylon
+
+       \END
+
+   8.5.5 Secciones de Procesos:
+
+   Las secciones de  procesos se  inician mediante \PRO  nnn, d¢nde  nnn es  el
+   n£mero de  proceso a definir. Habr   pues tantas secciones de  procesos como
+   procesos contenga  el programa.  Los procesos  deben ir  colocados en  orden
+   num‚rico y deben empezar a numerarse desde 0 en adelante.  El campo nnn debe
+   ser  un n£mero  en el  rango 0  a 255.  Tras el  inicio del proceso  ir n un
+   n£mero variable de entradas de la forma:
+
+       verbo     nombre    condacto  [;comentario]
+                           condacto  [;comentario]
+                           ...
+       verbo     nombre    condacto  [;comentario]
+                           condacto  [;comentario]
+                           ...
+       ...       ...
+
+   Donde el campo verbo es un verbo o  un nombre convertible del vocabulario  o
+   el  s¡mbolo de  subrayado  (_),  el campo  nombre  es un  nombre  v lido del
+   vocabulario o el s¡mbolo de  subrayado (_) y el campo  condacto se refiere a
+   un condacto con sus  par metros. El primer car cter del campo verbo debe ser
+   el primer car cter de la l¡nea ya que si hay espacios o  tabulaciones antes,
+   la  entrada se considera  inv lida. Luego  van los condactos;  tras el campo
+   nombre  siempre debe haber  un condacto.  Los condactos  deben ir  en l¡neas
+   separadas y antecedidos por espacios  o tabulaciones. Se considera  el final
+   de la  entrada cuando  se encuentra un  l¡nea (que  no sea comentario)  cuyo
+   primer  car cter no es ni  un espacio ni una tabulaci¢n;  es decir cuando se
+   encuentra una etiqueta, el inicio de  otra entrada o el final  de la secci¢n
+   de proceso (\END).
+   Por ejemplo:
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       20
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+       \PRO 0    ; se ejecuta tras cada inicializaci¢n y condacto DESC
+       _         _         PROCESS   4     ; inicializaciones
+       _         _         NOTZERO   2     ; si hay que saltar acciones DESC
+                           SKIP      $buc_princ
+       _         _         SET       2     ; aqu¡ llega si es inicio o DESC
+       ; Ejecuta diversas acciones tras una descripci¢n.
+       _         _         NORESP
+       _         _         LISTOBJ         ; lista objetos
+                           PROCESS   1
+       $buc_princ
+       _         _         SYSMESS   6
+                           INPUT           ; pide frase de entrada
+                           SKIP      $buc_princ
+       _         _         NEWLINE
+       ...
+       \END
+
+       \PRO 001
+       \END
+
+       \PRO 2
+       ; esta es el proceso d¢nde se analizan las frase del jugador
+       _         _         PARSE           ; analiza frase del jugador
+                           NOTDONE
+       _         _         RESP
+       ...
+       INVEN     _         SYSMESS   14    ; inventario
+                           LISTAT    254
+                           SYSMESS   15
+                           LISTAT    253
+                           DONE
+       COGER     _         AUTOG
+                           DONE
+       ...
+       \END
+
+                                 9 EL INTERPRETE
+
+   9.1 Ejecutar la base de datos compilada:
+
+   9.1.1 C¢mo entrar en el int‚rprete:
+
+   La  ejecuci¢n  de  la  base  de  datos  compilada  se  realiza  entrando  al
+   int‚rprete, desde el sistema operativo, mediante el comando:
+
+        IS nombre_de_fichero
+
+   o al int‚rprete-debugger mediante:
+
+        DS nombre_de_fichero [opciones]
+
+   El nombre_de_fichero es el nombre del fichero que contiene la base de  datos
+   compilada. Si  no se da  el nombre  del fichero se  producir  un mensaje  de
+   error:
+
+        Falta nombre de fichero
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       21
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Adem s si  se ejecuta  el debugger  se puede  especificar la  opci¢n /lxx  o
+   /Lxx, d¢nde  xx es  el n£mero  de l¡nea  de pantalla  d¢nde queremos  que se
+   presente la ventana de depuraci¢n.
+
+   9.1.2 Mensajes de error:
+
+   Si se produce  alg£n error  durante la apertura del  fichero con la  base de
+   datos compilada (no existe, por ejemplo), aparecer  el mensaje:
+
+        Error de apertura fichero de entrada
+
+   Si el  fichero existe  pero no es un  fichero conteniendo una  base de datos
+   correcta se dar  el mensaje de error:
+
+        Fichero de entrada no v lido
+
+   Si se produce alg£n error  durante la lectura de la base de datos  compilada
+   aparecer  el error:
+
+        Error en fichero de entrada
+
+   El error:
+
+        No hay suficiente memoria
+
+   indica que la cantidad de  memoria disponible es insuficiente  para ejecutar
+   la base de datos compilada.
+   Principalmente estos son todos los  mensajes de error referentes  al fichero
+   que contiene la base de datos compilada.
+
+   9.2 Frase y sentencia l¢gica:
+
+   A lo  largo de este manual  consideraremos que frase es la  l¡nea que teclea
+   el  jugador cuando  esta es  solicitada  por el  condacto  INPUT, en  cambio
+   sentencia l¢gica  es  la conversi¢n  de la  frase en  c¢digos num‚ricos  por
+   medio  del analizador (condacto PARSE). Por ejemplo, si el jugador tecle¢ la
+   frase:
+
+        COGER MARTILLO Y CLAVAR EL CLAVO.
+
+   El  condacto PARSE  extraer   de ella  la sentencia  l¢gica,  as¡ el  primer
+   condacto PARSE  que  se ejecute  despu‚s  de teclear  la frase  extraer   la
+   siguiente sentencia l¢gica:
+
+        Verbo     Nombre    Adjetivo  Nombre2   Adjetivo2
+        COGER     MARTILLO  ninguno   ninguno   ninguno
+
+   El siguiente condacto PARSE que se ejecute extraer  la sentencia l¢gica:
+
+        Verbo     Nombre    Adjetivo  Nombre2   Adjetivo2
+        CLAVAR    CLAVO     ninguno   ninguno   ninguno
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       22
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   9.3 La sentencia l¢gica:
+
+   9.3.1 Acciones encadenadas:
+
+   Una  frase  puede  contener  varias  sentencias  l¢gicas,  esto  permite  la
+   introducci¢n de acciones encadenadas; por ejemplo:
+
+        COGER PIEDRA GRANDE, LANZARLA AL GUARDIA, IR AL OESTE Y COGER MARTILLO
+
+   Esta  frase  ser   descompuesta   por  sucesivos  condactos  PARSE  en   las
+   siguientes sentencias l¢gicas:
+
+        Verbo     Nombre    Adjetivo  Nombre2   Adjetivo2
+   1.   COGER     PIEDRA    GRANDE    ninguno   ninguno
+   2.   LANZAR    PIEDRA    GRANDE    GUARDIA   ninguno
+   3.   OESTE     OESTE     ninguno   ninguno   ninguno
+   4.   COGER     MARTILLO  ninguno   ninguno   ninguno
+
+   Merece la pena observar las sentencias l¢gicas  2 y 3. La sentencia l¢gica 2
+   hace uso de una potente caracter¡stica del analizador;  el uso de verbos con
+   terminaci¢n. Esto permite que  el verbo LANZARLA se refiera al £ltimo nombre
+   y adjetivo referidos, en este caso PIEDRA GRANDE.
+   La sentencia l¢gica 3, puede observarse que tiene  repetida la misma palabra
+   en el verbo  y en el  nombre. Esto  ocurrir  si IR  no est   definida en  el
+   vocabulario y si  OESTE es un nombre convertible.  ¨Por qu‚ sucede esto?. El
+   analizador, cuando  encuentra  un  nombre  convertible  en  la  frase  y  no
+   encontr¢  antes  un verbo  u  otro  nombre  convertible,  duplica el  nombre
+   encontrado en el  verbo y en el nombre  de la sentencia l¢gica. Esto permite
+   que se m s tarde se encuentra una entrada del tipo:
+
+       _         OESTE     ...
+                           DONE
+
+   o del tipo:
+
+       OESTE     _         ...
+                           DONE
+
+   Se ejecutar   con esta sentencia l¢gica  siempre que  la comprobaci¢n verbo-
+   nombre  al  inicio de  cada entrada  este  activada (condacto  RESP);  si no
+   estuviese  activada  esta  comprobaci¢n las  entradas  descritas  arriba  se
+   ejecutar¡a siempre, independientemente de la sentencia l¢gica actual.
+
+   9.3.2 Variables del sistema asociadas a la sentencia l¢gica:
+
+   La sentencia l¢gica  se almacena en una  serie de variables del  sistema que
+   se indican a continuaci¢n:
+
+        2 -> n£mero de verbo de la £ltima sentencia analizada por PARSE
+        3 -> ¡dem pero nombre
+        4 -> ¡dem pero adjetivo
+        5 -> ¡dem pero nombre 2
+        6 -> ¡dem pero adjetivo 2
+
+   Los n£mero de  verbo, nombre y  adjetivo son aquellos  que se  especificaron
+   cuando la palabra se introdujo en el vocabulario.  Los n£meros contenidos en
+   estas variables  son los que se  emplear n para  realizar las comprobaciones
+   de verbo-nombre para saber si una entrada se ha de ejecutar.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       23
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   9.3.3  Introducci¢n de la sentencia l¢gica:
+
+   La  forma tradicional de  introducir la sentencia l¢gica  es a  trav‚s de la
+   frase tecleada por  el jugador mediante el condacto  INPUT, la cual luego es
+   descompuesta por medio del  condacto PARSE. Esto no quiere decir que  sea la
+   £nica forma posible de introducir la sentencia l¢gica.
+   Es posible  crear una aventura dirigida  por men£s  de opciones sustituyendo
+   el condacto INPUT por  un sistema de introducci¢n a base de  opciones, quiz 
+   usando el condacto  INKEY. Usando este sistema alternativo habr  que colocar
+   directamente,  en  las   variables  correspondientes,  la  sentencia  l¢gica
+   adecuada para que  se ejecuten las entradas  correctas. As¡ si se  tecle¢ la
+   opci¢n  de COGER objeto, habr¡a  que colocar en la variable  2 el n£mero del
+   verbo COGER,  en la  variable 3  el n£mero  del nombre  del objeto  y en  la
+   variable 4  el n£mero del  adjetivo del  objeto; las variables  5 y 6  ser¡a
+   conveniente que estuviesen a 255 (ninguna palabra).
+   Con un poco de  imaginaci¢n y  con los condactos  disponibles del SINTAC  se
+   pueden conseguir resultados excepcionales.
+
+   9.3.4  Di logo con personajes:
+
+   El condacto PARSE permite,  adem s de analizar la frase del jugador, extraer
+   de la misma di logos con  personajes. Normalmente un di logo  con personajes
+   es una frase dentro  de la frase tecleada  por el jugador, la cual  queremos
+   que, en  presencia de  cierto personaje dispare  alguna acci¢n en  este. As¡
+   por ejemplo:
+
+        DECIR A JUAN "COGE LA MANGUERA"
+
+   Queremos  que  cuando  le digamos  esto  al  personaje  Juan, este  coja  la
+   manguera si es posible (o si quiere).
+   El condacto  PARSE analizar¡a la anterior  frase hasta  el primer separador,
+   en este caso ser¡an las comillas dobles ("), dando la sentencia l¢gica:
+
+        Verbo     Nombre    Adjetivo  Nombre2   Adjetivo2
+        DECIR     JUAN      ninguno   ninguno   ninguno
+
+   Esta sentencia  l¢gica  la  usar¡amos  para  ejecutar  el  proceso  con  las
+   posibles respuestas de Juan, de la forma:
+
+       DECIR     JUAN      PROCESS   8     ; proceso de di logos de Juan
+                           DONE
+
+   El proceso con las  posibles respuestas de Juan deber¡a contener un condacto
+   PARSE  que  analice  el  texto  entre  comillas  y  produzca  una  respuesta
+   adecuada, as¡:
+
+       \PRO 8
+       _         _         PARSE
+                           MESSAGE   '¨Qu‚ dices?'
+                           DONE
+       COGE      MANGUERA  ...       ; condactos para coger manguera
+                           MESSAGE   'Juan: Vale, ya la he cogido.'
+                           DONE
+       ...       ; aqu¡ otras posibles frases que deba entender Juan
+       _         _         MESSAGE   '¨Qu‚ dices?'     ; aqu¡ llega si no
+                           DONE                        ; encontr¢ respuesta
+       \END
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       24
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Esta  es una posibilidad,  desde luego  no es  la £nica. Adem s  el condacto
+   PARSE no distingue si  el texto para Juan va entre comillas o no, s¢lo busca
+   un  separador (ver condacto  PARSE). Por  lo tanto las  siguiente frases son
+   equivalentes entre s¡:
+
+        DECIR A JUAN "COGE LA MANGUERA"
+        DECIR A JUAN 'COGE LA MANGUERA
+        DECIR A JUAN, COGE LA MANGUERA
+        DECIR A JUAN: COGE LA MANGUERA.
+        DECIR A JUAN; COGE LA MANGUERA
+
+   Hay  muchas otras posibles combinaciones,  lo cual  da bastante flexibilidad
+   al jugador para elegir la que m s se ajuste a sus gustos.
+
+                                  10 EL DEBUGGER
+
+   10.1 Conceptos b sicos:
+
+   El debugger (o mejor int‚rprete-debugger)  permite la ejecuci¢n paso  a paso
+   de la  base de datos, presentando en  cada momento el estado de las banderas
+   y variables as¡ como el condacto que est  siendo ejecutado.
+   El  debugger dispone  de una  serie de  opciones para  modificar  banderas y
+   variables, ejecutar paso a paso, etc... que ser n  explicadas en detalle m s
+   adelante.
+   B sicamente el  debugger es  igual al  int‚rprete solo  que con  capacidades
+   a¤adidas  de ejecuci¢n  paso  a paso  lo  que permite  encontrar y  corregir
+   errores de programaci¢n.
+
+   10.2 La ventana de depuraci¢n:
+
+   La ventana  de depuraci¢n  es  una peque¤a  franja de  pantalla en  la  cual
+   aparece la  informaci¢n del  proceso de  depuraci¢n. Puede  ser colocada  en
+   cualquier posici¢n  de pantalla  horizontalmente sin m s  que especificar el
+   par metro adecuado a la  hora de  entrar en el  debugger (ver 9.1.1,  p gina
+   20).
+   La informaci¢n que presenta la ventana de depuraci¢n es la siguiente:
+
+        Proceso: nnn   Variable: nnn=nnn  -----   Bandera: nnn=n
+        ddddd: VERBO  NOMBR  condacto par metros
+
+   D¢nde: nnn  indica el  n£mero de  proceso actual,  luego van  la variable  y
+   bandera que est n siendo visualizadas actualmente junto con sus valores.
+   El campo ddddd indica la direcci¢n del condacto en curso  (esto es £til para
+   calcular d¢nde saltar   un condacto SKIP).  Seguidamente van el  VERBO y  el
+   NOMBRE de la  entrada actual  si estamos en  su primera l¡nea,  si no  estos
+   campos aparecer n  en blanco. Despu‚s va el  condacto que se va a ejecutar y
+   sus par metros,  los cuales  si van  entre corchetes  ([]) querr   decir que
+   est n indireccionados (ver 4, p gina 6).
+   Junto  al valor  de  la  variable aparecer ,  si  se trata  de  una variable
+   relacionada   con  la   sentencia   l¢gica,   la  palabra   de   vocabulario
+   correspondiente al contenido de la variable.
+
+   10.3 Opciones del debugger:
+
+   En principio las opciones disponibles son las siguientes:
+
+        Variables  Banderas  Pantalla  Desactivar  Salir
+
+   La opci¢n V permite visualizar y editar variables.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       25
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   La opci¢n B permite visualizar y editar banderas.
+   La  opci¢n P quita  moment neamente la ventana del  debugger de la pantalla,
+        espera  hasta que se  pulse una tecla y  luego la  restaura. Esto sirve
+        para visualizar los efectos de alg£n condacto de salida por pantalla.
+   La opci¢n D desactiva el paso a paso (ver m s abajo).
+   La opci¢n S sale al sistema operativo.
+
+   Para regresar al  paso a paso se  deber  pulsar F10 durante  la ejecuci¢n de
+   la aventura. Adem s otro  m‚todo de regresar al paso a paso es  colocando un
+   condacto DEBUG 1 en alg£n lugar de la aventura.
+
+   10.3.1 Visualizar y editar variables:
+
+   Pulsando V desde  las opciones principales  pasaremos al modo de  edici¢n de
+   variables, aparecer  la siguiente l¡nea de men£:
+
+        Otra  Modificar  Fin
+
+   Se puede pasar  a la  siguiente variable pulsando  el cursor arriba  y a  la
+   anterior con el cursor abajo.
+   La opci¢n  O permite seleccionar  una variable,  para lo  cual aparecer   un
+        cursor en  el campo correspondiente y se podr   introducir el n£mero de
+        la nueva variable.
+   La opci¢n M permite modificar el valor de la variable.  Igualmente aparecer 
+        un cursor en  el campo correspondiente al valor  de la variable que nos
+        permitir  introducir el nuevo valor.
+   La opci¢n F permite regresar a las opciones principales.
+
+   10.3.2 Visualizar y editar banderas:
+
+   Pulsando  B desde  las  opciones  principales  aparece  la  siguiente  l¡nea
+   reemplazando las opciones anteriores:
+
+        Otra  Modificar  Fin
+
+   Se puede pasar  a la  siguiente bandera  pulsando el  cursor arriba  y a  la
+   anterior con el cursor abajo.
+   La opci¢n  O permite  seleccionar una  bandera, para  lo  cual aparecer   un
+        cursor en el campo  correspondiente y se podr  introducir el  n£mero de
+        la nueva bandera.
+   La opci¢n  M permite modificar el valor  de la bandera. Igualmente aparecer 
+        un cursor en  el campo correspondiente al  valor de la bandera  que nos
+        permitir   introducir el  nuevo  valor (0  para  desactivarla y  1 para
+        activarla).
+   La opci¢n F permite regresar a las opciones principales.
+
+                                   11 CONDACTOS
+
+   A continuaci¢n se  listan todos los condactos disponibles. Cuando proceda se
+   incluir  un breve ejemplo de su uso o sus posibles usos.
+   Cada condacto  ir  seguido  de los  par metros necesarios  separados por  un
+   espacio.
+
+   Las abreviaturas utilizadas son:
+        procno    : n£mero de Proceso
+        nw        : n£mero de ventana
+        varno     : n£mero de variable (0 a 255)
+        bandno    : n£mero de bandera (0 a 255)
+        mesno     : n£mero de mensaje
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       26
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+        sysmesno  : n£mero de mensaje del sistema
+        locno     : n£mero de localidad
+        locno+    :  n£mero de  localidad,  adem s  se admiten  los  siguientes
+             n£meros como n£meros de localidades con significado especial:
+             255 = se sustituye por el n£mero de localidad actual
+             254 = localidad para los objetos cogidos pero no puestos
+             253 = localidad para los objetos puestos
+             252 = localidad para los objetos no creados
+        objno     : n£mero de objeto
+        $etiqueta : nombre de etiqueta
+        adjetivo  : adjetivo del vocabulario
+        nombre    : nombre del vocabulario
+        verbo     : verbo del vocabulario
+
+   PROCESS procno
+   Ejecuta una llamada a un Proceso. Existe una pila interna para almacenar  la
+   direcci¢n  de  retorno. La  capacidad  de  esta  pila est   limitada  a  100
+   niveles.
+   Cada  vez que se  ejecuta un  condacto PROCESS  se almacena la  direcci¢n de
+   retorno en  la pila. Al finalizar el Proceso llamado (mediante DONE, NOTDONE
+   o porque no se encontraron m s entradas) se recupera esta direcci¢n.
+   Si se realizan  un n£mero superior  de llamadas que  los niveles  permitidos
+   por  la  pila   interna,  sin  su  correspondiente  retorno,   se  retornar 
+   INMEDIATAMENTE  al Sistema Operativo con  el mensaje de error: 'Rebosamiento
+   de la pila interna'.
+
+   DONE
+   Finaliza  un Proceso  y retorna  al  condacto situado  tras  el PROCESS  que
+   realiz¢  la  llamada  (recuperando  la  direcci¢n  de  retorno  de  la  pila
+   interna). Si el condacto PROCESS  que realiz¢ la llamada es el £ltimo de  la
+   entrada actual, DONE saltar  a la siguiente entrada (si la hay).
+   Si la pila interna donde se almacenan las  direcciones de retorno est  vac¡a
+   (es decir se  ejecut¢ un DONE en  Proceso 0) se retornar   INMEDIATAMENTE al
+   Sistema Operativo.
+
+   NOTDONE
+   Es similar  a DONE s¢lo que salta  a la entrada siguiente  a la que contiene
+   el PROCESS que realiz¢ la llamada.
+
+   RESP
+   Activa  la comprobaci¢n  de  verbo-nombre al  inicio  de cada  entrada. Esta
+   activaci¢n es v lida hasta que se ejecute el condacto NORESP.
+   Estando esta comprobaci¢n activa  una entrada s¢lo es ejecutar  si su verbo-
+   nombre  correspondiente coinciden  con los contenidos  de las  variables del
+   sistema 2 y 3 respectivamente.
+   Si no  coinciden  se saltar   a la  siguiente entrada,  y as¡  sucesivamente
+   hasta que se  encuentre una entrada que  coincida o hasta que  se alcance el
+   final del Proceso.
+
+   NORESP
+   Desactiva la  comprobaci¢n de verbo-nombre al  inicio de  cada entrada. Esta
+   desactivaci¢n es v lida hasta que se ejecute el condacto RESP.
+   Cuando  la comprobaci¢n  esta desactivada  se  ejecutan  todas las  entradas
+   independientemente de si  su verbo-nombre correspondiente coincide o  no con
+   los contenidos en las variables 2 y 3 respectivamente.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       27
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   DEFWIN nw color fila columna anchura altura
+   Define la ventana n£mero nw y  le asigna el color dado (ver  7.2, p gina 8).
+   Su posici¢n  vendr  determinada  por  los par metros  fila y  columna, y  su
+   tama¤o por los par metros anchura y altura (medidas en caracteres).
+   Adem s el cursor se  colocar  en la fila superior izquierda de  esa ventana,
+   posici¢n (0,0).
+   Nota que  este condacto define la  ventana, no la pone en  uso (ver condacto
+   WINDOW).
+   En  principio la  ventana definida  con  DEFWIN no  tendr  marco  pero puede
+   a¤ad¡rsele uno mediante el condacto WBORDER.
+
+   WINDOW nw
+   Selecciona  como ventana activa nw. Todos  los textos de salida se dirigir n
+   a esa ventana hasta que se cambie a otra por medio de este condacto.
+
+   CLW nw
+   Borra  la ventana  cuyo n£mero es  nw. Los  colores se pondr n  al valor por
+   defecto que  se indic¢  cuando se  defini¢ por  £ltima vez  la ventana  (ver
+   DEFWIN, par metro color).
+   Para borrar la ventana actual puede utilizarse CLW [0].
+
+   LET varno valor
+   Asigna un valor a una variable.
+
+   EQ varno valor
+   Comprueba si el contenido de una variable es igual a un valor dado.
+   Si el  contenido de la variable  es igual al  valor se ejecuta el  siguiente
+   condacto, si no se salta a la siguiente entrada.
+
+   NOTEQ varno valor
+   Comprueba si el contenido de una variable es distinto de un valor dado.
+   Si  el  contenido de  la  variable  es  distinto  del valor  se  ejecuta  el
+   siguiente condacto, si no se salta a la siguiente entrada.
+
+   LT varno valor
+   Comprueba si el contenido de una variable es menor que un valor dado.
+   Si  el  contenido  de la  variable  es  menor que  el  valor  se  ejecuta el
+   siguiente condacto, si no se salta a la siguiente entrada.
+
+   GT varno valor
+   Comprueba si el contenido de una variable es mayor que un valor dado.
+   Si  el  contenido de  la  variable  es mayor  que  el  valor  se ejecuta  el
+   siguiente condacto, si no se salta a la siguiente entrada.
+
+   NEWLINE
+   Imprime  un avance de  l¡nea, dentro  de la  ventana activa, en  la posici¢n
+   actual del cursor.
+
+   MES mesno
+   Imprime el mensaje cuyo n£mero es  mesno, dentro de la ventana activa, en la
+   posici¢n actual del cursor.
+
+   MESSAGE mesno
+   Imprime el mensaje cuyo n£mero es mesno, dentro de la ventana activa, en  la
+   posici¢n actual del cursor. A¤ade un avance de l¡nea al final del mensaje.
+
+   SYSMESS sysmesno
+   Imprime  el mensaje  del  sistema  cuyo n£mero  es  sysmesno,  dentro de  la
+   ventana activa, en la posici¢n actual del cursor.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       28
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   DESC locno
+   Imprime la descripci¢n de  la localidad cuyo n£mero es locno. Si  la bandera
+   0  est  a 1 (oscuro), y  no hay presente ninguna fuente  de luz se imprimir 
+   en su lugar el mensaje del sistema n£mero 23 (Est  oscuro...).
+   Adem s  DESC pondr   a  0 la  bandera  n£mero 2,  que puede  ser  usada para
+   realizar ciertas  inicializaciones como  borrar ventana  d¢nde se  pondr  la
+   descripci¢n  de la  localidad,  listar  objetos  presentes en  la  localidad
+   actual, etc...
+   El condacto DESC realiza un RESTART para saltar al inicio del Proceso 0.
+
+   ADD varno valor
+   Suma un valor (0 a 255) a la variable cuyo n£mero es varno.
+
+   SUB varno valor
+   Resta un valor (0 a 255) a la variable cuyo n£mero es varno.
+
+   INC varno
+   Incrementa  en 1 el valor  de la variable cuyo n£mero  es varno. Si el valor
+   de la variable era 255 pasar  a valer 0.
+
+   DEC varno
+   Decrementa en 1  el valor de la  variable cuyo n£mero es varno.  Si el valor
+   de la variable era 0 pasar  a valer 255.
+
+   SET bandno
+   Pone a 1 la bandera cuyo n£mero es bandno.
+
+   CLEAR bandno
+   Pone a 0 la bandera cuyo n£mero es bandno.
+
+   ZERO bandno
+   Comprueba si  la  bandera  bandno es  0.  Si  la bandera  es  0  ejecuta  el
+   siguiente condacto, si no, salta a la siguiente entrada.
+
+   NOTZERO bandno
+   Es el condacto complementario a ZERO. Comprueba  si la bandera bandno no  es
+   0.  Si la  bandera es  1 ejecuta el  siguiente condacto,  si no,  salta a la
+   siguiente entrada.
+
+   PLACE objno locno+
+   Coloca el objeto n£mero objno en la localidad locno+. Si la localidad en  la
+   que  se encuentra  el objeto  es la  misma que  la  indicada por  locno+, el
+   condacto no hace nada.
+   Si el objeto pasa  a estar cogido o puesto, y no  estaba ni cogido ni puesto
+   se incrementa el n£mero de objetos que se llevan.
+   Si el  objeto  estaba  cogido  o puesto,  y  lo  pasa a  otra  localidad  se
+   decrementa el n£mero de objetos llevados.
+
+   GET objno
+   Coge el objeto cuyo n£mero es objno. Si el objeto no existe (objno es  mayor
+   que el n£mero del £ltimo objeto  en la base de datos) se  imprime el mensaje
+   del sistema n£mero 1  (Aqu¡ no est  eso).  Si el objeto ya  estaba cogido  o
+   puesto se imprime el mensaje del sistema 3 (Ya tienes eso). Si  el objeto no
+   est  en la localidad  actual se  imprime el mensaje del  sistema 1 (Aqu¡  no
+   est  eso).  Si  el n£mero  de  objetos llevados  es  mayor  o igual  que  el
+   contenido  de  la variable  7 (siempre  que  esta no  sea 0)  se  imprime el
+   mensaje del sistema 2 (No puedes coger _. Llevas demasiadas cosas).
+   En otro  caso pasa el  objeto a cogido  e imprime  el mensaje del  sistema 0
+   (Has cogido _).
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       29
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Si  el objeto se  pudo coger  pasa al siguiente  condacto, si no  salta a la
+   siguiente entrada.
+
+   DROP objno
+   Deja el  objeto cuyo n£mero es objno. Si el objeto no existe (objno es mayor
+   que el n£mero del £ltimo objeto en la  base de datos) se imprime el  mensaje
+   del  sistema 5  (No  tienes eso).  Si el  objeto  no est   cogido ni  puesto
+   imprime  el mensaje del  sistema 5 (No tienes  eso). En  otro caso coloca el
+   objeto en la  localidad actual (decrementando el n£mero de objetos llevados)
+   e imprime el mensaje del sistema 4 (Dejas _).
+   Si el  objeto se  pudo dejar pasa  al siguiente condacto,  si no salta  a la
+   siguiente entrada.
+
+   INPUT
+   Recoge  texto introducido  desde  teclado hasta  que  se pulse  RETURN. Esto
+   permite introducir la frase a analizar por el condacto PARSE.
+   El cursor puede  desplazarse por la l¡nea  de entrada usando las  teclas del
+   cursor,  adem s de las teclas  de <Origen> y <Fin>  que mover n el cursor al
+   inicio  y  final  del  texto respectivamente.  Para  borrar  los  caracteres
+   tecleados pueden  usarse las teclas de correcci¢n <- y <Borrar>. Esta £ltima
+   borra el car cter a la derecha del cursor.
+
+   Primero inicializa las variables 2 a  6 con el valor de la  palabra nula (_)
+   y  luego pasa a recoger la frase introducida por  teclado. El cursor ser  el
+   primer car cter del mensaje del sistema 7.
+   Si  se tecle¢  algo  salta a  la  siguiente  entrada, en  cambio,  si no  se
+   introdujo ning£n car cter o  se puls¢ una tecla de funci¢n pasa al siguiente
+   condacto.
+   En caso de  que se pulsase una  tecla de funci¢n la variable  del sistema 12
+   contendr  el c¢digo correspondiente a esa tecla seg£n la siguiente tabla:
+
+          Tecla de funci¢n            C¢digo
+                 F1                     255
+                 F2                     254
+                 F3                     253
+                 F4                     252
+                 F5                     251
+                 F6                     250
+                 F7                     249
+                 F8                     248
+                 F9                     247
+                 F10                    246
+
+   Esto puede  usarse para realizar alguna acci¢n especial  cuando se pulsa una
+   de estas teclas de funci¢n.
+
+   NOTA: el puntero para PARSE se colocar  al inicio de la l¡nea introducida.
+
+   PARSE
+   Analiza  la frase  tecleada  mediante el  £ltimo condacto  INPUT  ejecutado.
+   PARSE analiza hasta el siguiente separador o  hasta que se alcance el  final
+   de la l¡nea de entrada. Los separadores reconocidos por PARSE son todas  las
+   conjunciones definidas en el  vocabulario y los  caracteres (.) (,) (;)  (:)
+   (") (').
+   El  puntero para  la  siguiente  llamada a  PARSE  se  deja en  el  car cter
+   posterior  al £ltimo  separador  encontrado;  esto permite  analizar  frases
+   encadenadas mediante separadores.
+   Si se analiz¢ toda la frase tecleada pasa al siguiente condacto, si  todav¡a
+   queda m s por analizar salta a la siguiente entrada.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       30
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   SKIP $etiqueta
+   Este  condacto  realiza  un  salto a  la  direcci¢n  d¢nde  se encuentra  la
+   etiqueta  indicada.  En realidad  le  etiqueta  se  sustituye  por un  valor
+   entre  -32768 y  32767  que indica  la  direcci¢n relativa  del salto.  Esta
+   direcci¢n relativa  se suma a  la direcci¢n d¢nde  se encuentra  el condacto
+   SKIP para calcular la nueva direcci¢n a la que saltar.
+   El  salto  puede  ser tanto  hacia  delante  como  hacia atr s.  S¢lo  est n
+   permitidos  saltos al  inicio  de  una entrada,  no  se  puede saltar  a  la
+   posici¢n de un condacto dentro de una entrada.
+
+   AT locno+
+   Comprueba  si se  est  en  una determinada  localidad (es  decir compara  el
+   contenido de  la variable 1 con  locno+). Si se est   en la localidad locno+
+   contin£a con el siguiente condacto, si no salta a la siguiente entrada.
+
+   NOTAT locno+
+   Es el condacto complementario a AT. Comprueba si  no est  en una determinada
+   localidad (es decir  compara el contenido de  la variable 1 con  locno+). Si
+   no se est  en la localidad locno+  contin£a con el siguiente condacto, si no
+   salta a la siguiente entrada.
+
+   ATGT locno+
+   Comprueba si est  en  una localidad cuyo n£mero es  superior a locno+. Si la
+   localidad  actual (contenido de la variable  1) es mayor que locno+ contin£a
+   con el siguiente condacto, si no salta a la siguiente entrada.
+
+   ATLT locno+
+   Comprueba si est   en una localidad cuyo n£mero  es inferior a locno+. Si la
+   localidad actual (contenido de la  variable 1) es menor que locno+  contin£a
+   con el siguiente condacto, si no salta a la siguiente entrada.
+
+   ADJECT1 adjetivo
+   Comprueba si el primer adjetivo (cuyo  n£mero est  almacenado en la variable
+   4) extra¡do  de la  sentencia  l¢gica actual  coincide con  el dado.  Si  el
+   adjetivo coincide  contin£a  con el  siguiente condacto,  si no  salta a  la
+   siguiente entrada.
+
+   NOUN2 nombre
+   Comprueba si el segundo  nombre (cuyo n£mero est  almacenado en  la variable
+   5) extra¡do  de la  sentencia  l¢gica actual  coincide con  el dado.  Si  el
+   nombre coincide  contin£a  con  el siguiente  condacto,  si  no salta  a  la
+   siguiente entrada.
+
+   ADJECT2 adjetivo
+   Comprueba si  el  segundo  adjetivo  (cuyo  n£mero  est   almacenado  en  la
+   variable 6) extra¡do de la sentencia l¢gica actual coincide con el dado.  Si
+   el adjetivo coincide  contin£a con el siguiente  condacto, si no salta  a la
+   siguiente entrada.
+
+   LISTAT locno+
+   Lista los objetos presentes en una localidad. Si no hay ning£n  objeto en la
+   localidad dada,  se  imprimir   el mensaje  del  sistema  10 (nada).  Si  la
+   bandera  1  est   puesta   a  1,  LISTAT  imprimir   la   lista  de  objetos
+   encolumnados (un  objeto en cada l¡nea),  si no los  imprimir  seguidos (uno
+   tras  otro) separados  por el mensaje  del sistema 11  (, )  excepto los dos
+   £ltimos  que ir n separados por el mensaje del sistema 12 ( y ). Al final se
+   a¤adir  el mensaje del sistema 13 (.).
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       31
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   ISAT objno locno+
+   Comprueba si un objeto  est  en la localidad especificada por locno+.  Si el
+   objeto est   en la  localidad  continuar  en  el siguiente  condacto, si  no
+   saltar  a la siguiente entrada.
+
+   ISNOTAT objno locno+
+   Es el  condacto complementario a ISAT. Comprueba  si un objeto no est  en la
+   localidad  especificada por  locno+. Si  el objeto  no est   en la localidad
+   continuar  en el siguiente condacto, si no saltar  a la siguiente entrada.
+
+   PRESENT objno
+   Comprueba  si un  objeto est   presente (en  la localidad  actual, cogido  o
+   puesto). Si el objeto est  presente continuar  en el siguiente  condacto, si
+   no saltar  a la siguiente entrada.
+
+   ABSENT objno
+   Es el  condacto complementario  a PRESENT.  Comprueba si el  objeto no  est 
+   presente (ni  en la localidad actual, ni cogido, ni puesto). Si el objeto no
+   est  presente contin£a en el siguiente condacto, si no salta a la  siguiente
+   entrada.
+
+   WORN objno
+   Comprueba si el objeto est  puesto. Si est   puesto contin£a en el siguiente
+   condacto, si no salta a la siguiente entrada.
+
+   NOTWORN objno
+   Es  el  condacto complementario  a  WORN. Comprueba  si  el  objeto no  est 
+   puesto. Si no  lo est  contin£a con el  siguiente condacto, si lo est  salta
+   a la siguiente entrada.
+
+   CARRIED objno
+   Comprueba si el objeto est  cogido. Si est   cogido contin£a en el siguiente
+   condacto, si no salta a la siguiente entrada.
+
+   NOTCARR objno
+   Es el  condacto complementario  a CARRIED.  Comprueba si  el objeto  no est 
+   cogido. Si no lo  est  contin£a en el siguiente condacto, si lo est  salta a
+   la siguiente entrada.
+
+   WEAR objno
+   Pone un objeto que est‚ marcado como prenda. Si el objeto no existe  imprime
+   el  mensaje del  sistema 5  (No tienes  eso). Si  el  objeto ya  est  puesto
+   imprime  el mensaje  del sistema 16  (Ya llevas  puesto _). Si  el objeto no
+   est  presente  imprime el mensaje del  sistema 1  (Aqu¡ no est  eso).  Si el
+   objeto no  est  cogido imprime el mensaje del sistema 5  (No tienes eso). Si
+   el objeto no  es una  prenda imprime el  mensaje del  sistema 17 (No  puedes
+   ponerte _).  En otro caso pone el objeto e imprime el mensaje del sistema 18
+   (Te pones _).
+   Si se pudo poner el objeto contin£a en el siguiente  condacto, si no salta a
+   la siguiente entrada.
+
+   REMOVE objno
+   Quita un  objeto que  est‚ puesto.  Si el  objeto no  existe o  no se  lleva
+   puesto imprime el mensaje del sistema 19 (No llevas puesto eso).
+   En  cualquier otro  caso pasa el  objeto a cogido  e imprime  el mensaje del
+   sistema 20 (Te quitas _).
+   Si se pudo quitar el  objeto contin£a en el siguiente  condacto, si no salta
+   a la siguiente entrada.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       32
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   CREATE objno
+   Pasa un objeto de la localidad de objetos no creados a la localidad actual.
+
+   DESTROY objno
+   Pasa un objeto a la localidad de objetos no creados.
+
+   SWAP objno1 objno2
+   Intercambia entre s¡  dos objetos.  El objeto objno1  pasar  a la  localidad
+   del objeto objno2, y viceversa.
+
+   RESTART
+   Salta al inicio del  Proceso 0. Adem s cancela todas las llamadas a procesos
+   limpiando la pila interna.
+
+   WHATO
+   Devuelve el  n£mero del objeto  cuyo nombre y  adjetivo se  corresponden con
+   los contenidos en las variables 3 y 4  respectivamente. El n£mero del objeto
+   se coloca en la variable 8.  Si no se encontr¢ un objeto que se  corresponda
+   con  el  nombre y  adjetivo dados  en  las variables  3 y  4, la  variable 8
+   contendr  255 (n£mero de objeto no v lido).
+
+   MOVE varno
+   Actualiza  el contenido  de la  variable  varno de  acuerdo  a su  contenido
+   actual,  a la  sentencia  l¢gica  actual y  a  la  tabla de  conexiones.  El
+   contenido de  varno antes  de llamar a este  condacto debe ser  el n£mero de
+   una localidad v lida.  MOVE comprobar  las conexiones de esa localidad hacia
+   la direcci¢n  dada  por la  palabra  de movimiento  de  la sentencia  l¢gica
+   actual, y colocar  en varno el n£mero de localidad con la que conecta.
+   Si hay conexi¢n  en la direcci¢n dada  varno se modificar  para  contener el
+   nuevo n£mero de localidad  y se ejecutar  el siguiente condacto. Si no varno
+   quedar  sin modificar y se saltar  a la siguiente entrada.
+   Por ejemplo,  si en el  vocabulario tenemos  definido NORTE  como nombre  de
+   movimiento cuyo n£mero es 1. Suponemos que  en la tabla de conexiones  hemos
+   definido que la localidad 3 conecta al NORTE con la 7.
+   El valor del las variables es como sigue:
+
+        variable   3 = 1    (NORTE)
+        variable   4 = 255  (no palabra)
+        variable 100 = 3
+
+   Una entrada como:
+
+       _         _         MOVE      100
+
+   Dejar  las variables con los siguientes valores:
+
+        variable   3 = 1
+        variable   4 = 255
+        variable 100 = 7
+
+   ISMOV
+   Comprueba si  la sentencia  l¢gica actual  es de  movimiento. Una  sentencia
+   l¢gica se considera  de movimiento  si se  cumple alguno  de las  siguientes
+   condiciones:
+
+        variable 3 = 255 (no palabra) y variable 4 = palabra de movimiento
+        variable 3 = palabra de movimiento y variable 4 = 255 (no palabra)
+        variable  3  =  palabra  de  movimiento  y  variable  4  =  palabra  de
+             movimiento
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       33
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Si la sentencia l¢gica  es de movimiento contin£a en el  siguiente condacto,
+   si no salta a la siguiente entrada.
+
+   GOTO locno
+   Va a  una localidad dada. La variable del sistema 1 contiene el numero de la
+   localidad actual. Si locno es un n£mero  de localidad no v lido la  variable
+   1 no se alterar .  Si locno es un n£mero de localidad v lido  se colocar  en
+   la variable 1.
+
+   PRINT varno
+   Imprime  el contenido de una  variable, como un n£mero en  el rango 0 a 255,
+   en la posici¢n actual del cursor y dentro de la ventana actual.
+
+   DPRINT varno
+   Imprime el contenido  de dos variables  consecutivas, como  un n£mero en  el
+   rango 0 a 65535,  en la posici¢n actual  del cursor  y dentro de la  ventana
+   actual.  Ese n£mero  es calculado por  la f¢rmula  (varno)*256+(varno+1); es
+   decir, el contenido de varno act£a  como la parte alta y el de varno+1  como
+   la parte baja de un n£mero de 16 bits.
+   Si varno es 255 el n£mero impreso ser  impredecible.
+
+   CLS
+   Borra la pantalla  dej ndola con los  atributos por  defecto (tinta  blanca,
+   papel negro, sin brillo ni parpadeo).
+
+   ANYKEY
+   Imprime el mensaje  del sistema 22 (Pulsa una  tecla) y espera hasta  que se
+   pulse una tecla.
+
+   PAUSE valor
+   Realiza una  pausa  de una  duraci¢n  determinada por  valor en  d‚cimas  de
+   segundo.  Si se pulsa una tecla se  saldr  de la pausa.  Si el valor es 0 se
+   esperar  hasta que se pulse una tecla.
+
+   LISTOBJ
+   Lista  los objetos  de la  localidad  actual. Si  est  oscuro  y no  hay una
+   fuente  de luz  no  hace nada.  Si  no, imprime  el  mensaje  del sistema  9
+   (Tambi‚n  puedes ver:  ) y  lista los  objetos.  Al igual  que LISTAT,  este
+   condacto tiene en cuenta el valor  de la bandera 1, si esta es 1 los objetos
+   se  listan  encolumnados, si  no se  listan  seguidos (ver  LISTAT  para m s
+   informaci¢n).
+
+   FIRSTO
+   Coloca  el puntero para NEXTO  al principio de la  tabla de objetos y activa
+   el indicador para bucle DOALL.
+   Este  condacto,  junto con  NEXTO  e  ISDOALL  permite  ejecutar bucles  que
+   afecten a  todos los  objetos de  una localidad  (denominados bucles  DOALL)
+   para acciones del tipo COGER TODO, DEJAR TODO,...
+
+   NEXTO locno+
+   Mueve  el puntero al  siguiente objeto, dentro de  la tabla  de objetos, que
+   est‚  en la  localidad  especificada, siempre  que  el indicador  para bucle
+   DOALL est‚ activo (este indicador se activa por medio de FIRSTO).
+   Adem s  coloca  en las  variables  3 y  4 el  nombre  y adjetivo  de objeto,
+   sustituyendo los que hubiese y dejando intacto el verbo, lo cual permite  la
+   creaci¢n de acciones del tipo COGER TODO,...
+   Si el objeto es el £ltimo dentro  de la localidad especificada se  desactiva
+   el bucle  DOALL;  no  obstante  su  nombre y  adjetivo  se  colocan  en  las
+   variables 3 y 4 para poder usarlos.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       34
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   SYNONYM verbo nombre
+   Coloca el verbo  y el nombre dados  en las variables 2 y  3 respectivamente.
+   Si alguno de ellos  es el car cter de  no palabra (s¡mbolo de  subrayado, _)
+   la variable correspondiente queda sin modificar.
+   Este  condacto  facilita la  creaci¢n  de  diversas sentencias  l¢gicas  que
+   realicen la misma  acci¢n (sin¢nimos) pero sin  m s que repetir una  vez los
+   condactos de esa acci¢n. Por ejemplo:
+
+       USAR      HACHA     NOUN2     ARBOL ; para USAR HACHA EN ARBOL
+                           SYNONYM   CORTAR ARBOL
+
+       GOLPEAR   ARBOL     NOUN2     HACHA ; para GOLPEAR ARBOL CON HACHA
+                           SYNONYM   CORTAR ARBOL
+
+       CORTAR    ARBOL     AT        5     ; en la localidad del  rbol
+                           CARRIED   8     ; lleva el hacha
+                           ZERO      100   ; el  rbol est  intacto
+                           SET       100   ; lo corta
+                           MESSAGE   5     ; Has cortado el  rbol.
+                           DONE
+
+   HASAT valor
+   Comprueba si  el objeto  actual, cuyo n£mero  est  en  la variable 8)  tiene
+   activada una bandera de usuario.
+   Si valor est  entre 0 y 15 comprueba la bandera de usuario  correspondiente,
+   si  valor es  16 comprueba si  es prenda  y si  valor es 17  comprueba si es
+   fuente de luz.
+   Si la  bandera comprobada est  activada  contin£a en  el siguiente condacto,
+   si no salta a la siguiente entrada.
+
+   HASNAT valor
+   Es el condacto complementario a HASAT.  Comprueba si el objeto actual,  cuyo
+   n£mero est  en la variable 8) tiene desactivada una bandera de usuario.
+   Si valor est  entre 0 y 15 comprueba la bandera de usuario  correspondiente,
+   si valor es  16 comprueba si no es prenda  y si valor es 17 comprueba  si no
+   es fuente de luz.
+   Si  la  bandera  comprobada  est   desactivada  contin£a   en  el  siguiente
+   condacto, si no salta a la siguiente entrada.
+
+   LIGHT
+   Comprueba  si hay  presente (en  la localidad  actual, cogida  o puesta) una
+   fuente de luz.  Si la hay contin£a en  el siguiente condacto, si no  salta a
+   la siguiente entrada.
+
+   NOLIGHT
+   Es el  condacto complementario  a LIGHT.  Comprueba si  no hay presente  (no
+   est  en  la localidad actual, ni cogida, ni puesta) una fuente de luz. Si no
+   la hay  contin£a en el siguiente  condacto, si la  hay salta a la  siguiente
+   entrada.
+
+   RANDOM varno valor
+   Genera un n£mero  aleatorio entre 0 y valor-1.  El n£mero generado se coloca
+   en la variable varno.
+
+   SEED valor
+   Coloca  el punto  de  inicio  del generador  de  n£meros aleatorios  en  una
+   posici¢n. Esto  evita que  la secuencia de  n£meros generada sea  siempre la
+   misma. Si valor es 1 se reinicializa en generador de n£meros aleatorios.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       35
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   PUTO locno+
+   Coloca el objeto actual, cuyo n£mero est  en la variable 8, en la  localidad
+   especificada.
+
+   INKEY
+   Coloca  en las variables  9 y 10 el  par de c¢digos  ASCII IBM  de la £ltima
+   tecla pulsada (si se puls¢ alguna).
+   Si se puls¢ alguna  tecla contin£a en el siguiente condacto y  adem s coloca
+   en la variable  9 el primer c¢digo ASCII  IBM (c¢digo ASCII del  car cter si
+   es distinto  de 0), y en la variable 10 el  segundo c¢digo ASCII IBM (c¢digo
+   de la tecla pulsada).
+   Si no  se  puls¢ ninguna  tecla salta  a  la siguiente  entrada y  deja  las
+   variables 9 y 10 sin modificar.
+
+   COPYOF objno varno
+   Copia el n£mero de la localidad  en la que est  el objeto dado por  objno en
+   la variable varno.
+
+   CHANCE valor
+   Comprueba una  probabilidad en tanto por ciento. El par metro valor debe ser
+   un n£mero en el rango 0 a 100.
+   Si el n£mero  aleatorio generado internamente  por CHANCE es  menor o  igual
+   que valor  se ejecuta  el siguiente  condacto, si  no salta  a la  siguiente
+   entrada.
+   Este condacto es £til  para llevar  a cabo acciones  un n£mero aleatorio  de
+   veces. Por ejemplo:
+
+       _         _         CHANCE    25
+                           MESSAGE   1
+
+   Imprimir  el  mensaje n£mero 1 un 25 por ciento de  las veces que se ejecute
+   la entrada.
+
+   RAMSAVE banco
+   Graba  el  estado actual  (variables,  banderas  y  posici¢n  actual de  los
+   objetos) en uno de los bancos de memoria disponibles.
+   Los bancos de memoria  disponibles son 2, el  0 y  el 1. El par metro  banco
+   determina en cual de ellos se grabar  el estado actual.
+
+   RAMLOAD banco valor1 valor2
+   Recupera el estado actual  desde uno  de los bancos de  memoria. El banco  a
+   usar  se  determina mediante  el  par metro  banco.  Los  bancos de  memoria
+   disponibles son 2, el 0 y el 1.
+   El par metro valor1 determina  el n£mero m ximo de  variable a recuperar,  y
+   el par metro valor2 el m ximo n£mero de bandera  a recuperar. Se recuperar n
+   desde  el  banco  seleccionado  £nicamente  las  variables  0  hasta  valor1
+   (inclusive) y las banderas 0 hasta valor2 (inclusive).
+   Esto  permite conservar  los valores  de  ciertas variables  entre distintos
+   estados grabados.
+   Si RAMLOAD  se  ejecut¢ sin  ning£n  problema  continuar  con  el  siguiente
+   condacto. Si se  intent¢ usar  un banco de  memoria que  previamente no  fue
+   grabado con RAMSAVE se saltar  a la siguiente entrada.
+
+   ABILITY valor
+   Designa el m ximo n£mero de objetos que pueden  ser llevados. Si valor es  0
+   el n£mero de objetos que pueden ser llevados es ilimitado.
+   La variable  n£mero 7  contiene este  n£mero; en  realidad ABILITY valor  es
+   equivalente a LET  7 valor. Si  de inicio algunos objetos  comienzan cogidos
+   (n£mero  de  localidad 254)  o  puestos  (localidad 253),  conviene  asignar
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       36
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   mediante el condacto ABILITY  un valor  igual o mayor  al n£mero de  objetos
+   inicialmente cogidos o puestos.
+
+   AUTOG
+   Coge el objeto cuyo  nombre y adjetivo se encuentran en  las variables 3 y 4
+   respectivamente. Esto permite coger el  objeto referenciado por el  nombre y
+   adjetivo  de  la sentencia  l¢gica actual.  Por  lo dem s  este  condacto es
+   equivalente a WHATO seguido de GET [8].
+   Si se pudo coger  el objeto contin£a con el siguiente condacto, si  no salta
+   a la siguiente entrada.
+
+   AUTOD
+   Deja el objeto cuyo nombre y adjetivo se  encuentran en las variables 3 y  4
+   respectivamente. Esto permite dejar el  objeto referenciado por el  nombre y
+   adjetivo  de la  sentencia  l¢gica actual.  Por  lo dem s  este condacto  es
+   equivalente a WHATO seguido de DROP [8].
+   Si se pudo dejar el  objeto contin£a con el siguiente condacto, si no  salta
+   a la siguiente entrada.
+
+   AUTOW
+   Pone el objeto cuyo  nombre y adjetivo se encuentran en las variables  3 y 4
+   respectivamente. Esto permite poner el  objeto referenciado por el  nombre y
+   adjetivo  de la  sentencia l¢gica  actual.  Por lo  dem s  este condacto  es
+   equivalente a WHATO seguido de WEAR [8].
+   Si  se pudo poner el objeto  contin£a con el siguiente condacto, si no salta
+   a la siguiente entrada.
+
+   AUTOR
+   Quita el objeto cuyo nombre y adjetivo se encuentran en las variables 3 y  4
+   respectivamente. Esto permite  quitar el objeto referenciado por el nombre y
+   adjetivo de  la  sentencia l¢gica  actual.  Por lo  dem s este  condacto  es
+   equivalente a WHATO seguido de REMOVE [8].
+   Si se pudo quitar el objeto contin£a con el siguiente condacto, si  no salta
+   a la siguiente entrada.
+
+   ISDOALL
+   Comprueba  si se est   ejecutando un  bucle DOALL,  es decir FIRSTO  ha sido
+   ejecutado  y NEXTO no ha  alcanzado todav¡a el £ltimo objeto  de la tabla de
+   objetos.
+   Si se est   ejecutando un bucle DOALL contin£a  en el siguiente condacto, si
+   no salta a la siguiente entrada.
+
+   ASK sysmessno1 sysmessno2 varno
+   Este condacto permite realizar una pregunta  y espera hasta que se introduce
+   una  respuesta  de un  s¢lo  car cter.  El  mensaje  del sistema  sysmessno1
+   contiene el  texto  de  la  pregunta,  el  mensaje  del  sistema  sysmessno2
+   contiene las posibles respuestas, cada una de una  sola letra y seguidas sin
+   separaciones (no  importa si en may£sculas  o min£sculas).  El m ximo n£mero
+   de respuestas permitidas  es de 256, si son  m s la variable varno contendr 
+   un valor imprevisible tras la ejecuci¢n del condacto.
+   En varno  se coloca el n£mero  de orden de la  respuesta, 0 si  se tecle¢ el
+   primer  car cter   de  sysmessno2,  1   si  se  tecle¢  el   segundo  y  as¡
+   sucesivamente.
+   El  condacto  esperar  hasta  que  se introduzca  uno  de los  caracteres de
+   sysmessno2. El cursor  que se imprime es el  primer car cter del mensaje del
+   sistema 7.
+   Un ejemplo, si tenemos lo siguiente:
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       37
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   MENSAJE SISTEMA 10 = Elige: S:salir, C:continuar, G:grabar, L:cargar ->
+   MENSAJE SISTEMA 11 = scgl
+
+   Una entrada como:
+       _         _         ASK       10    11    100
+
+   Imprimir  en la ventana actual:
+
+   Elige: S:salir, C:continuar, G:grabar, L:cargar ->
+
+   y esperar  a que se pulse una de las siguientes teclas: S, C, G, L
+   Si se tecle¢ S, la variable  100 contendr  0, si se tecle¢ C contendr  1, si
+   se tecle¢ G contendr  2 y si se tecle¢ L contendr  3.
+
+   QUIT
+   Presenta el mensaje del sistema  24 (¨Est s seguro?) y espera a que se pulse
+   una  tecla que  puede ser uno de  los caracteres del  mensaje del sistema 25
+   (SN).
+   Si se responde  con el primer car cter  del mensaje del sistema  25 contin£a
+   con el  siguiente condacto,  si se responde  con cualquier  otro salta a  la
+   siguiente entrada.
+
+   SAVE
+   Guarda el  estado  actual (variables,  banderas  y  posici¢n actual  de  los
+   objetos) en disco.  Primero presenta el  mensaje del sistema 26  (Nombre del
+   fichero:)  preguntando  por el  nombre  del  fichero  d¢nde  se guardar   la
+   posici¢n.  Si  es fichero  ya  existe presenta  el  mensaje  del sistema  27
+   (Fichero ya  existe. ¨Quieres continuar?) tras  lo cual, si se  responde con
+   el primer car cter del  mensaje de sistema 25  (SN) graba la posici¢n  en el
+   fichero dado.
+   Si al  abrir el fichero se produjo un error imprimir  el mensaje del sistema
+   28  (Error de apertura de fichero).  Si se produce un  error de escritura en
+   el fichero imprime  el mensaje del  sistema 29 (Error  de entrada/salida  en
+   fichero). Si la  unidad de disco no  est  preparada se imprimir   el mensaje
+   del sistema 32 (Error cr¡tico).
+
+   LOAD valor1 valor2
+   Recupera una  posici¢n  (variables,  banderas  y posici¢n  de  los  objetos)
+   grabada en disco con SAVE.
+   Primero pregunta  por  el nombre  del  fichero  imprimiendo el  mensaje  del
+   sistema  26 (Nombre  del fichero:).  Si al  intentar abrir  ocurri¢ un error
+   imprime el mensaje  del sistema  28 (Error de  apertura de  fichero). Si  se
+   produce un  error al  leer del  fichero imprime  el mensaje  del sistema  29
+   (Error de  entrada/salida  en  fichero).  Si  el  fichero  no  contiene  una
+   posici¢n grabada imprime el mensaje del sistema 30 (Fichero no v lido).
+   El  par metro valor1 indica  el m ximo n£mero de  variable a recuperar desde
+   la posici¢n grabada, y el par metro valor2 el m ximo n£mero de bandera.
+   S¢lo se recuperaran las  variables desde la 0 hasta valor1 (inclusive) y las
+   banderas  desde la 0 hasta valor2 (inclusive). Si la unidad de disco no est 
+   preparada se imprimir  el mensaje del sistema 32 (Error cr¡tico).
+
+   EXIT valor
+   Permite  salir  al   sistema  operativo  o  reinicializar.  Si  valor  es  0
+   reinicializa el int‚rprete realizando las siguiente operaciones:
+        - borrado de la pantalla (CLS)
+        - inicializaci¢n de las variables y banderas
+        - y salto al inicio del Proceso 0 (RESTART)
+   Si valor es 1 sale al sistema operativo.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       38
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   END
+   Pregunta para salir o para otra partida, imprimiendo el mensaje  del sistema
+   31 (¨Lo  intentas de  nuevo?). Si  se responde  con el  primer car cter  del
+   mensaje del sistema  25 (SN) reinicializa  el int‚rprete  y salta al  inicio
+   del Proceso 0 (ejecutando un EXIT 0). Si no regresa al sistema operativo.
+
+   PRINTAT fila columna
+   Coloca el cursor en una posici¢n dada  de la ventana actual. Si  la posici¢n
+   especificada por los par metros  fila y columna sobrepasa los  l¡mites de la
+   ventana,  el  cursor se  colocar   en la  esquina  superior izquierda  de la
+   ventana (posici¢n 0,0).
+
+   SAVEAT
+   Almacena la posici¢n  de impresi¢n de la ventana  actual. Cada ventana tiene
+   sus propias posiciones de impresi¢n almacenadas por separado.
+
+   BACKAT
+   Recupera la  posici¢n de impresi¢n guardada  por el  £ltimo SAVEAT ejecutado
+   en  la ventana  actual.  Si  no se  ejecut¢  ning£n SAVEAT,  la  posici¢n de
+   impresi¢n recuperada  ser   la  esquina  superior izquierda  de  la  ventana
+   (0,0).
+
+   NEWTEXT
+   Deshecha  el resto de  la l¡nea de entrada  (tecleada en  el £ltimo condacto
+   INPUT),  que a£n queda por analizar  y coloca el puntero para PARSE al final
+   de la misma.
+
+   PRINTC valor
+   Imprime un car cter, cuyo c¢digo ASCII est  dado  por el par metro valor, en
+   la posici¢n actual del cursor y dentro de la ventana activa.
+
+   INK color
+   Selecciona el  color de la tinta  en la ventana activa. Todos  los textos de
+   esa ventana se  imprimir n con ese color  de tinta hasta que  sea cambiado o
+   hasta  que la  ventana  se borre  (CLW).  Cuando se  borra una  ventana  los
+   colores se colocan  autom ticamente a aquellos  que fueron  indicados en  la
+   definici¢n de la misma.
+
+   PAPER color
+   Selecciona el color del fondo en la ventana activa.  Todos los textos de esa
+   ventana se imprimir n con ese color de fondo hasta que sea cambiado o  hasta
+   que la ventana se  borre (CLW). Cuando se  borra una ventana los  colores se
+   colocan autom ticamente a  aquellos que fueron indicados en la definici¢n de
+   la misma.
+
+   BRIGHT brillo
+   Selecciona el atributo  de brillo (0 desactivado, 1  activado) en la ventana
+   activa. Todos los textos de esa ventana  se imprimir n con ese brillo  hasta
+   que sea cambiado o hasta que la ventana se borre  (CLW). Cuando se borra una
+   ventana  los  colores  se colocan  autom ticamente  a  aquellos  que  fueron
+   indicados en la definici¢n de la misma.
+
+   BLINK parpadeo
+   Selecciona  el  atributo de  parpadeo  (0  desactivado,  1  activado) en  la
+   ventana  activa. Todos  los  textos de  esa  ventana se  imprimir n  con ese
+   parpadeo hasta  que sea  cambiado o  hasta que  la ventana  se borre  (CLW).
+   Cuando  se  borra una  ventana  los  colores  se  colocan autom ticamente  a
+   aquellos que fueron indicados en la definici¢n de la misma.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       39
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   COLOR color
+   Selecciona el  color (ver  7.2, p gina 8)  en la  ventana activa. Todos  los
+   textos de esa ventana se imprimir n con ese  color hasta que sea cambiado  o
+   hasta  que la  ventana  se  borre (CLW).  Cuando  se borra  una  ventana los
+   colores se colocan  autom ticamente a aquellos  que fueron  indicados en  la
+   definici¢n de la misma.
+
+   DEBUG modo
+   Activa o desactiva el  paso a paso en el int‚rprete-debugger. DEBUG 1 activa
+   el paso a paso a partir  de el punto d¢nde aparezca y DEBUG 0  lo desactiva.
+   Este condacto s¢lo es activo en  el int‚rprete-debugger no en el int‚rprete,
+   por  lo  que  no hay  que  preocuparse de  eliminarlo  de la  base  de datos
+   definitiva.
+
+   WBORDER nw borde
+   Define el tipo de borde que tendr  la ventana especificada. Una ventana  con
+   borde se  dibuja con  una marco  rode ndola; el  tipo de  marco depende  del
+   valor del par metro borde. Los tipos de  borde predefinidos se listan en  la
+   tabla siguiente:
+
+           VALOR DE borde          TIPO DE BORDE
+                  0                  sin borde
+                  1                  sencillo
+                  2                    doble
+                  3           doble-sencillo laterales
+                  4           sencillo-doble laterales
+                  5                 sombreado 1
+                  6                 sombreado 2
+                  7                 sombreado 3
+                  8                   relleno
+
+   CHARSET juego
+   Carga y selecciona  un nuevo juego de  caracteres. El par metro juego  es un
+   n£mero  de 0  a 255  que  identifica el  fichero  que contiene  el juego  de
+   caracteres. Se  buscar  un  fichero de  nombre ??????FS.nnn,  siendo nnn  el
+   valor del par metro juego.
+   Los 6 primeros  caracteres del fichero  no son  relevantes, as¡ un  condacto
+   CHARSET 15 podr   cargar tanto el fichero SIMPLEFS.15 como MIOMIOFS.15. Como
+   el  condacto  no  distinguir   entre uno  y  otro  cargar   uno  de los  dos
+   arbitrariamente.
+   Los ficheros de juegos de caracteres deben haber  sido creados con el editor
+   de caracteres suministrado con el SINTAC.
+   Este condacto s¢lo funcionar  si la tarjeta gr fica es una EGA o VGA.
+   Se ejecutar  el siguiente condacto si  pudo completarse con ‚xito, es decir,
+   el  juego de  caracteres  pudo cargarse.  Si  el fichero  correspondiente no
+   existe, o  no es  un fichero  creado con el  editor de  caracteres, o  no se
+   dispone de tarjeta gr fica EGA o VGA se saltar  a la siguiente entrada.
+   Si  el par metro juego  tiene valor 0 se  restaurar  el  juego de caracteres
+   por defecto almacenado en el BIOS del ordenador.
+
+   EXTERN prog valor
+   Este condacto permite  la ejecuci¢n  de un programa  externo, bien sea  EXE,
+   COM o BAT.  El par metro prog es  un n£mero identificativo del  programa. Se
+   ejecutar  el fichero cuyo  nombre sea EXTERn siendo n el valor del par metro
+   prog.  Se  buscar   primero el  fichero  EXTERn.COM, si  este  no  existe se
+   buscar   EXTERn.EXE  y,  finalmente,  si  este  tampoco  existe  se  buscar 
+   EXTERn.BAT. Si no se  encontr¢ el fichero se saltar  a la siguiente entrada,
+   dejando la variable del sistema 13 a 0.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       40
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   El  programa externo  se ejecuta  como si  en la  l¡nea del  DOS se  hubiese
+   tecleado:
+
+             EXTERn valor
+
+   Es decir el par metro valor se pasa al programa externo.
+   Al finalizar la ejecuci¢n del  programa externo la variable 13 contendr   el
+   c¢digo de salida  del mismo. El c¢digo  de salida de un  programa externo es
+   aquel que puede comprobarse con el comando ERRORLEVEL del DOS.
+   Tras ejecutarse el programa  externo se  restaura el modo  de video al  modo
+   texto 80x25 (borrando  la pantalla) y  el juego de  caracteres al  existente
+   por defecto  en el BIOS  del ordenador. Es,  por tanto, responsabilidad  del
+   programador volver  a cargar  el juego  de caracteres  que estaba  en uso  y
+   regenerar la pantalla,  poniendo los textos tal  y como estaban antes  de la
+   ejecuci¢n del condacto EXTERN.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       41
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                               PARTE III: Ap‚ndices
+
+
+                   APENDICE A: Mensajes de aviso del compilador
+
+   1    Secci¢n de nombre_de_secci¢n no encontrada.
+   Si  falta alguna  secci¢n en  la base  de datos  se producir   un mensaje de
+   aviso por cada secci¢n que falte.
+
+   2    Constante V_MOV no definida.
+   La constante simb¢lica V_MOV  no fue definida. Se  asumir  el n£mero  m ximo
+   de palabra de vocabulario por defecto para verbos de movimiento.
+
+   3    Constante N_CONV no definida.
+   La constante simb¢lica N_CONV no  fue definida. Se asumir  el  n£mero m ximo
+   de palabra de vocabulario por defecto para nombres convertibles.
+
+   4    Constante N_PROP no definida.
+   La constante  simb¢lica N_PROP no fue definida.  Se asumir  el n£mero m ximo
+   de palabra de vocabulario por defecto para nombres propios.
+
+   5    Hay menos mensajes del sistema que los requeridos.
+   No se  definieron todos  los mensajes  del sistema, lo  cual puede  provocar
+   anomal¡as en  el funcionamiento  del int‚rprete.  En el  ap‚ndice D hay  una
+   lista de los mensajes del sistema requeridos por esta versi¢n.
+
+   6    Tabulaci¢n transformada en espacio, l¡nea nnn.
+   En  un texto  de  mensaje,  localidad u  objeto  se  encontr¢ un  c¢digo  de
+   tabulaci¢n el cual es transformado en un espacio  por el compilador. Esto es
+   debido a  que las  rutinas de  salida por  ventanas no  soportan c¢digos  de
+   tabulaci¢n que algunos editores de texto insertan.
+
+   7    Demasiados campos, se ignoran los sobrantes, l¡nea nnnnn. Proceso nnn.
+   Una entrada  en un  proceso  tiene un  condacto con  m s par metros  de  los
+   debidos.  Esto puede  ser  debido a  un  comentario en  la misma  l¡nea  del
+   condacto sin punto y coma inicial.
+
+   8    Constante redefinida: nombre_de_constante, l¡nea nnnnn.
+   El compilador encontr¢ una  definici¢n de una constante simb¢lica que  ya ha
+   sido   definida    anteriormente.   Esto   puede   haber    sido   provocado
+   intencionadamente por el programador, realmente  no se incurre en  un error,
+   pero el compilador avisa por si esto no es lo deseado.
+
+
+                   APENDICE B: Mensajes de error del compilador
+
+   1    Error de apertura de fichero temporal.
+   El compilador  crea una  serie de  ficheros temporales  mientras compila  la
+   base de datos.  Este error puede ser debido a  que en el disco en el  que se
+   est   compilando  no   hay  espacio  suficiente  para  crear   los  ficheros
+   temporales. Aproximadamente hace  falta tanto espacio libre en el disco como
+   el que ocupa la base de datos.
+
+   2    Error de escritura en fichero temporal.
+   Se produjo un error al intentar escribir en uno de los ficheros  temporales.
+   Esto puede estar ocasionado  por la retirada del disco  de una unidad en  la
+   que estamos compilando.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       42
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   3    Error de lectura de fichero temporal.
+   Se produjo un error al intentar leer de uno de los ficheros temporales.
+
+   4    Error de apertura de fichero de entrada.
+   No  se pudo abrir el  fichero de la base  de datos, probablemente se cometi¢
+   un error al dar el nombre del fichero.
+
+   5    Error de lectura en fichero de entrada.
+   Durante la lectura del fichero de entrada se produjo un error.
+
+   6    Fin de fichero de entrada.
+   Se encontr¢ el final  del fichero de entrada. Este error puede producirse si
+   el fichero de base de datos no contiene texto ASCII.
+
+   7    Error de apertura de fichero de salida.
+   No se  pudo abrir el fichero de  salida, quiz  debido a  falta de espacio en
+   el disco o a que se retir¢ el diskette de la unidad.
+
+   8    Error de escritura en fichero de salida.
+   No  se pudo  escribir  correctamente en  el  fichero de  salida, seguramente
+   debido a que se retir¢ el diskette de la unidad.
+
+   9    No hay suficiente memoria para ejecutar el programa.
+   El compilador no puede reservar la cantidad m¡nima de memoria  para compilar
+   correctamente la base de  datos. Elimina  programas residentes, discos  RAM,
+   etc... y vuelve a intentarlo.
+
+   10   Secci¢n no v lida.
+   Se encontr¢ una marca de  inicio de secci¢n (\XXX) que no se corresponde con
+   ninguna de las v lidas.
+
+   11   Secci¢n repetida.
+   Se encontr¢ una marca de inicio de secci¢n repetida.
+
+   12   Marca de secci¢n no encontrada.
+   No se encontr¢ la marca de inicio de secci¢n.
+
+   13   Marca de fin de secci¢n (\END) no encontrada.
+   Se encontr¢ la marca de inicio  de una secci¢n sin encontrar  antes el final
+   de la anterior.
+
+   14   Faltan secciones.
+   Falta alguna de las secciones en el fichero de la base de datos.
+
+   15   Car cter no v lido en palabra de vocabulario.
+   Se encontr¢ un car cter que no  es ni un n£mero ni una letra en  una palabra
+   de la secci¢n de vocabulario.
+
+   16   Faltan campos.
+   Faltan  campos en  la  definici¢n  de una  palabra  de vocabulario,  de  las
+   conexiones de  una localidad,  de un  objeto, de  una entrada  de proceso  o
+   faltan par metros de un condacto.
+
+   17   N£mero de palabra no v lido.
+   El n£mero  de la  palabra que se  quiere insertar  en el  vocabulario no  es
+   v lido.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       43
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   18   Campo num‚rico no v lido.
+   Un campo num‚rico tiene un valor  no v lido quiz  debido a que  es un n£mero
+   fuera de rango o hay caracteres no num‚ricos.
+
+   19   Tipo de palabra no v lido.
+   La especificaci¢n  de tipo  para palabra  definida en el  vocabulario no  es
+   ninguno  de  los  tipos  de  palabras  v lido  (verbo,  nombre,  adjetivo  o
+   conjunci¢n).
+
+   20   Palabra repetida.
+   La palabra  que se quiere  insertar en el  vocabulario est  repetida. Sus  6
+   primeros  caracteres  coinciden  exactamente  con  los  6  primeros  de otra
+   palabra ya insertada.
+
+   21   Vocabulario lleno.
+   El  n£mero de palabras insertadas en el  vocabulario rebosa la capacidad del
+   mismo.  En esta  versi¢n el  m ximo  n£mero de  palabras  en el  vocabulario
+   permitidas son 2500.
+
+   22   Falta '@'.
+   Se esperaba encontrar  un car cter '@' de  inicio de texto en  las secciones
+   de  Mensajes,  Mensajes  del  Sistema,  Localidades,  o  al  inicio  de  una
+   definici¢n de objeto.
+
+   23   N£mero fuera de secuencia.
+   El n£mero de un mensaje, texto  de localidad o proceso no  es consecutivo al
+   n£mero del anterior mensaje, texto de localidad o proceso definido.
+
+   24   Se rebos¢ el l¡mite de memoria para la secci¢n actual.
+   La secci¢n actual rebos¢ la cantidad de memoria reservada para ella.
+
+   25   N£mero no v lido.
+   El campo num‚rico encontrado es v lido pero su valor se sale de  los l¡mites
+   espec¡ficos para  el  tipo de  elemento  que  est  siendo  compilado.  Puede
+   ocurrir,  por ejemplo,  cuando  se intenta  definir  una de  las localidades
+   especiales.
+
+   26   Palabra no est  en vocabulario.
+   Se intenta usar una palabra no definida en el vocabulario.
+
+   27   Nombre no est  en vocabulario.
+   El nombre que se intenta usar no ha sido definido en el vocabulario.
+
+   28   Adjetivo no est  en vocabulario.
+   El adjetivo que se intenta usar no ha sido definido en el vocabulario.
+
+   29   La palabra no es verbo de movimiento.
+   Se  intenta  usar  como  palabra  de  conexi¢n,  en  la  definici¢n  de  las
+   conexiones de la  localidad actual, una que  no est  definida como  verbo de
+   movimiento en el vocabulario.
+
+   30   El primer campo debe ser un Nombre.
+   El  primer campo  en la  definici¢n  de un  objeto debe  ser  un nombre  del
+   vocabulario.
+
+   31   El segundo campo debe ser un Adjetivo.
+   El segundo campo  en la definici¢n  de un  objeto debe ser  un adjetivo  del
+   vocabulario o el s¡mbolo de subrayado '_'.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       44
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   32   Localidad inicial no v lida.
+   El n£mero  de localidad de inicio del  objeto no es v lido,  debe ser una de
+   las localidades definidas o una de las localidades especiales.
+
+   33   Banderas de objeto no v lidas.
+   Se encontr¢  un car cter no v lido en la definici¢n de  las banderas para el
+   objeto actual.
+
+   34   Falta texto de Objeto.
+   No  se  encontr¢  el  texto  de  descripci¢n  del  objeto  que  est   siendo
+   compilado.
+
+   35   Comienzo de entrada no v lido.
+   El primer car cter de una entrada no puede ser un espacios o tabulaci¢n.
+
+   36   Tabla de etiquetas llena.
+   Se alcanz¢ el l¡mite de la tabla para  almacenar etiquetas. Reduce el n£mero
+   de etiquetas dentro del proceso d¢nde se produjo el error.
+
+   37   Etiqueta repetida.
+   El nombre de la etiqueta ya ha sido usado dentro del mismo proceso.
+
+   38   Nombre de etiqueta no v lido.
+   El nombre de la etiqueta contiene caracteres no v lidos.
+
+   39   Primera palabra en entrada no es verbo ni nombre convertible.
+   La primera palabra de  una entrada debe ser un verbo o nombre  convertible o
+   el  s¡mbolo de  subrayado  (_),  mira que  la  palabra est‚  definida  en el
+   vocabulario como tal.
+
+   40   Segunda palabra en entrada no es nombre.
+   La  segunda  palabra de  la  entrada debe  ser  un nombre  o  el  s¡mbolo de
+   subrayado (_).
+
+   41   Condacto no v lido.
+   El condacto  especificado no  es uno  de los  condactos v lidos  o est   mal
+   escrito.
+
+   42   Un proceso no puede llamarse a s¡ mismo.
+   Se encontr¢  una llamada  a procesos  que llama  al proceso en  el que  est 
+   definida.
+
+   43   Rebasado m ximo n£mero de llamadas 'forward' a procesos.
+   Cuando  se encuentra  una  llamada a  un  proceso no  compilado  todav¡a, el
+   compilador guarda  cierta informaci¢n en  una tabla, la  cual es vaciada  al
+   inicio de  la compilaci¢n  de un  proceso. Esta  tabla tiene capacidad  para
+   almacenar informaci¢n  sobre 2000 llamadas a  procesos todav¡a no compilados
+   (m s que suficiente)  dentro del proceso  actual. Si  se rebosa ese  n£mero,
+   aparecer  este error.
+
+   44   N£mero de ventana no v lido.
+   El n£mero de  ventana especificado en el condacto  no es v lido. Los n£meros
+   de ventanas permitidos son del 0 al 9.
+
+   45   Columna de inicio de ventana fuera de pantalla.
+   Se  intenta dar como columna de inicio de la ventana una que cae fuera de la
+   pantalla.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       45
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   46   Fila de inicio de ventana fuera de pantalla.
+   Se  intenta dar como fila  de inicio de  la ventana una que  cae fuera de la
+   pantalla.
+
+   47   Dimensiones de ventana demasiado grandes.
+   Las  dimensiones de  la  ventana hacen  que esta  rebose  los l¡mites  de la
+   pantalla. Para solucionar  esto se puede cambiar  el origen de la  ventana o
+   reducir sus dimensiones.
+
+   48   N£mero de mensaje no v lido.
+   Se especific¢ como par metro del condacto un n£mero de mensaje no definido.
+
+   49   N£mero de localidad no v lido.
+   Se especific¢  como  par metro  del  condacto  un  n£mero  de  localidad  no
+   definido o no v lido.
+
+   50   N£mero de objeto no v lido.
+   Se especific¢ como par metro del condacto un n£mero de objeto no definido.
+
+   51   Campo de etiqueta no v lido.
+   Se especific¢ en un  condacto que precisa de una etiqueta como par metro, un
+   campo de etiqueta no v lido, es decir, que no comienza con '$'.
+
+   52   Rebasado m ximo n£mero de saltos 'forward' con SKIP.
+   Cada vez  que se  localiza un  salto a  una etiqueta  no definida,  todav¡a,
+   dentro del proceso  actual, se guarda  cierta informaci¢n  en una tabla,  la
+   cual  es vaciada al  final de la compilaci¢n  del proceso.  Esta tabla tiene
+   capacidad  para  almacenar  informaci¢n  sobre 100  saltos  a  etiquetas  no
+   definidas. Si se rebosa esta capacidad saldr  este error.
+
+   53   Salto fuera de rango.
+   Se realiz¢  un salto a una etiqueta anterior al condacto,  que est  fuera de
+   los  l¡mites permitidos.  Se  puede saltar,  hacia  atr s, a  etiquetas cuya
+   direcci¢n no  difiera m s de 32768  posiciones de la direcci¢n  del condacto
+   que realiza el salto.
+
+   54   Adjetivo no v lido.
+   El par metro del condacto debe ser un adjetivo v lido del vocabulario.
+
+   55   Nombre no v lido.
+   El par metro del condacto debe ser un nombre v lido del vocabulario.
+
+   56   Bandera de usuario no v lida.
+   El par metro del  condacto debe ser un  n£mero v lido de bandera  de usuario
+   (0-15) o 16 (prenda) o 17 (fuente de luz).
+
+   57   Par metro de CHANCE debe estar entre 0 y 100.
+   El par metro del condacto CHANCE debe ser un n£mero entre 0 y 100.
+
+   58   Banco de memoria no v lido.
+   El n£mero de banco  de memoria especificado no es v lido. S¢lo se admite 0 o
+   1 como n£meros de bancos de memoria.
+
+   59   N£mero de primer mensaje del sistema no v lido.
+   El primer par metro  del condacto debe ser un  n£mero de mensaje del sistema
+   v lido.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       46
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   60   N£mero de segundo mensaje del sistema no v lido.
+   El segundo par metro del condacto debe ser un  n£mero de mensaje del sistema
+   v lido.
+
+   61   Par metro debe ser 0 o 1.
+   El par metro del condacto debe ser obligatoriamente 0 o 1.
+
+   62   Fila fuera de pantalla.
+   Se especific¢ un n£mero de fila que cae fuera de la pantalla.
+
+   63   Columna fuera de pantalla.
+   Se especific¢ un n£mero de columna que cae fuera de la pantalla.
+
+   64   N£mero de color incorrecto.
+   El n£mero de  color especificado en el  condacto no es v lido.  Los condacto
+   INK  y PAPER  admiten n£meros de  color de 0  a 7, y los  condactos BRIGHT y
+   BLINK s¢lo admiten 0 o 1.
+
+   65   Conexi¢n a localidad no v lida.
+   Se encontr¢ una conexi¢n que lleva a una localidad no definida.
+
+   66   Etiqueta no definida.
+   Se intent¢ saltar a  una etiqueta no definida dentro del proceso  actual. Se
+   mostrar  el n£mero de l¡nea dentro del  fichero de entrada d¢nde se  produjo
+   el error.
+
+   67   Salto 'forward' fuera de rango.
+   Se realiz¢ un salto a una etiqueta definida  posteriormente al condacto, que
+   est   fuera de  los l¡mites  permitidos. Se  puede saltar, hacia  delante, a
+   etiquetas cuya direcci¢n no difiera m s de 32767 posiciones de la  direcci¢n
+   del condacto que realiza el salto.
+
+   68   Llamada a proceso inexistente.
+   Se  encontr¢, despu‚s  de compilar  todos  los procesos,  una  llamada a  un
+   proceso no definido.
+
+   69   Tabla de constantes llena.
+   Ya no  caben m s constantes  en la  tabla por  lo que se  deber  reducir  el
+   n£mero de las mismas.
+
+   70   Primer car cter de nombre de constante no v lido.
+   El primer car cter del nombre de una constante no puede ser un n£mero.
+
+   71   Falta valor de la constante.
+   Se encontr¢ la definici¢n de una constante  pero sin el valor num‚rico de la
+   misma.
+
+   72   Constante no definida.
+   Se  encontr¢  un nombre  de  constante simb¢lica  que  no  se corresponde  a
+   ninguna de las definidas.
+
+   73   Nombre de constante no v lido.
+   El nombre de  la constante simb¢lica  contiene caracteres  no v lidos.  S¢lo
+   est n permitidos caracteres alfab‚ticos, num‚ricos y  los s¡mbolos '+', '-',
+   '*' y '_'.
+
+   74   Error en valor de constante.
+   El valor  de la  constante en  la definici¢n  de la  misma no  es un  n£mero
+   v lido; debe ser un n£mero entre 0 y 255.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       47
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   75   N£mero de borde de ventana no v lido.
+   El par metro del condacto WBORDER no corresponde a  un tipo de borde v lido.
+   Lee la descripci¢n del condacto WBORDER para m s informaci¢n.
+
+                   APENDICE C: Variables y banderas del sistema
+
+   - Variables del sistema:
+
+        0    : n£mero de ventana activa
+        1    : n£mero de localidad actual
+        2    : n£mero de verbo de la £ltima sentencia analizada por PARSE
+        3    : ¡dem pero nombre
+        4    : ¡dem pero adjetivo
+        5    : ¡dem pero nombre 2
+        6    : ¡dem pero adjetivo 2
+        7    : m ximo n£mero de objetos que se pueden llevar (0=ilimitados)
+        8    : n£mero de objeto actual
+        9    : primer c¢digo ASCII IBM (usado por el condacto INKEY)
+        10   : segundo c¢digo ASCII IBM
+        11   : variable interna usada por QUIT, SAVE y END
+        12   : c¢digo devuelto por el condacto INPUT
+        13   : c¢digo de salida de un programa externo ejecutado con EXTERN
+        14 a 20   : reservadas
+
+   - Banderas del sistema:
+
+        0    : indicador de oscuridad (1=si, 0=no)
+        1    : si es  1 LISTAT imprime en formato  encolumnado, si es 0 imprime
+             los objetos seguidos
+        2    :  indicador usado para evitar  las inicializaciones  en Proceso 0
+             (DESC lo pone a 0)
+        3    : bandera de usuario
+        4    : puesta a 1 si la tarjeta de video es EGA o VGA
+        5 a 20    : reservadas
+
+                         APENDICE D: Mensajes del sistema
+
+   Los mensajes  que se  dan aqu¡  son los  posibles mensajes  del sistema  que
+   puede tener  la base de datos.  Aunque el n£mero de  mensajes del sistema en
+   la base de datos debe ser  como m¡nimo igual al n£mero de los que  se listan
+   a continuaci¢n, el contenido de  los mismos puede diferir  notablemente. Los
+   mensajes del sistema  que se dan aqu¡  pueden usarse como pautas  para crear
+   los tuyos propios personalizados.
+   Los mensajes  se listan entre comillas simples (') y se presentan tal y como
+   ser¡an insertados  en la base de  datos, s¢lo que sustituyendo  las comillas
+   por el inicio del mensaje (@nnn) y el final del mensaje (@).
+
+   0:   'Has cogido _.|'
+   1:   'Aqu¡ no est  eso.|'
+   2:   'No puedes coger _. Llevas demasiadas cosas.|'
+   3:   'Ya tienes eso.|'
+   4:   'Dejas _.|'
+   5:   'No tienes eso.|'
+   6:   '|> '
+   7:   'Ü'
+   8:   'No puedes hacer eso.|'
+   9:   '|Tambi‚n puedes ver: '
+   10:  'nada.|'
+   11:  ', '
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       48
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   12:  ' y '
+   13:  '.|'
+   14:  'Tienes: '
+   15:  'Llevas puesto: '
+   16:  'Ya llevas puesto _.|'
+   17:  'No puedes ponerte _.|'
+   18:  'Te pones _.|'
+   19:  'No llevas puesto eso.|'
+   20:  'Te quitas _.|'
+   21:  'No puedes ir en esa direcci¢n.|'
+   22:  'Pulsa una tecla.'
+   23:  'Est  oscuro. No puedes ver nada.'
+   24:  '¨Est s seguro? '
+   25:  'SN'
+   26:  'Nombre del fichero: '
+   27:  'Fichero ya existe. ¨Quieres continuar? '
+   28:  'Error de apertura de fichero.|'
+   29:  'Error de entrada/salida en fichero.|'
+   30:  'Fichero no v lido.|'
+   31:  '¨Lo intentas de nuevo? '
+
+                       APENDICE E: Resumen de los condactos
+
+   A   continuaci¢n  se  listan  todos   los  condactos  disponibles  en  orden
+   alfab‚tico. Las abreviaturas utilizadas son las siguientes:
+
+        procno    : n£mero de Proceso
+        nw        : n£mero de ventana
+        varno     : n£mero de variable (0 a 255)
+        bandno    : n£mero de bandera (0 a 255)
+        mesno     : n£mero de mensaje
+        sysmesno  : n£mero de mensaje del sistema
+        locno     : n£mero de localidad
+        locno+    :  n£mero de  localidad,  adem s  se admiten  los  siguientes
+             n£meros como n£meros de localidades con significado especial:
+             255 = se sustituye por el n£mero de localidad actual
+             254 = localidad para los objetos cogidos pero no puestos
+             253 = localidad para los objetos puestos
+             252 = localidad para los objetos no creados
+        objno     : n£mero de objeto
+        $etiqueta : nombre de etiqueta
+        adjetivo  : adjetivo del vocabulario
+        nombre    : nombre del vocabulario
+        verbo     : verbo del vocabulario
+
+   ABILITY valor
+   ABSENT objno
+   ADD varno valor
+   ADJECT1 adjetivo
+   ADJECT2 adjetivo
+   ANYKEY
+   ASK sysmessno1 sysmessno2 varno
+   AT locno+
+   ATGT locno+
+   ATLT locno+
+   AUTOD
+   AUTOG
+   AUTOR
+   AUTOW
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       49
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   BACKAT
+   BLINK parpadeo
+   BRIGHT brillo
+   CARRIED objno
+   CLEAR bandno
+   CLS
+   CLW nw
+   COLOR color
+   COPYOF objno varno
+   CREATE objno
+   CHANCE valor
+   CHARSET juego
+   DEBUG modo
+   DEC varno
+   DEFWIN nw color columna fila anchura altura
+   DESC locno
+   DESTROY objno
+   DONE
+   DPRINT varno
+   DROP objno
+   END
+   EQ varno valor
+   EXIT valor
+   EXTERN prog valor
+   FIRSTO
+   GET objno
+   GOTO locno
+   GT varno valor
+   HASAT valor
+   HASNAT valor
+   INC varno
+   INK color
+   INKEY
+   INPUT
+   ISAT objno locno+
+   ISDOALL
+   ISMOV
+   ISNOTAT objno locno+
+   LET varno valor
+   LIGHT
+   LISTAT locno+
+   LISTOBJ
+   LOAD valor1 valor2
+   LT varno valor
+   MES mesno
+   MESSAGE mesno
+   MOVE varno
+   NEWLINE
+   NEWTEXT
+   NEXTO locno+
+   NOLIGHT
+   NORESP
+   NOTAT locno+
+   NOTCARR objno
+   NOTDONE
+   NOTEQ varno valor
+   NOTWORN objno
+   NOTZERO bandno
+   NOUN2 nombre
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       50
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   PAPER color
+   PARSE
+   PAUSE valor
+   PLACE objno locno+
+   PRESENT objno
+   PRINT varno
+   PRINTAT fila columna
+   PRINTC valor
+   PROCESS procno
+   PUTO locno+
+   QUIT
+   RAMLOAD banco valor1 valor2
+   RAMSAVE banco
+   RANDOM varno valor
+   REMOVE objno
+   RESP
+   RESTART
+   SAVE
+   SAVEAT
+   SEED valor
+   SET bandno
+   SKIP $etiqueta
+   SUB varno valor
+   SWAP objno1 objno2
+   SYNONYM verbo nombre
+   SYSMESS sysmesno
+   WBORDER nw borde
+   WEAR objno
+   WHATO
+   WINDOW nw
+   WORN objno
+   ZERO bandno
+
+                          APENDICE F: C¢digos de teclado
+
+   La siguiente tabla  lista los c¢digos que  se generan al pulsar  las teclas.
+   En cada columna aparecen dos  c¢digos; el primero es  el c¢digo de la  tecla
+   pulsada  (el que deja en la  variable 10 el condacto INKEY)  y el segundo su
+   c¢digo  ASCII si es distinto de 0 (el que  deja en la variable 9 el condacto
+   INKEY). Si aparece  (..) indica que ese c¢digo  est  indefinido y si aparece
+   el  signo (=)  indica  que  los c¢digos  son  iguales a  los  de la  columna
+   anterior. Los  c¢digos se dan  en hexadecimal  (consulta el ap‚ndice  G). TN
+   indica una tecla del teclado num‚rico.
+
+   Tecla        Normal        Shift        Ctrl          Alt          Alt+Ctrl
+
+   Esc          01 1B         =            01 13
+   1            02 31         02 AD                      78 00        =
+   2            03 32         03 A8        03 00         79 00        03 40
+   3            04 33         04 23                      7A 00        =
+   4            05 34         05 24                      7B 00        =
+   5            06 35         06 25                      7C 00        =
+   6            07 36         07 2F        07 1E         7D 00        =
+   7            08 37         08 26                      7E 00        =
+   8            09 38         09 2A                      7F 00        =
+   9            0A 39         0A 28                      80 00        =
+   0            0B 30         0B 29                      81 00        =
+   Borrado      0E 08         =            0E 7F
+   Tab          0F 09         0F 00
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       51
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Q            10 71         =            10 11         10 00        =
+   W            11 77         =            11 17         11 00        =
+   E            12 65         =            12 05         12 00        =
+   R            13 72         =            13 52         13 00        =
+   T            14 74         =            14 54         14 00        =
+   Y            15 79         =            15 59         15 00        =
+   U            16 75         =            16 55         16 00        =
+   I            17 69         =            17 49         17 00        =
+   O            18 6F         =            18 4F         18 00        =
+   P            19 70         =            19 50         19 00        =
+   Return       1C 0D         =            1C 0A
+   Ctrl         1D ..         =
+   A            1E 61         =            1E 01         1E 00        =
+   S            1F 73         =            1F 13         1F 00        =
+   D            20 64         =            20 04         20 00        =
+   F            21 66         =            21 06         21 00        =
+   G            22 67         =            22 07         22 00        =
+   H            23 68         =            23 08         23 00        =
+   J            24 6A         =            24 0A         24 00        =
+   K            25 6B         =            25 0B         25 00        =
+   L            26 6C         =            26 0C         26 00        =
+   ¥            27 A4         =
+   Shiftizq     2A ..
+   Z            2C 7A         =            2C 1A         2C 00        =
+   X            2D 78         =            2D 18         2D 00        =
+   C            2E 63         =            2E 03         2E 00        =
+   V            2F 76         =            2F 16         2F 00        =
+   B            30 62         =            30 02         30 00        =
+   N            31 6E         =            31 0E         31 00        =
+   M            32 6D         =            32 0D         32 00        =
+   Shiftder     36 ..
+   Alt          38 ..
+   Espacio      39 20         =            =             =
+   F1           3B 00         54 00        5E 00         68 00
+   F2           3C 00         55 00        5F 00         69 00
+   F3           3D 00         56 00        60 00         6A 00        =
+   F4           3E 00         57 00        61 00         6B 00        =
+   F5           3F 00         58 00        62 00         6C 00        =
+   F6           40 00         59 00        63 00         6D 00        =
+   F7           41 00         5A 00        64 00         6E 00        =
+   F8           42 00         5B 00        65 00         6F 00        =
+   F9           43 00         5C 00        66 00         70 00        =
+   F10          44 00         5D 00        67 00         71 00        =
+   TN 7         47 37         =            77 00         00 07        =
+   TN 8         48 38         =                          00 08        =
+   TN 9         49 39         =            84 00         00 09        =
+   TN -         4A 2D         =
+   TN 4         4B 34         =            73 00         00 04        =
+   TN 5         4C 35         =                          00 05        =
+   TN 6         4D 36         =            74 00         00 06        =
+   TN +         4E 2B         =
+   TN 1         4F 31         =            75 00         00 01        =
+   TN 2         50 32         =                          00 02        =
+   TN 3         51 33         =            76 00         00 03        =
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       52
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+               APENDICE G: Tabla de conversi¢n decimal-hexadecimal
+
+   Conversi¢n  hexadecimal-decimal: entra  por columnas  con  el primer  d¡gito
+        hexadecimal y sigue la  columna hacia abajo hasta la fila  que coincida
+        con  el  segundo d¡gito  hexadecimal, el  valor  de esa  casilla  es el
+        n£mero  en  decimal. Por  ejemplo  6C  en  hexadecimal  equivale a  108
+        decimal (columna 6, fila C).
+   Conversi¢n  decimal-hexadecimal:  busca el  n£mero decimal  en la  tabla, el
+        d¡gito de su columna  es el primer d¡gito hexadecimal, el d¡gito  de su
+        fila  es el  segundo d¡gito  hexadecimal. Por  ejemplo 165  est  en  la
+        columna A  y en la fila  5, por tanto su  equivalente en hexadecimal es
+        A5.
+
+                                                                       
+        0   1    2   3    4   5    6   7    8   9    A   B    C   D    E   F
+
+   0    0   16   32  48   64  80   96  112  128 144  160 176  192 208  224 240
+   1    1   17   33  49   65  81   97  113  129 145  161 177  193 209  225 241
+   2    2   18   34  50   66  82   98  114  130 146  162 178  194 210  226 242
+   3    3   19   35  51   67  83   99  115  131 147  163 179  195 211  227 243
+   4    4   20   36  52   68  84   100 116  132 148  164 180  196 212  228 244
+   5    5   21   37  53   69  85   101 117  133 149  165 181  197 213  229 245
+   6    6   22   38  54   70  86   102 118  134 150  166 182  198 214  230 246
+   7    7   23   39  55   71  87   103 119  135 151  167 183  199 215  231 247
+   8    8   24   40  56   72  88   104 120  136 152  168 184  200 216  232 248
+   9    9   25   41  57   73  89   105 121  137 153  169 185  201 217  233 249
+   A    10  26   42  58   74  90   106 122  138 154  170 186  202 218  234 250
+   B    11  27   43  59   75  91   107 123  139 155  171 187  203 219  235 251
+   C    12  28   44  60   76  92   108 124  140 156  172 188  204 220  236 252
+   D    13  29   45  61   77  93   109 125  141 157  173 189  205 221  237 253
+   E    14  30   46  62   78  94   110 126  142 158  174 190  206 222  238 254
+   F    15  31   47  63   79  95   111 127  143 159  175 191  207 223  239 255
+
+
+                         APENDICE H: Versiones del SINTAC
+
+   En la  numeraci¢n de  versiones del  sistema SINTAC hay  que distinguir  dos
+   partes; en primer  lugar est  la numeraci¢n  del sistema en su  conjunto. La
+   actual versi¢n  del sistema  SINTAC es  la T1  que indica  que soporta  s¢lo
+   aventuras modo  texto (de  ah¡ la  T) y  es la  primera versi¢n  (a esta  le
+   seguir n la T2, la T3, etc...).
+   En segundo lugar  est  la numeraci¢n de  cada programa que forma  el sistema
+   SINTAC por  separado. As¡  la versi¢n  T1 del  sistema SINTAC  la forman  el
+   compilador versi¢n 1.11 y el int‚rprete-debugger 1.33.
+   Las  primeras  versiones  hasta  la  1.11  del  compilador  y  la  1.33  del
+   int‚rprete-debugger  fueron  versiones  beta,  s¢lo  distribuidas  entre  un
+   reducido  n£mero de  personas  para ser  probadas  y encontrar  los posibles
+   fallos.
+   Debido  a  una deficiencia  importante en  el debugger  se decidi¢  sacar la
+   versi¢n 1.34 del  int‚rprete-debugger. Esta versi¢n mejora con respecto a la
+   anterior la velocidad.  Gracias a Fran Morell,  redactor jefe de Z  for Zero
+   se descubri¢ que el debugger era  extremadamente lento en m quinas de  menos
+   de 10MHz (es decir,  PC XT). Esto se corrigi¢  hasta tal punto que  la nueva
+   versi¢n  1.34 es tan r pida  en una m quina  de 4MHz como la  1.33 en una de
+   20MHz.
+   La velocidad  general de  salida  por pantalla  se ha  mejorado en  un  500%
+   aproximadamente.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       53
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Adem s se increment¢  la pila para llamadas a  procesos aument ndola de 10 a
+   100.
+   La versi¢n  T2  incorpora importantes  mejoras,  las  cuales se  enumeran  a
+   continuaci¢n:
+        - el  compilador  ahora se  ajusta  autom ticamente  a la  cantidad  de
+        memoria disponible
+        - el orden de las secciones dentro de la base de datos es indiferente
+        - se  permite el  uso de  constantes simb¢licas  dentro de  la base  de
+        datos
+        -  se ha corregido  un peque¤o error  del compilador  que provocaba que
+        las bases de datos compiladas fuesen 1 byte m s largas de lo debido
+        - se  ha mejorado la  gesti¢n de ventanas  permitiendo ahora que  estas
+        tengan marco
+        - se  ha mejorado  la  rutina de  INPUT permitiendo  mayor control  del
+        cursor (arriba, abajo, fin, origen...). Adem s ahora el  condacto INPUT
+        devuelve  un c¢digo si  se puls¢  una tecla  de funci¢n lo  que permite
+        asignar acciones especiales a las teclas de funci¢n
+        - se ha a¤adido una  nueva utilidad al sistema: el  editor de juegos de
+        caracteres y  ahora el sistema  permite el uso de  diferentes juegos de
+        caracteres si se dispone de tarjeta EGA, VGA o compatible
+        - se  ha  incrementado  el  n£mero  de  letras  significativas  de  las
+        palabras de vocabulario a 6
+        - se han  incorporado nuevos condactos, entre ellos destaca un condacto
+        EXTERN para ejecutar programas externos
+        -  se han  incorporado  utilidades  externas;  entre ellas  destaca  un
+        visualizador de  ficheros  gr ficos  PCX  que  permite  por  medio  del
+        condacto EXTERN incluir gr ficos en las aventuras
+   Todas estas  mejoras  justificaban  la  salida  de  una  nueva  versi¢n  del
+   sistema.
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       54
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                INDICE ALFABETICO
+
+
+   ABILITY . . . . . . . . . . . .   35    COPYOF  . . . . . . . . . . . .   35
+   ABSENT  . . . . . . . . . . . .   31    CREATE  . . . . . . . . . . . .   32
+   ADD . . . . . . . . . . . . . .   28    Cursor
+   ADJECT1 . . . . . . . . . . . .   30         posici¢n . . . . . . . . .   38
+   ADJECT2 . . . . . . . . . . . .   30    Debugger  . . . . . . . . .   20, 24
+   Adjetivo  .  4-6, 14, 18, 21-23, 26,         opciones . . . . . . . . .   24
+                30, 32, 33, 36, 43, 45,         paso a paso  . . . . . . .   25
+                          47, 48, 6, 22         ventana de depuraci¢n    21, 24
+   Aleatorio                               DEC . . . . . . . . . . . . . .   28
+        generador  . . . . . . . .   34    DEFWIN  . . . . . . . . .   7, 8, 27
+        n£mero . . . . . . . . . .   34    DESC  . . . . . . . . . . . .  6, 28
+        probabilidad . . . . . . .   35    DESTROY . . . . . . . . . . . .   32
+   Analizar                                Disco
+        frases encadenadas . . . .   29         grabaci¢n  . . . . . . . .   37
+        separador  . . . . . . . .   29         recuperaci¢n . . . . . . .   37
+   ANYKEY  . . . . . . . . . . . .   33    DONE  . . . . . . . . . . . .  5, 26
+   ASK . . . . . . . . . . . . . .   36    DPRINT  . . . . . . . . . . . .   33
+   AT  . . . . . . . . . . . . . .   30    DROP  . . . . . . . . . . .   29, 36
+   ATGT  . . . . . . . . . . . . .   30    END . . . . . . . . . . . . .  6, 38
+   ATLT  . . . . . . . . . . . . .   30    EQ  . . . . . . . . . . . . . .   27
+   AUTOD . . . . . . . . . . . . .   36    Etiquetas . . . . . . . . . .  7, 19
+   AUTOG . . . . . . . . . . . . .   36    EXIT  . . . . . . . . . . . . .   37
+   AUTOR . . . . . . . . . . . . .   36    FIRSTO  . . . . . . . . . .   33, 36
+   AUTOW . . . . . . . . . . . . .   36    Frase
+   Avance de l¡nea . . . . . .   16, 27         introducir . . . . . . . .   29
+   Avisos                                  GET . . . . . . . . . . . .   28, 36
+        compilador . . . . . . . .   11    GOTO  . . . . . . . . . . . . .   33
+   BACKAT  . . . . . . . . . . . .   38    GT  . . . . . . . . . . . . . .   27
+   Banderas  . . . . . . . . . . . .  6    HASAT . . . . . . . . . . . .  5, 34
+        comprobaciones . . . . . .   28    HASNAT  . . . . . . . . . . .  5, 34
+        de usuario . . . . .  5, 18, 34    INC . . . . . . . . . . . . . .   28
+        del sistema  . . . . . .  6, 28    Indirecci¢n . . . . . . . . . . .  6
+        editar . . . . . . . . . .   25    INK . . . . . . . . . . . . .  7, 38
+        objetos  . . . . . . . . . .  5    INKEY . . . . . . . . .   23, 35, 50
+        operaciones  . . . . . . .   28    INPUT . . . . .   21, 23, 25, 29, 38
+   Base de datos . . . . . . . .  3, 12    Int‚rprete  . . . . . . . . . .   20
+        secci¢n  . . . . . . . . .   12    ISAT  . . . . . . . . . . . . .   31
+   BLINK . . . . . . . . . . . .  7, 38    ISDOALL . . . . . . . . . .   33, 36
+   BRIGHT  . . . . . . . . . . .  7, 38    ISMOV . . . . . . . . . . . . .   32
+   Bucles                                  ISNOTAT . . . . . . . . . . . .   31
+        bucle DOALL  . . . . .   33, 36    LET . . . . . . . . . . . . . .   27
+   CARRIED . . . . . . . . . . . .   31    LIGHT . . . . . . . . . . . . .   34
+   CHANCE  . . . . . . . . . . . .   35    L¡nea de entrada  . . . . . . .   38
+   CLEAR . . . . . . . . . . . . .   28    LISTAT  . . . . . . . . .  6, 30, 33
+   CLS . . . . . . . . . . . . . .   33    LISTOBJ . . . . . . . . . . . .   33
+   CLW . . . . . . . . .  8, 27, 38, 39    LOAD  . . . . . . . . . . . . .   37
+   C¢digo                                  Localidad . . . . . . . . . . . .  4
+        ASCII IBM  . . . . . . . . .  6         comprobaci¢n . . . . . . .   30
+   Color   7, 8, 27, 38, 39, 46, 49, 50         descripci¢n  . . . . . . .   28
+        brillo . . .   8, 9, 33, 38, 49         ir a . . . . . . . . . . .   33
+        parpadeo . .   8, 9, 33, 38, 49         localidad actual . . . . . .  6
+   Comentarios . . . . . . . . . .   12         secci¢n de . . . . . . . .   17
+   Compilador  . . . . . . . . . .   10    LT  . . . . . . . . . . . . . .   27
+   Condactos . . . . . . . . . .  3, 25    Luz . . .  5, 18, 28, 33, 34, 45, 18
+   Conexiones  . . . . . . . . .  4, 17         fuente de  . . . . . . . .   34
+   Conjunci¢n  . . . . .  4, 15, 29, 43         localidad  . . . . . . . .   28
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       55
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   Memoria                                      secci¢n de . . . . . . . .   18
+        bancos de  . . . . . . . .   35         texto de descripci¢n . . .   19
+        grabaci¢n  . . . . . . . .   35         tipo . . . . . . . . . . .   18
+        recuperaci¢n . . . . . . .   35    Oscuridad . . . . . . . . . . . .  6
+   Mensajes                                Palabra . . . . . . . . . . . .   15
+        descripci¢n  . . . . . . . .  5    Pantalla
+        impresi¢n  . . . . . . . .   27         borrado  . . . . . . . . .   33
+        secci¢n de . . . . . . . .   16    PAPER . . . . . . . . . . . .  7, 38
+        s¡mbolo de subrayado . .   4, 5    PARSE . . . . .   21, 23, 24, 29, 38
+   Mensajes de error                       Pausa . . . . . . . . . . . . .   33
+        compilador . . . . . . . .   11    PAUSE . . . . . . . . . . . . .   33
+   Mensajes del Sistema                    PLACE . . . . . . . . . . . . .   28
+        descripci¢n  . . . . . . . .  4    Pregunta  . . . . . . . . . . .   36
+        impresi¢n  . . . . . . . .   27    Prenda  . . . . . . . . . . . .   18
+        secci¢n de . . . . . . . .   16    PRESENT . . . . . . . . . . . .   31
+   MES . . . . . . . . . . . . .  5, 27    PRINT . . . . . . . . . . . . .   33
+   MESSAGE . . . . . . . . . . .  5, 27    PRINTAT . . . . . . . . . . . .   38
+   MOVE  . . . . . . . . . . . . .   32    PRINTC  . . . . . . . . . . . .   38
+   Movimiento                              Proceso 0 . .  5, 6, 26, 28, 32, 37,
+        palabras . . . . . .  4, 15, 17                                  38, 47
+   N_CONV  . . . . . . . .   14, 15, 41         salto al inicio de . .   32, 38
+   N_PROP  . . . . . . . .   14, 15, 41    Procesos
+   NEWLINE . . . . . . . . . . . .   27         descripci¢n  . . . . . . . .  5
+   NEWTEXT . . . . . . . . . . . .   38         finalizar  . . . . . . .  5, 26
+   NEXTO . . . . . . . . . . .   33, 36         llamada  . . . . . . . . .   26
+   NOLIGHT . . . . . . . . . . . .   34         secciones de . . . . . . .   19
+   Nombre    4-7, 10, 12-15, 18-24, 26,    PROCESS . . . . . . . . . . . .   26
+                30, 32, 33, 34, 36, 37,    Puntero . . . . . . . .   29, 33, 38
+                       39, 41-50, 6, 22         analizar . . . . . . . . .   38
+        convertible  . . . . . .  4, 15         bucles DOALL . . . . . . .   33
+        propio . . . . . . . . .  4, 15    PUTO  . . . . . . . . . . . . .   35
+   NORESP  . . . . . . . . . . . .   26    QUIT  . . . . . . . . . . . .  6, 37
+   NOTAT . . . . . . . . . . . . .   30    RAMLOAD . . . . . . . . . . . .   35
+   NOTCARR . . . . . . . . . . . .   31    RAMSAVE . . . . . . . . . . . .   35
+   NOTDONE . . . . . . . . . . .  5, 26    RANDOM  . . . . . . . . . . . .   34
+   NOTEQ . . . . . . . . . . . . .   27    REMOVE  . . . . . . . .   18, 31, 36
+   NOTWORN . . . . . . . . . . . .   31    RESP  . . . . . . . . . . .   22, 26
+   NOTZERO . . . . . . . . . . . .   28    RESTART . . . . . . . . . .   28, 32
+   NOUN2 . . . . . . . . . . . . .   30    Salto . . . . . . . . . . . .  7, 30
+   Objetos . . . . . . . . . . . . .  5         direcci¢n relativa . . . .   30
+        actual . . . . . . . . . . .  6         etiqueta . . . . . . . .  7, 30
+        adjetivo . . . . . . . . .   18    SAVE  . . . . . . . . . . . .  6, 37
+        banderas de usuario  .   18, 34    SAVEAT  . . . . . . . . . . . .   38
+        coger  . . . . . . . .   28, 36    SEED  . . . . . . . . . . . . .   34
+        comprobaci¢n . . . . . . .   31    Sentencia l¢gica   4, 21-24, 30, 32,
+        comprobaciones . . . . . .   31                                  33, 36
+        crear  . . . . . . . . . .   32         adjetivo . . . . . . . . .   30
+        dejar  . . . . . . . .   29, 36         comprobaci¢n . . . . . . .   32
+        destruir . . . . . . . . .   32         creaci¢n de  . . . . . . .   34
+        intercambiar . . . . . . .   32         movimiento . . . . . . . .   32
+        listado de . . . . . .   30, 33         nombre . . . . . . . . . .   30
+        localidad  . . . . . . . .   35         sin¢nimos  . . . . . . . .   34
+        localidad inicial  . . . .   18    SET . . . . . . . . . . . . . .   28
+        m ximo n£mero  . . . . .  6, 35    Sin¢nimos . . . . . . . . . . .   15
+        nombre . . . . . . . . . .   18    Sistema operativo . .  2, 3, 10, 20,
+        n£mero de  . . . . . .   28, 32                          25, 26, 37, 38
+        operaciones  . . . . . . .   28         retorno  . . . . . . . . .   26
+        poner  . . . . . . . .   31, 36         salir  . . . . . . . .   37, 38
+        quitar . . . . . . . .   31, 36    SKIP  . . . . . . . . . .  7, 24, 30
+
+
+
+
+
+
+
+                           S.I.N.T.A.C. --- versi¢n T2                       56
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+   SUB . . . . . . . . . . . . . .   28
+   Subrayado   4, 5, 18, 19, 34, 43, 44
+   SWAP  . . . . . . . . . . . . .   32
+   SYNONYM . . . . . . . . . . . .   34
+   SYSMESS . . . . . . . . . . .  4, 27
+   Tabla de conexiones . . . . . .   32
+        movimiento . . . . . . . .   32
+   Teclado
+        esperar tecla  . . . . . .   33
+        pulsaci¢n  . . . . . . . .   35
+   V_MOV . . . . . . . . .   14, 15, 41
+   Variables . . .  4-7, 13, 19, 22-30,
+                 32-37, 39, 40, 47, 48,
+                                  50, 6
+        asignaci¢n . . . . . . . .   27
+        comprobaci¢n . . . . . . .   27
+        del sistema  . . . .  6, 26, 29
+        editar . . . . . . . . . .   25
+        impresi¢n de . . . . . . .   33
+        operaciones  . . . . . . .   28
+   Varios
+        pausa  . . . . . . . . . .   33
+   Ventanas    5-8, 21, 24, 25, 27, 28,
+                 33, 37-39, 41, 44, 45,
+                          47, 48, 53, 7
+        activaci¢n . . . . . . . .   27
+        borrado  . . . . . . . . .   27
+        definici¢n . . . . . . . .   27
+        ventana activa . . . . . . .  6
+   Verbo .  4, 6, 12, 14-16, 19, 21-24,
+                26, 33, 34, 41, 43, 44,
+                      47, 48, 50, 6, 22
+        terminaci¢n  . . . .  4, 15, 22
+   Vocabulario . . . . . . . . .  4, 14
+        palabra  . . . . . . . . .   14
+   WEAR  . . . . . . . . .   18, 31, 36
+   WHATO . . . . . . . . . . . . .   32
+   WINDOW  . . . . . . . . . . .  7, 27
+   WORN  . . . . . . . . . . . . .   31
+   ZERO  . . . . . . . . . . . . .   28
+

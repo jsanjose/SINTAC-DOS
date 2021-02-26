@@ -1,0 +1,115 @@
+
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+Sistema Integrado de creaci¢n de
+Aventuras Conversacionales
+S.I.N.T.A.C. versi¢n G3
+
+Generador de m£sica
+
+(c)1995 JSJ Soft Ltd
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+                                 I N D I C E
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+
+
+
+
+
+      1 INTRODUCCION. . . . . . . . . . . . . . . . . . . . . . . . . . . .  1
+      2 MANEJO DEL PROGRAMA . . . . . . . . . . . . . . . . . . . . . . . .  1
+      3 OPCIONES DEL PROGRAMA . . . . . . . . . . . . . . . . . . . . . . .  1
+
+                                1 INTRODUCCION
+
+
+      El generador de m£sica permite crear los ficheros con las melod¡as que
+posteriormente pueden ser reproducidas mediante el condacto MUSIC. El generador
+es bastante rudimentario y simple de manejar pero con un poco de paciencia pueden
+llegar a obtenerse resultados m s que aceptables.
+
+
+
+                             2 MANEJO DEL PROGRAMA
+
+
+      Si se tiene conectado un rat¢n compatible Microsoft (y cargado el controlador
+correspondiente) se podr n seleccionar las opciones de los men£s simplemente
+pulsando con el rat¢n sobre ellas. Adem s otros elementos tambi‚n pueden ser
+accionados con el rat¢n como los botones de las cajas de di logo y las barras de
+desplazamiento horizontal y vertical.
+      Si no se dispone de rat¢n se puede usar el teclado. En general la letra
+resaltada de una opci¢n se corresponde con la tecla que hay que pulsar para
+acceder a esa opci¢n. A veces ser  necesario pulsar la tecla ALT junto a la letra
+resaltada para activar una opci¢n.
+
+
+
+                            3 OPCIONES DEL PROGRAMA
+
+
+      El programa se puede ejecutar desde el entorno de desarrollo (EDS) usando
+la opci¢n correspondiente del men£ de Utilidades. Tambi‚n puede ejecutarse desde
+el DOS tecleando GMUSS. En cualquier caso se nos mostrar  una caja de selecci¢n
+de ficheros. Podemos teclear el nombre de un nuevo fichero con lo que se crear 
+o usar uno ya creado para modificarlo.
+      Despu‚s aparecer  una pantalla como la siguiente:
+
+
+ÉÍ GENERADOR DE MUSICA SINTAC versi¢n 1.0  (c)1995 JSJ Soft Ltd. Í¸
+ºÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ Notas ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ÉÍÍÍÍÍÍÍÍÍÍÍÍÍ»³
+º³                                                º A¤adir      º³
+º³                                                şÈÍÍÍÍÍÍÍÍÍÍÍÍÍ¼³
+º³                                                ±ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+º³                                                ±³ Teclado     ³³
+º³                                                ±ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³                                                ±ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+º³                                                ±³ Insertar    ³³
+º³                                                ±ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³                                                ±ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+º³                                                ±³ Modificar   ³³
+º³                                                ±ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³                                                ±ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+º³                                                ±³ Borrar      ³³
+º³                                                ±ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³                                                ±ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+º³                                                ±³ Reproducir  ³³
+º³                                                ±ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³                                                ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³
+ºÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³ Borrar todo ³³
+ºÚÄÄÄÄÄÄÄÄÄÄÄÄ¿ÚÄÄÄÄÄÄÄÄÄÄÄÄ¿ÚÄÄÄÄÄÄÄ¿             ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³
+º³ + Duraci¢n ³³ - Duraci¢n ³³ Salir ³                            ³
+ºÀÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÙ                            ³
+ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+
+      Comentaremos una por una cada una de las opciones:
+
+      -     A¤adir: a¤ade una nota al final de la lista. Se muestra una especie de
+            teclado con todas las notas posibles, la octava seleccionada y la
+            duraci¢n. Seleccionando una de las notas esta ser  a¤adida al final de
+            la lista.
+
+      -     Teclado: muestra un teclado desde el cual podemos ir componiendo la
+            melod¡a sin m s que ir tocando las notas correspondientes. Se puede
+            variar la octava as¡ como la duraci¢n. Una vez completa la melod¡a esta
+            se a¤adir  autom ticamente a la que ya tuvi‚semos creada.
+
+      -     Insertar: inserta una nota en la posici¢n del cursor.
+
+      -     Modificar: permite modificar la nota sobre la que se encuentra el
+            cursor.
+
+      -     Borrar: borra la nota sobre la que est  el cursor.
+
+      -     Reproducir: reproduce toda la melod¡a hasta que se pulse ESC.
+
+      -     Borrar todo: borra toda la melod¡a.
+
+      -     + Duraci¢n: aumenta en 1 la duraci¢n de la nota sobre la que se
+            encuentra el cursor.
+
+      -     - Duraci¢n: disminuye en 1 la duraci¢n de la nota sobre la que est  el
+            cursor.
+
+      -     Salir: abandona el programa y guarda la melod¡a en disco.
+

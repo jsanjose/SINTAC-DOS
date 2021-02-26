@@ -1,0 +1,261 @@
+
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+Sistema Integrado de creaci¢n de
+Aventuras Conversacionales
+S.I.N.T.A.C. versi¢n G3
+
+Generador de caracteres
+
+(c)1995 JSJ Soft Ltd
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+                            I N D I C E
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+
+
+
+
+
+     1 INTRODUCCION . . . . . . . . . . . . . . . . . . . . . .   1
+     2 REQUERIMIENTOS HARDWARE. . . . . . . . . . . . . . . . .   1
+     3 MANEJO DEL PROGRAMA. . . . . . . . . . . . . . . . . . .   1
+     4 INICIO DEL PROGRAMA. . . . . . . . . . . . . . . . . . .   1
+     5 LA BARRA DE MENUS. . . . . . . . . . . . . . . . . . . .   2
+          5.1 Fichero . . . . . . . . . . . . . . . . . . . . .   2
+          5.2 Editar. . . . . . . . . . . . . . . . . . . . . .   2
+          5.3 Efectos . . . . . . . . . . . . . . . . . . . . .   3
+     6 LA CAJA DE EFECTOS . . . . . . . . . . . . . . . . . . .   3
+     7 EL CARACTER 255. . . . . . . . . . . . . . . . . . . . .   4
+     8 FICHEROS DE JUEGOS DE CARACTERES . . . . . . . . . . . .   4
+     9 CONVERSION DE JUEGOS DE CARACTERES . . . . . . . . . . .   4
+
+                           1 INTRODUCCION
+
+
+     El generador de caracteres permite editar juegos de caracteres de 8x16 y 8x8
+para su uso con el condacto CHARSET del SINTAC. Los juegos de caracteres
+generados son almacenados en un fichero que posteriormente ser  cargado en una
+aventura usando dicho condacto. Se puede modificar la tabla de 256 caracteres en
+su totalidad.
+     El programa est  enteramente controlado por rat¢n por lo que su uso es
+extremadamente sencillo, aunque tambi‚n admite el uso del teclado en caso de que
+el rat¢n no est‚ conectado o su controlador no haya sido cargado.
+
+
+
+                      2 REQUERIMIENTOS HARDWARE
+
+
+     El programa funciona con tarjeta EGA, VGA o compatibles y es aconsejable
+tener un rat¢n compatible Microsoft.
+     El controlador del rat¢n debe estar cargado antes de ejecutar el programa.
+En caso de no tener un rat¢n conectado el programa podr  manejarse por medio del
+teclado.
+
+
+
+                        3 MANEJO DEL PROGRAMA
+
+
+     Si se tiene conectado un rat¢n compatible Microsoft (y cargado el controlador
+correspondiente) se podr n seleccionar las opciones de los men£s simplemente
+pulsando con el rat¢n sobre ellas. Adem s otros elementos tambi‚n pueden ser
+accionados con el rat¢n como los botones de las cajas de di logo y las barras de
+desplazamiento horizontal y vertical.
+     Si no se dispone de rat¢n se puede usar el teclado. En general la letra
+resaltada de una opci¢n se corresponde con la tecla que hay que pulsar para
+acceder a esa opci¢n. A veces ser  necesario pulsar la tecla ALT junto a la letra
+resaltada para activar una opci¢n.
+     En la barra de men£s se pueden usar los cursores y RETURN para seleccionar
+las opciones. Pulsando ESC se abandona la barra de men£s y pulsando otra vez ESC
+se vuelve.
+     En las cajas de di logo se puede usar la tecla TAB (y SHIFT+TAB) para
+resaltar un elemento (un bot¢n, una caja de entrada de datos,...) y RETURN para
+seleccionarlo. La tecla ESC sirve para salir de un cuadro de di logo.
+     El marcador se mueve por la rejilla usando los cursores. La barra espaciadora
+sirve para activar el pixel sobre el que est  el marcador, la tecla BORRAR sirve
+para desactivarlo. Pulsando SHIFT a la vez que las teclas del cursor se mueve el
+marcador de la tabla ASCII.
+
+
+
+                        4 INICIO DEL PROGRAMA
+
+
+     El programa se puede ejecutar desde el entorno de desarrollo (EDS) usando
+la opci¢n correspondiente del men£ de Utilidades, o desde la l¡nea del DOS
+escribiendo GCS. Si todo va bien se deber¡a mostrar una pantalla como la siguiente:
+
+                 GENERADOR DE CARACTERES SINTAC
+  Fichero  Editar  Efectos
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ÚÄÄÄÄ¿ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÚÄÄÄÄÄÄÄÄÄÄÄ¿
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´³    ³ÃÄÂÄÂÄÂÄÂÄÂÄÂÄÂÄ´ ÃÄÄÄÂÄÄÄÂÄÄÄ´
+³                     ³ÀÄÄÄÄÙÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ³ 1 ³ 2 ³ 3 ³
+³                     ³ÚÄÄÄÄ¿ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÃÄÄÄÅÄÄÄÅÄÄÄ´
+³                     ³³    ³ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ³ 4 ³ 5 ³ 6 ³
+³                     ³ÀÄÄÄÄÙÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÃÄÄÄÅÄÄÄÅÄÄÄ´
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ³ 7 ³ 8 ³ 9 ³
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÃÄÄÄÅÄÄÄÅÄÄÄ´
+³     Tabla ASCII     ³      ÃÄÅÄ Rejilla ÄÅÄ´ ³10 ³11 ³12 ³
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÃÄÄÄÅÄÄÄÅÄÄÄ´
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ³13 ³14 ³15 ³
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÃÄÄÄÅÄÄÄÅÄÄÄ´
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ³16 ³17 ³18 ³
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´ ÀÄÄÄÁÄÄÄÁÄÄÄÙ
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´
+³                     ³      ÃÄÅÄÅÄÅÄÅÄÅÄÅÄÅÄ´
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ      ÀÄÁÄÁÄÁÄÁÄÁÄÁÄÁÄÙ
+
+
+     En la parte superior se encuentra la barra de men£s. La pantalla principal
+de edici¢n se compone de la tabla ASCII donde se muestran todos los caracteres
+disponibles. La rejilla de edici¢n donde se modifica el aspecto de un car cter
+particular. La caja de efectos que contiene una serie de botones que permiten
+modificar el aspecto del car cter que est  siendo editado.
+     Entre la tabla ASCII y la rejilla hay dos recuadros. En uno se muestra el
+c¢digo ASCII del car cter seleccionado de la tabla y en el otro se muestra el
+aspecto a tama¤o real del car cter que est  en la rejilla de edici¢n. Si pulsamos
+sobre este cuadro y luego sobre un car cter de la tabla ASCII, el car cter de la
+rejilla de edici¢n se copiar  en esa posici¢n de la tabla.
+
+
+
+                         5 LA BARRA DE MENUS
+
+
+5.1 Fichero:
+
+     Este men£ contiene las opciones de manejo de ficheros:
+
+     -    Cargar fuente: carga un fichero de juego de caracteres. Se mostrar 
+          un cuadro de di logo en el que seleccionaremos el fichero a cargar.
+
+     -    Grabar fuente: graba el juego de caracteres que estamos editando.
+
+     -    Salir: sale del programa.
+
+
+5.2 Editar:
+
+     Este men£ contiene diversas opciones de edici¢n:
+
+     -    Fuente 8x16: edita el juego de caracteres de 8x16. La pantalla de
+          edici¢n se ajusta autom ticamente al nuevo modo.
+
+     -    Fuente 8x8: edita el juego de caracteres de 8x8.
+
+     -    Prueba: abre una ventana donde podemos probar el aspecto de los
+          caracteres tecle ndolos.
+
+
+5.3 Efectos:
+
+     Este men£ contiene diversos efectos que se aplican al car cter que estamos
+editando:
+
+     -    Invertir: invierte los pixels del car cter.
+
+     -    Rayado horizontal: crea un efecto de rayado horizontal sobre el
+          car cter.
+
+     -    Rayado vertical: crea un efecto de rayado vertical sobre el car cter.
+
+     -    Cursiva izquierda: efecto de cursiva hacia la izquierda.
+
+     -    Cursiva derecha: efecto de cursiva hacia la derecha.
+
+     -    Negrita: efecto negrita.
+
+
+
+                        6 LA CAJA DE EFECTOS
+
+
+     En la zona derecha de la pantalla est  situada la caja de efectos. Pulsando
+cada uno de los botones de esta caja (o usando la tecla de funci¢n asociada)
+conseguimos activar un efecto que act£a sobre el car cter que est  sobre la rejilla
+de edici¢n. Veamos cada una de las acciones de estos botones de izquierda a
+derecha y de arriba a abajo, cada acci¢n se muestra junto a su tecla de funci¢n
+asociada:
+
+     1    Almacenar car cter (F1): guarda el car cter de la rejilla sobre la
+          posici¢n de la tabla ASCII en la que est  el marcador.
+
+     2    Borrar rejilla (F2): vac¡a la rejilla de edici¢n.
+
+     3    Llenar rejilla (F3): activa todos los pixels de la rejilla de edici¢n.
+
+     4    Desplazar car cter hacia arriba (F4): desplaza el car cter una fila de
+          pixels hacia arriba.
+
+     5    Desplazar car cter hacia la izquierda (F5): desplaza el car cter una
+          columna de pixels hacia la izquierda.
+
+     6    Desplazar car cter hacia la derecha (F6): desplaza el car cter una
+          columna de pixels hacia la derecha.
+
+     7    Desplazar car cter hacia abajo (F7): desplaza el car cter una fila de
+          pixels hacia abajo.
+
+     8    Espejo horizontal (F8): efecto espejo en sentido horizontal.
+
+     9    Espejo vertical (F9): efecto espejo en sentido vertical.
+
+     10   Invertir car cter (F10): activa los pixels del car cter que estaban
+          vac¡os y desactiva los que estaban activados.
+
+     11   Rayado horizontal (SHIFT+F1): crea un rayado horizontal en el car cter.
+
+     12   Rayado vertical (SHIFT+F2): crea un rayado vertical en el car cter.
+
+     13   Cursiva izquierda (SHIFT+F3): cursiva con inclinaci¢n hacia la
+          izquierda.
+
+     14   Cursiva derecha (SHIFT+F4): cursiva con inclinaci¢n hacia la derecha.
+
+     15   Negrita (SHIFT+F5): efecto negrita.
+
+     16   Decrementar anchura (CTRL+cursor izquierda): decrementa la anchura
+          del car cter en una columna de pixels.
+
+     17   Incrementar anchura (CTRL+cursor derecha): incrementa la anchura del
+          car cter en una columna de pixels.
+
+     19   Prueba: abre una ventana donde se puede comprobar el aspecto de los
+          caracteres.
+
+
+
+                          7 EL CARACTER 255
+
+
+     El £ltimo car cter de la tabla ASCII, cuyo c¢digo es el 255, es usado por el
+int‚rprete del SINTAC de forma especial. Debido a ello este car cter siempre debe
+tener una anchura de 8 pixels. No se debe asignar otra anchura a este car cter ya
+que puede dar lugar a peque¤os fallos en las rutinas de salida por pantalla del
+int‚rprete.
+
+
+
+                 8 FICHEROS DE JUEGOS DE CARACTERES
+
+
+     Junto al programa se suministran una serie de ficheros con extensi¢n .FNT.
+Se trata de diversos tipos de juegos de caracteres que pueden ser editados o
+incluidos en las aventuras. Recuerda, sin embargo, que para incluir uno de estos
+fichero de fuentes en la aventura deber s copiarlos al directorio d¢nde est‚n
+localizados los ficheros de la aventura. Adem s deber s renombrarlos para que el
+condacto CHARSET los reconozca como ficheros de fuentes de caracteres. Para m s
+informaci¢n consulta el apartado dedicado a este condacto en el manual del SINTAC.
+
+
+
+                9 CONVERSION DE JUEGOS DE CARACTERES
+
+     Los ficheros de juegos de caracteres creados con la versi¢n actual del
+programa difieren ligeramente de los creados con versiones anteriores. Cuando se
+va a cargar un fichero de caracteres el programa detecta si se trata de una versi¢n
+antigua y trata de convertirla autom ticamente al nuevo formato. No obstante hay
+alguna limitaci¢n y no se podr n convertir de esta forma juegos de caracteres
+creados con versiones del programa anteriores a la 2.0.

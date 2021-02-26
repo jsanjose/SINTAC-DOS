@@ -1,0 +1,305 @@
+
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+Sistema Integrado de creaci¢n de
+Aventuras Conversacionales
+S.I.N.T.A.C. versi¢n G3
+
+Entorno de desarrollo
+
+(c)1995 JSJ Soft Ltd
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+                            I N D I C E
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+
+
+
+
+
+     1 INTRODUCCION . . . . . . . . . . . . . . . . . . . . . .   1
+     2 CONFIGURACION DEL ENTORNO. . . . . . . . . . . . . . . .   1
+     3 PANTALLA DEL ENTORNO . . . . . . . . . . . . . . . . . .   2
+     4 MANEJO DEL ENTORNO . . . . . . . . . . . . . . . . . . .   2
+     5 EL EDITOR. . . . . . . . . . . . . . . . . . . . . . . .   3
+     6 LA BARRA DE MENUS. . . . . . . . . . . . . . . . . . . .   4
+          6.1 Men£ del sistema. . . . . . . . . . . . . . . . .   4
+          6.2 Fichero . . . . . . . . . . . . . . . . . . . . .   4
+          6.3 Secciones . . . . . . . . . . . . . . . . . . . .   4
+          6.4 Compilar. . . . . . . . . . . . . . . . . . . . .   5
+          6.5 Utilidades. . . . . . . . . . . . . . . . . . . .   5
+          6.6 Ayuda . . . . . . . . . . . . . . . . . . . . . .   5
+
+                           1 INTRODUCCION
+
+
+     El Entorno de Desarrollo SINTAC (EDS) ha sido dise¤ado para facilitar la labor
+de editar, compilar y ejecutar las bases de datos y, en general, para hacer m s
+agradable el sistema al usuario.
+     El EDS incluye un peque¤o editor con algunas de las funciones b sicas de
+otros editores m s potentes incluyendo funciones de manejo de bloques de texto.
+Adem s se incluye un sistema de ayuda en l¡nea que pone al alcance del usuario
+una completa gu¡a de referencia del sistema SINTAC, una lista completa de los
+condactos y ayudas de teclado.
+
+
+
+                     2 CONFIGURACION DEL ENTORNO
+
+
+     Es importante que el entorno sepa donde se encuentran los ficheros
+importantes del sistema. Para ello en el momento de la instalaci¢n se pide al usuario
+que especifique los directorios donde se instalar  cada una de las partes del
+sistema.
+     Si por cualquier causa hay alg£n problema; por ejemplo la ayuda en l¡nea no
+es accesible, o al intentar compilar la base de datos aparece un mensaje de error
+diciendo que no se encuentra el compilador, podemos recurrir al programa de
+configuraci¢n (CONFIG.EXE).
+     Por medio de las opciones que muestra este programa podemos especificar los
+directorios donde se encuentra instalado el sistema. Estos son:
+
+     -    Directorio del SISTEMA SINTAC: en este directorio deben estar los
+          ficheros principales (DS.EXE, CS.EXE, CS.ERR, LKS.EXE, EDS.EXE,...), as¡
+          como el fichero de la ayuda en l¡nea (EDS.AYD, EDS.IYD) y el fichero
+          de configuraci¢n del sistema (SINTAC.CFG)
+     -    Directorio de las UTILIDADES: en este directorio deben estar los
+          ficheros de utilidades como el generador de juegos de caracteres
+          (GCS.EXE).
+     -    Directorio de las BASES DE DATOS: aqu¡ se almacenar n las bases de
+          datos (*.BD), as¡ como las bases de datos compiladas (*.DAT). En este
+          directorio debe estar el fichero con la base de datos de inicio
+          (INICIO.BD). Adem s si en la aventura que estemos creando se usan
+          gr ficos o juegos de caracteres dichos ficheros deben encontrarse
+          junto con el fichero de base de datos correspondiente para que la
+          opci¢n Ejecutar del men£ los encuentre.
+
+     Adem s podemos cambiar los colores de la pantalla del entorno de
+programaci¢n y del compilador a nuestro gusto. Una vez hechas las modificaciones
+las guardaremos con la opci¢n correspondiente antes de salir del programa de
+configuraci¢n.
+
+                       3 PANTALLA DEL ENTORNO
+
+
+     La pantalla del entorno es similar a la que se muestra a continuaci¢n:
+
+  ğ  Fichero  Secciones  Compilar  Utilidades             Ayuda  
+ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ[]ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+º                                                               
+º                                                               ±
+º                                                               ş
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               ±
+º                                                               
+ÓÄ 0001:001 ±±±±±ş±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÄÙ
+
+     La barra de men£s ocupa la parte superior de la pantalla. El resto est 
+ocupado por la ventana del editor.
+
+
+
+                        4 MANEJO DEL ENTORNO
+
+
+     Si se tiene conectado un rat¢n compatible Microsoft (y cargado el controlador
+correspondiente) se podr n seleccionar las opciones de los men£s simplemente
+pulsando con el rat¢n sobre ellas. Adem s otros elementos tambi‚n pueden ser
+accionados con el rat¢n como los botones de las cajas de di logo y las barras de
+desplazamiento horizontal y vertical.
+     Si no se dispone de rat¢n se puede usar el teclado. En general la letra
+resaltada de una opci¢n se corresponde con la tecla que hay que pulsar para
+acceder a esa opci¢n. A veces ser  necesario pulsar la tecla ALT junto a la letra
+resaltada para activar una opci¢n.
+     En la barra de men£s se pueden usar los cursores y RETURN para seleccionar
+las opciones. Pulsando ESC cuando se est  en la barra de men£s se pasa a la
+ventana de edici¢n y pulsando otra vez ESC se vuelve a la barra de men£s.
+     En las cajas de di logo se puede usar la tecla TAB (y SHIFT+TAB) para
+resaltar un elemento (un bot¢n, una caja de entrada de datos,...) y RETURN para
+seleccionarlo. La tecla ESC sirve para salir de un cuadro de di logo.
+
+                             5 EL EDITOR
+
+
+     El entorno incorpora un editor integrado de sencillo manejo. La siguiente
+tabla describe las funciones que incorpora el editor:
+
+ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³             Movimiento del cursor             ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ FLECHAS     ³ mover cursor                    ³
+³ PGARR       ³ retroceder una p gina           ³
+³ PGABJ       ³ avanzar una p gina              ³
+³ CTRL+ORIGEN ³ ir al inicio del texto          ³
+³ CTRL+FIN    ³ ir al final del texto           ³
+³ RETROCESO   ³ borrar car cter                 ³
+³ BORRAR      ³ borrar car cter sobre cursor    ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³               Teclas de funci¢n               ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ F1          ³ ayuda                           ³
+³ F2          ³ buscar                          ³
+³ F3 (CTRL+L) ³ repetir £ltima b£squeda         ³
+³ F4 (CTRL+Y) ³ borrar l¡nea del cursor         ³
+³ SHIFT+F1    ³ ayuda sobre palabra del cursor  ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³                    Bloques                    ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ SHIFT+CURSOR³ marcar bloque                   ³
+³ CTRL+INS    ³ copiar bloque                   ³
+³ CTRL+BORRAR ³ cortar bloque                   ³
+³ BORRAR      ³ borrar bloque marcado           ³
+³ SHIFT+INS   ³ insertar bloque                 ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³                    Varias                     ³
+ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+³ ESC         ³ salir del editor                ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+     La funci¢n correspondiente a la tecla F5 (marcar inicio de bloque) tambi‚n
+puede activarse pulsando el bot¢n derecho del rat¢n. Las funciones de copiar
+bloque, cortar bloque y borrar bloque s¢lo funcionan cuando se est  marcando un
+bloque, todo lo contrario que insertar bloque que funciona cuando NO se est 
+marcando un bloque. El bloque seleccionado se copia (o se corta) en memoria
+pudi‚ndose luego insertar en el texto tantas veces como se desee.
+     La funci¢n de la tecla SHIFT+F1 invoca la ayuda en l¡nea sobre la palabra que
+hay bajo el cursor. As¡ si el cursor est  sobre la palabra MESSAGE aparecer  la
+ayuda sobre el condacto MESSAGE.
+
+                         6 LA BARRA DE MENUS
+
+
+6.1 Men£ del sistema:
+
+     Este men£ se despliega al pulsar en el s¡mbolo 'ğ' de la barra de men£s.
+Contiene las siguientes opciones:
+
+     -    Acerca de...: muestra informaci¢n sobre el entorno
+
+     -    Comando del DOS: abre un cuadro de di logo en el que puede
+          ejecutarse un comando del DOS. Se puede indicar si se desea que se
+          espere la pulsaci¢n de una tecla antes de volver al entorno o no.
+          Adem s, si no se teclea nada y se pulsa en el bot¢n de 'Ejecutar' se
+          saldr  temporalmente al DOS, para regresar al entorno basta con
+          escribir EXIT en la l¡nea de comandos del DOS.
+
+
+6.2 Fichero:
+
+     Este men£ contiene las opciones de manejo de ficheros:
+
+     -    Nuevo: permite crear un nuevo fichero de base de datos. Se abrir  un
+          cuadro de selecci¢n de ficheros en el que se puede teclear el nombre
+          del fichero a crear. Luego se pregunta si se desea usar la base de
+          datos de inicio. Si se responde afirmativamente se crear  un nuevo
+          fichero de base de datos y se copiar  en ‚l la base de datos de inicio
+          (INICIO.BD), en caso contrario se crear  una base de datos vac¡a.
+
+     -    Abrir: permite cargar una base de datos. Se mostrar  un cuadro de
+          selecci¢n de ficheros en el que teclearemos el nombre de la base de
+          datos o seleccionaremos una de la lista de ficheros.
+
+     -    Grabar: graba la base de datos que est  siendo editada.
+
+     -    Grabar como...: graba la base de datos con un nombre distinto.
+
+     -    Grabar bloque: graba en un fichero el £ltimo bloque de texto que fue
+          cortado o copiado en el editor.
+
+     -    Liberar bloque: libera la memoria ocupada por el £ltimo bloque de texto
+          que fue cortado o copiado en el editor.
+
+     -    Salir: sale del entorno.
+
+
+6.3 Secciones:
+
+     Este men£ presenta las opciones de edici¢n de la base de datos:
+
+     -    Constantes: edita la secci¢n de constantes. En realidad se edita el inicio
+          del fichero hasta la primera marca de secci¢n. Normalmente aqu¡ se
+          colocar n las constantes simb¢licas que se usen en la base de datos.
+
+     -    Mensajes del sistema: edita la secci¢n de mensajes del sistema.
+
+     -    Vocabulario: edita la secci¢n de vocabulario.
+
+     -    Mensajes: edita las secciones de mensajes. Aparecer  un cuadro de
+          di logo con una lista de las tablas de mensajes de la base de datos. En
+          esta lista se presenta el n£mero de la tabla seguido de la primera l¡nea
+          de la tabla; es aconsejable poner un comentario en la primera l¡nea de
+          cada tabla de mensajes que recuerde para que se usa esa tabla. Se
+          puede seleccionar una tabla existente o borrarla (la tabla 0 no se
+          puede borrar). Tambi‚n se puede crear una nueva; para ello se
+          introducir  el n£mero de la tabla en el recuadro que hay al lado del
+          bot¢n 'Nueva tabla' y se pulsar  sobre este bot¢n.
+
+     -    Localidades: edita la secci¢n de localidades.
+
+     -    Objetos: edita la secci¢n de objetos.
+
+     -    Procesos: edita los procesos. Aparecer  un cuadro de di logo con una
+          lista de los procesos de la base de datos. En esta lista se presenta el
+          n£mero del proceso seguido de la primera l¡nea del proceso; es
+          aconsejable poner un comentario en la primera l¡nea de cada proceso
+          que recuerde el uso del mismo. Se puede seleccionar un proceso
+          existente o borrarlo (el proceso 0 no se puede borrar). Tambi‚n se
+          puede crear uno nuevo; para ello se introducir  el n£mero del proceso
+          en la caja que hay al lado del bot¢n 'Nuevo proceso' y se pulsar 
+          sobre este bot¢n.
+
+
+6.4 Compilar:
+
+     Bajo este men£ se agrupan las opciones para compilar la base de datos:
+
+     -    Compilar base de datos: compila la base de datos actual. En caso de
+          que se produzca alg£n error se presentar  una lista de errores (ver
+          m s adelante).
+
+     -    Ejecutar base de datos: ejecuta la base de datos, si esta no ha sido
+          compilada (o se modific¢ desde la £ltima compilaci¢n) primero se
+          compilar .
+
+     -    Errores: presenta una lista de errores. Se pueden ver todos los
+          errores que se produjeron en la £ltima compilaci¢n de la base de datos.
+          Si se selecciona un error se cargar  la secci¢n correspondiente en el
+          editor y el cursor se colocar  en la l¡nea del error.
+
+     -    Crear ejecutable: crea un fichero ejecutable independiente de la base
+          de datos. Si es necesario compila la base de datos.
+
+
+6.5 Utilidades:
+
+     Presenta un men£ con diversas utilidades del sistema SINTAC. Cada opci¢n se
+encarga de ejecutar la utilidad correspondiente.
+
+
+6.6 Ayuda:
+
+     Presenta opciones de la ayuda en l¡nea:
+
+     -    Indice: presenta el ¡ndice de la ayuda.
+
+     -    Ayuda sobre: permite obtener ayuda sobre un tema o palabra concreto.
+          Se abre un cuadro de di logo en el que se introducir  la palabra (por
+          ejemplo un condacto) o el tema sobre el que se desea ayuda. Si se
+          encuentra se presenta la ayuda sobre ese tema.
+
+     -    Teclas del editor: presenta ayuda sobre las teclas del editor.
+
+     -    Teclas cuadros de di logos: presenta ayuda sobre las teclas que se
+          usan en los cuadros de di logo.
+
+     -    Variables y banderas: presenta ayuda sobre las variables y banderas
+          del sistema.
+
+     -    Lista de condactos: presenta una lista de los condactos.

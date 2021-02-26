@@ -1,0 +1,1070 @@
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                         Exterminio Sound Library
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+        
+
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+	   Licencia de uso
+	   
+	1. Introducci¢n
+		1.1. ¨Q'es esto?
+		1.2. Carencias y posibilidades
+		1.3. Saludos
+	2. C¢mo usar la librer¡a
+		2.1. Interface desde C
+		2.2. Interface desde ASM
+		2.3. Gesti¢n de memoria
+		2.4. Configuraci¢n
+		2.5. Reproducci¢n de samples
+		2.6. Reproducci¢n de S3M
+	3. Uso avanzado de la librer¡a
+		3.1. Acceso a las variables internas
+		3.2. Acceso a las estructuras internas
+			3.2.1. Estructura Channel
+			3.2.2. Estructura SampleHeader
+		3.3. Sugerencias y posibilidades
+		3.4. Cargando manualmente samples
+	4. Funcionamiento interno de la librer¡a
+		4.1. De qu‚ va esto
+		4.2. C¢mo se hacen las mezclas
+		4.3. Per¡odos, notas y frecuencias
+		4.4. S3M y efectos
+	5. Futuras mejoras
+	6. Colaboraciones
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                              Licencia de uso
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	La librer¡a de sonido  Exterminio  Sound  Library  NO ES DE DOMINIO
+PUBLICO.  La mera utilizaci¢n de  la  librer¡a  supone la aceptaci¢n de las
+siguientes condiciones:
+	
+	1) Puedes copiar y distribuir la librer¡a libremente
+	2) Puedes usar la librer¡a en tus programas libremente
+	3) No me responsabilizo de ning£n da¤o que pueda causar el mal
+	   funcionamiento de la librer¡a o el mal uso de la misma
+        4) Eres libre de hacer las modificaciones y mejoras que quieras en
+	   el c¢digo de la librer¡a, pero inf¢rmame de cualquier cambio
+	   que hagas y env¡ame a m¡ el c¢digo resultante, permitiendo 
+           que yo lo distribuya con la pr¢xima versi¢n de la librer¡a
+           (acreditando tus mejoras, por supuesto).
+        5) Estas condiciones se aplican a la librer¡a, que est 
+	   compuesta por un £nico fichero ESI.ASM. En cambio, no
+	   se permite modificar ni utilizar en programas el c¢digo
+	   contenido en el fichero TP.ASM, perteneciente al programa
+	   Trackplayer. Este c¢digo se incluye para los curiosos,
+	   NO FORMA PARTE DE LA LIBRERIA.
+
+	En  cristiano:  usa  la  librer¡a si quieres, pero me lo dices.  Si
+distribuyo esto como cardware es porque el prop¢sito de esta librer¡a no es
+otro que el de extender el uso  de  este  tipo de rutinas de sonido.  No he
+encontrado nada similar en el dominio p£blico, lo cual  me  ha  OBLIGADO  a
+hacer  la  librer¡a, a no ser que quisiera m£sica Adlib para mis programas.
+Esta librer¡a est   especialmente  destinada  a  aquellos que QUIEREN tocar
+ficheros tipo S3M en sus programas y no quieren tirar un mont¢n de tiempo y
+esfuerzo investigando sus propias rutinas como  he  tenido  que  hacer  yo.
+Adem s  en  este  propio  fichero  he  escrito  una  explicaci¢n sobre como
+funciona la librer¡a.  Si has hecho o est s haciendo rutinas de sonido y no
+te convence el resultado puede que te sea £til.
+
+	Por  cierto,  me resultar¡a bastante astilloso que alguien no usase
+la librer¡a porque no tiene  ganas  de  enviar  una postal por correo.  Por
+otra parte, si haces un programa con mi librer¡a de sonido, lo vendes y  te
+haces millonario mientras yo no veo un duro, ME IMPORTA UN CARAJO.
+
+
+                         ADVERTENCIA IMPORTANTE
+
+
+        Esta es una versi¢n beta.
+
+        Esto significa que
+        - Hay errores
+        - Hay cosas por hacer
+        - Hay cosas por optimizar
+
+        Estoy esperando los informes de "bugs" que pueda recibir. Sin
+embargo, no he indicado en ning£n sitio que la versi¢n es beta, porque
+dudo mucho que haya alguna vez una versi¢n que deje de serlo.
+
+        
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                              1. Introducci¢n
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    1.1. ¨Q'es esto?
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	Aqu¡ tienes una librer¡a de sonido digital para SoundBlaster.  Esta
+librer¡a  no  s¢lo  permite  reproducir samples (VOC, WAV, etc) sino que es
+capaz de mezclar en tiempo real hasta 32 canales  de  sonido  (escuch ndose
+hasta 32 samples a la vez).  Cada canal de sonido lleva asignado un volumen
+y  frecuencia  independientes.  La librer¡a funciona en MONO y en STEREO, y
+en este £ltimo caso es capaz de  asignar valores de "panning" a los canales
+(as¡ cada canal puede sonar a la izquierda, a la derecha, en el centro o en
+un punto intermedio).
+
+        La librer¡a es capaz de reproducir  ficheros  S3M  del Scream
+Tracker 3 (ignorando los instrumentos tipo Adlib, as¡ como algunos
+efectos importantes).
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    1.2. Carencias y posibilidades
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	Esta librer¡a es una primera versi¢n, no he gastado m s que unos 20
+d¡as en ella, y es una especie de "freeware".  Por lo tanto, es l¢gico  que
+est‚  llena  de  carencias,  que  hacen  que  parezca  un  poco  mierda  en
+comparaci¢n con los Trackers en plan burro que circulan por ah¡.
+
+	- No puede cargar ning£n fichero que no sea S3M o un sample ST3
+	- No admite una tarjeta de sonido que no sea Sound Blaster
+	  (ni PC Speaker, ni DACs, ni nada de nada)
+	- No reconoce ni aprovecha modelos avanzados de SB (SB16, etc). 
+	  S¢lo SoundBlaster 2.0 o SoundBlaster Pro.
+	- No incorpora apenas rutinas para trabajar con la tarjeta
+	  de sonido (por ejemplo, el mixer). He considerado que no
+	  eran muy necesarias
+	- Un mont¢n de efectos del S3M no est n implementados
+	- Se pilla la interrupci¢n 8, que no podr s usar en tu programa
+	- Chupa mucha m s memoria de la necesaria
+        - Es desesperantemente lenta. Ocupa hasta el 50% de tiempo de la
+          CPU en la reproducci¢n de los S3M en mi 486/33, a pesar de
+          funcionar con DMA. Algunas partes ni siquiera he comenzado
+          a optimizarlas, como la gesti¢n de efectos.
+	
+	Sin  embargo,  si  te  decides a usarla contar s con las siguientes
+posibilidades:
+
+	- Uso de memoria EMS para cargar patrones y samples
+	- "Panning" para cada canal, en modo Stereo
+	- No utiliza CT-VOICE.DRV ni ning£n otro de esos drivers
+	- Soporte de per¡odos extendidos del ST3 (lo que permite
+	  variaciones "finas" de la frecuencia de cada sample)
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    1.3. Saludos
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Desde aqu¡ env¡o un saludo
+	
+	a Braulo D¡ez Botella y el fanzine The Bug
+	a Fran Morell y a toda la redacci¢n de Z For Zero
+	a RESET, y a todos los grupos de demos espa¤oles
+	a King Graham en Micaco BBS
+	a Sebasti n Mancho, "desaparecido"
+	a Future Crew. Esta librer¡a habr¡a sido imposible de hacer si
+	  no llega a ser por su fichero TECH.DOC que distribuyen con
+	  su Scream Tracker 3.
+      
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                         2. C¢mo usar la librer¡a
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.1. Interface desde C
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	Esta librer¡a ha sido compilada y  probada con ‚xito con el Borland
+C++ 3.1.  La librer¡a (ESI.ASM) debe compilarse con Turbo Assembler versi¢n
+3, y desconozco si es posible utilizarla desde otro compilador de C.
+
+	Para poder usar la librer¡a:
+	
+	1) Incluye el fichero ESI.ASM en tu proyecto
+	2) Incluye el fichero "ESI.H" en todos los ficheros C o C++ que
+	   utilicen funciones o variables de la librer¡a:
+	   
+		#include "esi.h"
+		
+	3) No utilices el modelo Small ni Medium. La librer¡a misma ya
+	   ocupa 64K de datos est ticos. Compila preferiblemente en Large.
+	4) Si est s usando C++, puedes utilizar la ESL si compilas esi.h
+	   en modo C. Para hacer esto escribe, un lugar del #include:
+	   
+		extern "C" {
+		   #include "esi.h"
+		   }
+	   
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.1. Interface desde ASM
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Para poder usar la librer¡a:
+	
+        1) Incluye el fichero ESI.INC en tu programa
+	2) Las variables que usa la librer¡a se encuentran en un
+	   segmento de datos diferente al est ndar, llamado ESI_DATA.
+	   Para poder acceder, por ejemplo a la variable _Stereo,
+	   hay que hacer algo as¡:
+
+			mov ax, ESI_DATA
+			mov es, ax
+			mov al, [es:_Stereo]
+			
+	3) Recuerda que las variables y funciones comienzan con un
+	   subrayado ("_Stereo, _SBEnd..."). Esto es as¡ para
+	   poder utilizarlas desde C: el compilador a¤ade ese caracter
+	   a todos los nombres de variables y funciones.
+	   
+		Desde C:
+			SBStart() ;
+			
+		Desde ASM:
+		
+			call _SBStart
+	   
+	4) En adelante los nombres se dar n sin el signo de subrayado,
+	   pensando en los usuarios de C.
+	5) Las funciones siguen la convenci¢n de llamada de C. Esto
+	   significa que hay que depositar los par metros en la pila
+	   en orden de derecha a izquierda, llamar a la funci¢n y
+	   seguidamente limpiar la pila:
+	   
+			push word ptr Parametro1
+			push word ptr Parametro2
+			call _Funci¢n
+			add sp, 4		; o "pop ax" / "pop ax"
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.3. Gesti¢n de memoria
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Esta librer¡a utiliza, cuando es posible, memoria  EMS.   Por  este
+motivo,  he  creado  varias  funciones  sencillas,  de  gesti¢n de memoria.
+Puedes usar estas funciones  desde  tu  programa  en  C o ASM, pero tambi‚n
+puedes ignorarlas.  Sin  embargo,  deber s  utilizarlas  si  deseas  cargar
+manualmente samples, como se comenta en 3.3.
+
+	int AllocMem (unsigned int bytes) ;
+	
+		Esta  funci¢n  reserva  tanta  memoria  como  se indique en
+		"bytes".  El valor que devuelve  ser   -1 en el caso de que
+		no haya memoria EMS ni convencional disponible.  En el caso
+		contrario, ser  un "handle"  que  identificar  el bloque de
+		memoria reservado.
+		
+		No se pueden reservar bloques de m s de 64K.
+		
+		La funci¢n intenta reservar en  primer lugar memoria EMS, y
+		reserva memoria convencional en caso de que no haya memoria
+		EMS disponible.
+
+                NOTA: AllocMem no puede reservar m s de 64K.
+		
+	int FreeMem (int handle) ;
+	
+		Libera un bloque de memoria reservado con AllocMem
+		
+		NOTA IMPORTANTE: Es NECESARIO liberar todos los bloques
+		de memoria que  se  hayan  reservado  antes  de  salir  del
+		programa.
+		
+	char far *AccessMem (int handle) ;
+	
+		Devuelve  un  puntero  al  bloque  de memoria cuyo "handle"
+		obtenido con AllocMem, se le pasa como par metro.
+		
+		NOTA 1: S¢lo es posible acceder a un bloque de memoria a la
+		vez, debido a la forma de trabajar  de la EMS y a que estas
+		funciones no son ninguna maravilla.  Si deseas hacer copias
+		entre bloques de  memoria,  reserva  un  bloque  que no sea
+		EMS (con las funciones del C "malloc", "new" o  desde  ASM,
+		con   INT  21h,  por  ejemplo)  y  util¡zalo  como  "buffer
+		intermedio":
+		
+			// Hace copias entre dos bloques
+			
+			void Copiar (int handle1, int handle2, 
+				     unsigned int bytes)
+			   {
+			   unsigned int offset = 0, nb ;
+			   char buffer[1024] ;
+			   
+			   while (bytes)
+			      {
+			      nb = bytes ;
+			      if (nb > 1024) nb = 1024 ;
+			      memcpy (buffer, AccessMem (handle2)+offset, nb) ;
+			      memcpy (AccessMem (handle1)+offset, buffer, nb) ;
+			      offset += nb ;
+			      bytes -= nb ;
+			      }	
+			   }
+			   
+		NOTA 2: No hay  que  llamar  a  ninguna funci¢n "Unlock" ni
+		nada por el estilo.  El puntero devuelto por AccessMem deja
+		de ser v lido al volver llamar a AccessMem para obtener  el
+		puntero de otro handle.
+		
+		NOTA  3:  Si  un "handle" tiene un valor menor de 256 es un
+		handle EMS.  En caso contrario  es un segmento MS-DOS, y su
+		puntero sigue siendo v lido aunque hagas sucesivas llamadas
+		a  AccessMem.   No  puedes   predecir  con  certeza  cu ndo
+		AllocMem devolver  un handle EMS o convencional.
+
+	unsigned int GetFreeEMS() ;
+	
+		Esta funci¢n devuelve la cantidad de memoria EMS libre.  El
+		valor devuelto viene dado en p ginas.   Una  p gina  es  un
+		pedazo  de  16K  de memoria.  Por lo tanto, si esta funci¢n
+		devuelve 4, hay 4*16384 = 65536 bytes de EMS libre.
+		
+		NOTA:  Para  averiguar  la cantidad de memoria convencional
+		libre, utiliza la funci¢n coreleft() del C, o una llamada a
+		INT 21h desde ASM.
+		
+		NOTA  2: Para reservar memoria EMS se reservan p ginas.  Es
+		decir, si llamas  a  AllocMem  pidi‚ndole  20K de memoria y
+		reserva  EMS,  reservar  dos p ginas (32K).  As¡ que puedes
+		quedarte sin memoria EMS aunque con la llamada a GetFreeEMS
+		pareciese que hab¡a de sobras.
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.4. Configuraci¢n
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+        Antes de empezar a utilizar  la  librer¡a hay que configurarla.
+        Debes elegir la frecuencia de muestreo  a la que quieres que se
+reproduzca la mezcla, y si quieres o no Stereo, adem s de establecer los
+par metros de la SoundBlaster.
+
+	Por  defecto  la  frecuencia  se  establece en 32000 y el Stereo se
+activa.  Con el stereo activado  la  frecuencia  pasa  a ser la mitad de la
+inicialmente  seleccionada,  16000.   Si  estos  valores  no   te   parecen
+correctos, debes cambiarlos ANTES de activar la reproducci¢n de sonido.
+
+	Para modificar estos valores hay que cambiar las variables Stereo y
+Hz.  Por ejemplo, el siguiente fragmento desactiva el Stereo y prepara  una
+frecuencia de muestreo de 44000 Hz:
+
+	    #include "esi.h"
+
+	    void main ()
+	        {
+		Stereo = 0 ;
+		Hz = 44000 ;
+		...
+		}
+
+	Estos  valores  NO  PUEDEN  CAMBIARSE  una  vez  la reproducci¢n ha
+comenzado.
+
+        En cuanto a los valores de la SoundBlaster, tienes dos opciones:
+permitir al usuario indicarlos y grabarlos en un fichero de
+configuraci¢n, o examinar la variable de entorno BLASTER. En el primer
+caso, tendr s que modificar las variables internas SB2x0, SBDMA y SBIRQ,
+antes de iniciar la reproducci¢n:
+
+                #include "esi.h"
+
+                void main ()
+                   {
+                   ...
+                   SB2x0 = 0x220 ;
+                   SBIRQ = 7 ;
+                   SBDMA = 1 ;
+                   ...
+                   }
+
+        En el segundo caso, utiliza la funci¢n interna ProcessSBString:
+
+                void main ()
+                   {
+                   if (getenv("BLASTER"))
+                      ProcessSBString (getenv("BLASTER")) ;
+                   ...
+                   }
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.5. Reproducci¢n de samples
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Esta librer¡a funciona a trav‚s  de  una rutina que se establece en
+el vector de interrupci¢n 8 y procesa continuamente los  datos  de  ciertas
+variables  y  estructuras  internas,  dando  como  resultado  una mezcla de
+sonido.  Este proceso de mezcla se realiza continuamente incluso en el caso
+de que  no  haya  nada  que  reproducir  (en  ese  caso,  s¢lo se escuchar 
+silencio).
+
+	Para iniciar la librer¡a se hace una llamada a
+	
+	int SBStart () ;
+	
+		Esta funci¢n devuelve -1 si no se detect¢ tarjeta SB en  el
+		sistema,  y 0 en el caso de que haya tarjeta SB y el sonido
+		haya comenzado seg£n las variables  Stereo  y Hz.  Si la SB
+		no es capaz de reproducir Stereo,  la  variable  Stereo  se
+		habr  puesto a 0.
+		
+	Es  NECESARIO  desactivar  el  sonido  antes  de salir del programa
+mediante una llamada a
+
+	void SBEnd () ;
+	
+	De lo contrario el ordenador  se  quedar  colgado, ya que la rutina
+del vector 8 se seguir  ejecutando ­s¢lo que ya no estar  en memoria!
+
+
+	Esta librer¡a funciona en base a INSTRUMENTOS.   Estrictamente,  no
+puede  reproducir nada que no sea un Instrumento.  Si quieres reproducir un
+fichero WAV o VOC, por ejemplo, tendr s  que cargarlo t£ mismo en memoria y
+crear con sus datos un Instrumento mediante la funci¢n CreateInstrument:
+
+	int CreateInstrument (int handle, unsigned int size,
+			      unsigned int C2SPD, unsigned int loopstart,
+			      unsigned int loopend) ;
+			      
+		Esta funci¢n crea un instrumento a partir de los  datos  en
+		memoria cuyo "handle" obtenido con AllocMem se le pasa como
+		par metro.   Estos  datos  tendr n  una longitud "size", se
+		reproducir n a la frecuencia "C2SPD"  al tocar la nota C-4,
+		y opcionalmente dispondr n de un "loop":  al  llegar  a  la
+		posici¢n  "loopend"  el  sample  continuar  reproduci‚ndose
+		desde "loopstart".  Para  no  activar  el  loop p sale a la
+		funci¢n un valor de "loopstart" mayor o  igual  que  el  de
+		"loopend".
+		
+		EJEMPLO:
+		
+			char efectodesonido[2180] ;
+			
+			int num = CreateInstrument (efectodesonido,
+				     2180, 22000, 0, 0) ;
+				     
+		Este  ejemplo  crea un instrumento que se reproduce a 22000
+		Hz en la nota C-4 y no posee "loop".
+		
+		El  n£mero  que   devuelve   la   funci¢n   identifica   al
+		instrumento,  y  ser   -1  en  caso  de  que ya no haya m s
+		espacio   para   instrumentos    disponible   (m ximo   100
+		instrumentos).
+		
+	Si  no  quieres   utilizar   mis   funciones   de  memoria  utiliza
+"CreateRAWInstrument", funci¢n id‚ntica a CreateInstrument pero a la que se
+le pasa un "char *" en lugar de un "handle".
+
+	Una vez est  el instrumento creado, puedes utilizarlo llamando a la
+funci¢n PlayInstrument:
+
+	void PlayInstrument (int instrumento, int canal, int volumen,
+	                     int nota, int octava, int panning) ;
+	                     
+		El canal puede ser cualquier  n£mero  entre  0  y  31.   El
+		volumen  puede  estar  entre  0 (m¡nimo) y 63 (m ximo).  La
+		nota ser  0 para Do,  1  para  Do#,  2 para Re...  hasta 11
+		para "Si".  La octava media es la 4, y puede variar entre 0
+		y 7. Con un panning 0 el instrumento  suena  lo  m s  a  la
+		derecha  posible,  con  un  panning  15  suena  lo m s a la
+		izquierda posible y con un panning 7 suena en medio.  Si el
+		Stereo est  desactivado el  panning no tiene efecto.  Nota:
+		un error de hardware de la  SBPro  hace  que  a  veces  los
+		canales izquierdo y derecho est‚n intercambiados.
+
+	El  fichero  de  ejemplo PLAYRAW.C recupera y ejecuta un fichero de
+sonido sin cabecera (por  ejemplo,  grabado  con  DigiPlayer de Future Crew
+desactivando la opci¢n "Save header"), a una frecuencia de 11000 Hz.
+
+	El fichero de ejemplo PLAYVOC.C recupera un fichero .VOC,  crea  el
+instrumento  relacionado  y  permite tocarlo como con un piano a trav‚s del
+teclado: la tecla "Z" lo reproduce a la  frecuencia  original,  y  las  dos
+l¡neas  inferiores  del teclado (Z-M, S-J) representan las blancas y negras
+de una escala en el piano.   El  programa  est  limitado a VOCs de menos de
+64K y que consten de un s¢lo bloque.  Incluye una funci¢n que interpreta la
+cabecerea de un VOC, que puede serte £til.
+
+	Todo  lo  que  suena  lo  hace  en  "background".   Cuando llamas a
+PlayInstrument,  la   funci¢n   modifica   ciertas   variables   y  retorna
+inmediatamente.  El instrumento  comenzar   a  sonar  casi  inmediatamente:
+varias llamadas  seguidas  a  PlayInstrument  indicando  canales diferentes
+reproducir n varios samples a la vez.
+
+	En general:
+	
+			#include "esi.h"
+			
+			void main ()
+			   {
+			   int ni ;			   
+
+			   .. cargar ficheros de samples ..
+
+			   SBStart() ;
+			   ni = CreateInstrument (...) ;
+			   PlayInstrument (...) ;
+			   SBEnd() ;
+			   }
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    2.5. Reproducci¢n de m¢dulos
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	La librer¡a incorpora todo lo necesario para tocar un  m¢dulo  S3M.
+Esta  tarea  se  realiza  de  forma autom tica, s¢lo necesitas conocer tres
+funciones:
+
+	int LoadS3M (char *filename) ;
+	
+		Esta funci¢n recupera de  disco  un fichero S3M, reserva la
+		memoria necesaria para  los  instrumentos  y  patrones  del
+		m¢dulo y actualiza un conjunto de variables internas.
+		
+		S¢lo  es posible tener en memoria (y por tanto, reproducir)
+		un fichero S3M a la vez.
+		
+		Los instrumentos del S3M son instrumentos normales y puedes
+		utilizar   PlayInstrument   pas ndole    como   n£mero   de
+		instrumento uno del S3M.
+		
+		El valor que devuelve es 0 si no hubo error  al  cargar  el
+		m¢dulo.   En  cambio,  si hubo un error (no hay memoria, el
+		fichero no es S3M,  est   corrupto,  etc) devuelve un valor
+		negativo que identifica el n£mero de error.   En  ESI.H  se
+		definen   una  serie  de  constantes  que  describen  estos
+		errores.
+		
+		Es posible  llamar  a  LoadS3M  cuando  ya  hay  un  S3M en
+		memoria.  En ese caso, todos los patrones y  variables  del
+		sample  anterior ser n liberados.  Los instrumentos del S3M
+		anterior se conservar n, a  excepci¢n de aquellos que est‚n
+		definidos en el nuevo  S3M  (ejemplo:  cargas  un  S3M  con
+		instrumentos del 0-10...  m s tarde cargas un nuevo S3M con
+		instrumentos  del  0-5...   los  instrumentos 0-5 ser n los
+		correctos del nuevo S3M y  los  del  6-10 ser n los del S3M
+		anterior, que no han sido borrados).
+		
+		NOTA: todos  los  instrumentos  y  patrones  que  hayan  en
+		memoria se liberan con la llamada a SBEnd().
+		
+	void StartSong() ;
+	
+		Comienza a reproducir el S3M desde el principio
+		
+	void StopSong() ;
+	
+		Detiene  la  reproducci¢n.   No puede continuarse m s tarde
+		desde donde se dej¢: hay  que llamar a StartSong() y volver
+		a empezar desde el principio.
+		
+	Es posible tener un control preciso sobre la reproducci¢n del  S3M,
+pero  no  sin acceder a las variables y datos internos de la librer¡a.  Por
+lo tanto, esta parte ser  explicada  en  el  cap¡tulo siguiente.
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                      3. Uso avanzado de la librer¡a
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    3.1. Acceso a variables internas
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	La ESL mantiene en memoria un buen n£mero de variables.  Algunas de
+ellas son accesibles desde C y  ensamblador.  La siguiente lista las nombra
+y  muestra  su  utilidad.   Las  variables  marcadas  con   un   *   puedes
+modificarlas.   Estas  variables  (*)  son  utilizadas  por  la  rutina  de
+interrupci¢n  que hace las mezclas, por lo tanto cualquier cambio que hagas
+en ellas se reflejar  inmediatamente  en  el sonido.  El resto de variables
+NO DEBES ALTERARLAS BAJO NINGUN CONCEPTO. S¢lo leerlas.
+
+    *	GlobalVolume	Volumen global (0-63)
+    *	IntCount	Esta variable se incrementa cada vez que la
+    			rutina de interrupci¢n se utiliza (cada 1/128 s)
+    
+    	SB2x0		Direcci¢n de la SB (p.ej. 0x220)
+    	SBDMAChannel	Canal de DMA de la SB
+    	SBIrq		Irq usada por la SB
+    	SBDetected	Est  a 0 si no se detect¢ SB
+    	SBStereo	Est  a 0 si la SB no permite Stereo
+    			Todas estas variables se rellenan al detectar
+    			tarjeta de sonido en la llamada a SBStart
+    			
+	Hz		Frecuencia de muestreo de la salida
+	Stereo		Est  a 1 si el Stereo est  activado
+			Estas variables s¢lo deben modificarse antes
+			de la llamada a SBStart
+			
+	PatNum		N£mero de patrones del S3M
+	OrdNum		N£mero de "orders" del S3M
+	InsNum		N£mero de instrumentos del S3M
+    *	Speed		"Velocidad" del m¢dulo S3M
+    *	Order		N£mero de "order" actual (ver m s adelante)
+    *	PatternMustEnd	Si est  a 1, el patr¢n actual terminar 
+    			inmediatamente despu‚s de terminar la nota
+    *	PatternStartRow	Indica la fila de comienzo del pr¢ximo patr¢n
+    
+	Existe una excepci¢n: la  variable  Order.   Modificarla  no  tiene
+efecto  hasta  que  no  termina el patr¢n en curso, momento en el cual esta
+variable se incrementa para  averiguar  el  nuevo  patr¢n.  Por tanto, para
+hacer un "salto" de "order" hay que:
+
+	- Hacer Order = <order siguiente - 1>
+	- Hecer PatternMustEnd = 1
+	- Opcionalmente, hacer PatternStartRow = fila de comienzo
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    3.1. Acceso a estructuras internas
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	Aunque las variables internas son muy  £tiles,  el  grueso  de  los
+datos  que  maneja la librer¡a son dos "arrays" de estructuras.  El primero
+de ellos contiene los datos  de  cada  canal  que la rutina de interrupci¢n
+utiliza  y  actualiza  constantemente.   El  segundo   es   el   array   de
+instrumentos, menos £til.
+
+	    3.1.1. Estructura Channel
+	    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	    
+	El  array  de  canales  consiste en 32 estructuras de tipo Channel.
+Los datos que contiene esta estructura son:
+
+    *	Volume		Volumen del canal
+    *	Panning		Posici¢n stereo del canal
+    *	SampleSeg	En realidad es el "handle" devuelto por AllocMem,
+    			de los datos que se tocan en el canal
+    *	SampleOffset
+    *	SampleFOffset	Estas dos variables contienen la posici¢n del
+    			sample, la parte que se est  mezclando en cada
+    			momento. FOffset es la parte decimal.
+    *	SampleInc
+    *	SampleFInc	Estas variables contienen un valor de "incremento"
+    			que  refleja  la  frecuencia   a  la  que  hay  que
+    			reproducir el sample. FInc es la parte decimal.
+    *	SampleLoop	Est  a 0 si no hay loop en el sample
+    *	SampleLoopStart	Posici¢n del comienzo del loop
+    *	SampleLoopEnd	Posici¢n del final del loop
+    
+	El resto de datos de la estructura son cosa del player de S3M.   En
+general, no los toques.
+
+	Desde  C  puedes acceder a este array de estructuras.  Su nombre es
+Channels. El siguiente ejemplo pone a 0 el volumen del canal 4:
+
+		Channels[4].Volume = 0 ;
+
+	    3.1.2. Estructura SampleHeader
+	    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	    
+	El array de estructuras Samples contiene informaci¢n sobre cada uno
+de los 100 posibles instrumentos.   En la siguiente ennumeraci¢n, los datos
+marcados con X no son v lidos excepto en instrumentos cargados de un m¢dulo
+S3M:
+
+	Type		Si no es 1 no es un instrumento v lido
+    X	Filename	Nombre de fichero. char[13]
+    	MemSeg		"Handle" devuelto por AllocMem con los datos
+    	Size		Tama¤o de los datos
+    	LoopBeg
+    	LoopEnd		Descriptivas
+    	Flags		Si el bit 0 no est  a 1 no hay loop
+    	Volume		Volumen al que se escucha el sample cuando no
+    			se especifica ninguno, dentro del S3M
+    	C2SPD		Frecuencia de la nota C-4
+    X	SampleName	Nombre del sample. char[28]
+    X	Firma		Debe contener "SCRS". char[4]
+
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    3.3. Sugerencias y posibilidades
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Una  muy  importante:  no  hace  falta  decir   que   no   utilices
+PlayInstrument en canales utilizados por el S3M.
+
+	Fade-in, fade-out
+	ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	
+	Para hacer efectos de "fade-in" o "fade-out" s¢lo hay que modificar
+a gusto la variable GlobalVolume, o en el caso de querer  hacer  el  efecto
+s¢lo  en un rango de canales determinado, modificando la variable Volume de
+las estructuras Channel.  Para  mejor  efecto  sincroniza  el "fade" con la
+ayuda de la variable IrqCount:
+
+	   while (GlobalVolume > 0)
+	        {
+	        IrqCount = 0 ;
+	        while (IrqCount == 0) ;
+	        GlobalVolume-- ;
+	        }
+	       
+	   acabar = 0 ;
+	   while (!acabar)
+	     	{
+	     	IrqCount = 0 ;
+	     	while (IrqCount == 0) ;
+	     	acabar = 1 ;
+	     	for (i = PrimerCanal ; i <= UltimoCanal ; i++)
+	     	   if (Channel[i].Volume > 0)
+	     	      {
+	     	      acabar = 0 ;
+	     	      Channel[i].Volume-- ;
+	     	      }
+	     	}
+
+	De la misma forma puede modificarse Channel[x].Panning.
+
+	Varias canciones en un mismo S3M
+	ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	
+	Seg£n el funcionamiento de la rutina, para no tener que  cargar  de
+disco  un  m¢dulo S3M a cada momento, quiz  quieras tener un m¢dulo S3M con
+varias canciones.  Por ejemplo, una canci¢n en  los  orders 0 a 5 y otra en
+los orders 10 a 18.  Si haces esto tu programa  debe  comprobar  cu ndo  se
+est   tocando  el  £ltimo  order  de  la  canci¢n  en curso, y modificar la
+variable Order para que  al  incrementarse  devuelva  el primer order de la
+canci¢n:
+
+		if (Order == UltimoOrderCancion)
+		    Order = PrimerOrderCancion - 1 ;
+		    
+	De  esta  forma  al  terminar  el  patr¢n   actual,   la   librer¡a
+incrementar   la  variable  Order y continuar  en el patr¢n correcto.  Esta
+comprobaci¢n deber¡a  hacerse  constantemente  (en  el  bucle principal del
+juego o demo).
+
+	Efectos de eco
+	ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	
+	Es muy sencillo hacer un efecto de eco  de  un  sample:  basta  con
+reproducir  el  sample  en  otros canales, con volumen decreciente y con un
+lapso de  tiempo  entre  cada  canal.   El  programa  de  ejemplo "ECORAW",
+modificaci¢n de "PLAYRAW" demuestra lo que digo.
+
+	Dolby surround
+	ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+	
+	El Surround se consigue reproduciendo en stereo por  un  canal  "lo
+contrario"  que  en  el otro.  Seg£n el formato "sin signo" de los samples,
+dada una muestra X la muestra  invertida  es 256-X.  El programa de ejemplo
+"SURRAW", modificaci¢n de "PLAYRAW" tocar  en surround un fichero de sonido
+RAW sin signo (pru‚balo con un VOC).  Para ello hace una copia de los datos
+del sample una vez en memoria y hace esa operaci¢n con todas y cada una  de
+los muestras. Luego reproduce el resultado en stereo.
+
+	Advertencia: si no se reproduce  en  stereo (por ejemplo, en una SB
+no-Pro) no sonar  NADA, porque la suma de dos formas de onda siendo una  la
+inversa de la otra es el silencio.
+
+	Aunque  la  librer¡a  no  soporta "surround" directamente, sabiendo
+esto es f cil implementarlo.  Algunos  S3M de Future Crew utilizan Surround
+porque tienen  dos  versiones  de  cada  sample  que  quieren reproducir en
+surround, una de ellas invertida, y al tocarlas en stereo funciona.
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    3.4. Cargando manualmente samples
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	Para cargar un sample hay que hacer lo siguiente:
+	
+	- Reservar memoria mediante AllocMem
+	- Recuperar los datos de disco (que pueden estar comprimidos, etc)
+	- Buscar un miembro del array Samples[] cuya variable Type est‚
+	  a 0 (no hay sample en la posici¢n)
+	- Su n£mero ser  el n£mero de instrumento, X
+	- Rellenar la estructura Samples[X]:
+		- Samples[X].Type = 1
+		- Samples[X].MemSeg = handle devuelto por AllocMem
+		- Samples[X].Size = tama¤o de los datos (hasta 64K)
+		- Samples[X].Flags = 0 si no hay loop o
+		  Samples[X].Flags = 1 si hay loop
+		     en ese caso, actualizar Samples[X].LoopBeg y LoopEnd
+        	- Samples[X].C2SPD = frecuencia de la nota C-4.  8363 para 
+        	  "estandar" (en el viejo formato MOD este valor era 8363)
+        	- Samples[X].Volume = ? en el fondo da igual, ya que en
+        	  el S3M no va a haber entradas para el nuevo instrumento
+        	- Samples[X].Pack = 0
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                 4. Funcionamiento interno de la librer¡a
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    4.1. De qu‚ va esto
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	El texto de este cap¡tulo NO ES una descripci¢n exacta  de  lo  que
+hace  cada  l¡nea  o  rutina  de  la  librer¡a.   Tampoco  es una gu¡a para
+hacerse un  reproductor  de  MODs.   Simplemente  es  una  relaci¢n  de mis
+experiencias hasta tener la librer¡a terminada.
+
+	Lo primero  que  hice,  hace  alg£n  tiempo  ya,  era  un  sencillo
+reproductor de VOC por DMA.  No encontraba mucha informaci¢n acerca de c¢mo
+hacerlo, pero s¡ la suficiente.  B sicamente todas las dificultades existen
+debido a la historia de que el DMA no  puede  traspasar  las  fronteras  de
+64K...   Hay  que  dividir la reproducci¢n en bloques, y hacer un vector de
+Irq para que cuando el DSP terminase, programar de nuevo el DMA  y  el  DSP
+para  el  bloque  siguiente.   No  es  dif¡cil hacerlo, pero obtener buenos
+resultados es CASI IMPOSIBLE.  No  existe una reproducci¢n cont¡nua: cuando
+el bloque termina, hay un lapso  de  tiempo  en  el  cual  tu  rutina  est 
+programando el DMA y el DSP y durante el cual no se reproduce sonido.  Esto
+es  suficiente para notar una peque¤a pero molesta distorsi¢n en el sonido,
+especialmente si se trata de samples mel¢dicos sin ruido (strings, p.ej).
+
+	Aunque no logr‚ superar este  problema  por entonces, lo dej‚ estar
+(tampoco es tan importante) y  me  dediqu‚  a  hacer  mezclas.   Mi  primer
+intento  era  esto:  varios  buffers  de DMA, y una rutina que los rellena.
+Esta rutina act£a en la interrupci¢n  Irq,  es decir, cuando el DMA termina
+de enviar un bloque, se rellena otro y se programa para que lo env¡e.
+
+	­Craso error!  Si antes hab¡a una cierta distorsi¢n, ahora  hay  un
+fantabuloso  chasquido de silencio.  Hab¡a que tener el buffer ya rellenado
+al llegar a la Irq, lo cual  es  f cil  cambiando el orden de las cosas: en
+primer lugar, se programa el DMA-DSP con el siguiente buffer y  se  rellena
+EL SIGUIENTE al que acabamos de programar.  De esta forma en la pr¢xima Irq
+el buffer ya estar  lleno.
+
+	Hice  una sencilla librer¡a en C++ que segu¡a este esquema, pero se
+escuchaba MAL MAL MAL MAL MAL  MAL  MAL.   El problema de la distorsi¢n era
+ahora terrible al haber varios buffers peque¤os.
+
+        Al parecer utilizar el DMA produc¡a chasquidos o distorsiones,
+en el momento en que dejo de tocar un buffer para empezar otro.
+
+        Aunque despu‚s de algunas experiencias, asum¡ esto como ley
+escrita en piedra, actualmente tengo mis dudas. Por lo que he le¡do hace
+poco, algunos trackers en los que no se observan estas distorsiones
+utilizan tranquilamente la interrupci¢n del DMA de esta forma.
+
+	Me  dediqu‚  a "trastear" players ajenos en busca de una soluci¢n a
+mi  problema.   Algunos  players  no  usaban  DMA  sencillamente,  sino que
+enviaban los bytes uno a uno a la SB.  Esto soluciona el problema, pero  es
+demasiado  lento.   Alg£n  otro usaba buffers muy grandes (dos de 64K) para
+minimizar las veces que hab¡a  distorsi¢n.  Lamentablemente mi nivel de ASM
+no me permite acceder a  entender  los  mejores  players,  sin  embargo  me
+invent‚  una  soluci¢n  que  al  parecer  FUNCIONA.  Creo que las versiones
+antiguas del Scream Tracker hacen algo parecido, pero no tengo ni idea.
+
+	Una  forma  de  programar  el  DMA  es  con  el  modo  de  "auto  -
+inicializaci¢n".  En este modo, el DMA se reprograma el s¢lo con los mismos
+datos,  cuando  termina  el  env¡o.   Esto  significa  que  no  hace  falta
+programarlo, s¢lo hay que ocuparse  del  DSP,  y  eso puede ser lo bastante
+r pido como para hacer el chasquido inaudible.  Pero claro, si se  programa
+con  los  mismos  datos  significa  que  est s  volviendo a enviar el mismo
+buffer. EFECTIVAMENTE.
+
+	Esta librer¡a s¢lo tiene un  buffer  de  DMA.   Utilizo  una  forma
+aventurera  de  sincronizar  la interrupci¢n 8 del timer con el proceso del
+DMA de forma que la interrupci¢n  8 "persigue" la transferencia del DMA (es
+posible saber la posici¢n de lo que env¡a el DMA en cada momento).   Divido
+el  buffer  de  DMA  en  trozos  peque¤os  llamados  "Chunk"  y hago que la
+interrupci¢n 8 se ejecute cada vez que  el DMA ha terminado con un Chunk, y
+la interrupci¢n 8 se encarga  de  rellenar  el  Chunk  que  todav¡a  no  ha
+empezado a sonar, pero que lo har  en la pr¢xima interrupci¢n 8.
+
+	En el vector de Irq tengo una peque¤a  rutina  que  se  encarga  de
+programar el DSP r pidamente y volver.
+
+	Esto   minimiza  los  chasquidos,  de  forma  que  no  puedo  decir
+fiablemente si hay chasquidos.  A  veces me parece escuchar alguno...  Pero
+quiz  sea una man¡a persecutoria, o est‚ causado por la presencia de
+cli/sti en mitad del c¢digo, lo que entorpece el funcionamiento de la
+interrupci¢n 8.
+
+	Los malabarismos consisten en sincronizar la interrupci¢n 8 con  el
+DMA,  porque  aunque  puedo  programar  el  PIT  con  gran precisi¢n, no es
+suficiente para "seguir" exactamente  el  trabajo  del  DSP.  El trabajo de
+sincronizaci¢n est  en la propia  interrupci¢n  8,  que  cada  vez  que  se
+ejecuta  comprueba  d¢nde est  el DMA, y con esa informaci¢n averigua si se
+retrasa o  se  adelanta  respecto  a  la  posici¢n  "ideal",  y  utiliza lo
+averiguado para modificar la constante de temporizaci¢n del PIT  e  ir  m s
+deprisa  o  m s  despacio seg£n convenga.  Eso significa que esta constante
+est  cambiando  a  cada  momento,  lo  que  en  un  principio  no  cre¡ que
+funcionase, pero al parecer FUNCIONA.
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    4.2. C¢mo se hacen las mezclas
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	
+	La  ESL  hace  las mezclas de una forma muy sencilla en comparaci¢n
+con algunos players que  he  visto,  que hacen aut‚nticos malabarismos para
+mejorar la calidad del sonido.
+
+	En primer lugar rellena el Chunk de silencio.
+	
+	Seguidamente va mezclando cada uno de los canales con  aquello  que
+haya en el Chunk.
+
+	Y  yast .  Esto no permite mostrar osciloscopios de cada canal, por
+ejemplo,  ya  que  los  canales  no  se  procesan  en  buffers  intermedios
+susceptibles de ser mostrados gr ficamente.
+
+	Para mezclar dos muestras, SE  SUMAN simplemente.  Esto es as¡ para
+samples "con signo", como los del  Amiga,  sin  embargo  para  mezclar  dos
+muestras  "sin  signo"  como  requiere  una  SB  hay que restarles 128 para
+ponerles signo.
+
+	Para cambiar el volumen de  una  muestra "con signo", se multiplica
+por el volumen y se divide por 64.  La ESL utiliza  un  "volumetable",  tal
+como  aconsejan  Future  Crew  y  el  sentido  com£n,  para  agilizar estos
+c lculos.  Para poder usar volumen global, tenemos que el "volumen real" al
+que hay que hacer la mezcla  es  el  volumen del canal, multiplicado por el
+volumen global y dividido por 64 (otra vez se puede usar la "volumetable").
+
+	El Scream Tracker utiliza  una  tabla  llamada  "outputtable"  para
+amplificar  el  sonido.   No le he encontrado mucho sentido: con un volumen
+global de 64 ya suena  todo  demasiado  fuerte.   As¡  que no la uso.  A lo
+mejor no he entendido bien su utilidad.
+
+	Para  reproducir  un  sonido  a  frecuencias  diferentes  hay   que
+implementar  un  valor  de "incremento".  Crea dos punteros: uno al Chunk y
+otro al sample.  Cada vez que  incrementas  el puntero al Chunk, el puntero
+al Sample se incrementa seg£n este valor.  De esta forma, con un incremento
+de  0.5  cada  muestra  del  sample  se reproduce dos veces.  La frecuencia
+"falsa" de salida  ser   en  este  caso  la  mitad  de  la asignada al DSP.
+Siguiendo este razonamiento, el valor de "incremento" ser¡a
+
+				frecuencia que quieres obtener
+		incremento =  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+				      frecuencia del DSP
+				      
+	Observa que tanto la posici¢n (puntero) al sample  como  el  propio
+valor de incremento, son n£meros con parte decimal.
+
+	Por otra parte, implementar un "loop" no tiene mucha historia.
+	
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    4.3. Per¡odos, notas y frecuencias
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+	Ahora  el  problema  es el siguiente: teniendo una nota cualquiera,
+por ejemplo, C-5, ¨a qu‚ frecuencia debo reproducir el instrumento?
+
+	Para contestar a esta pregunta hay que introducir  el  concepto  de
+per¡odo.  El per¡odo es un valor relacionado con la frecuencia a la que vas
+a reproducir el instrumento. Concretamente, 
+
+		Frecuencia = 14317056 / Per¡odo
+		
+	Lo  que  ocurre  es  que hist¢ricamente los MODs han funcionado con
+"per¡odos" debido  a  que  el  hardware  del  Amiga  utiliza  per¡odos para
+reproducir el sonido y no frecuencias, y al llegar al PC  los  per¡odos  se
+han conservado para poder conservar la compatibilidad con los MODs de Amiga
+(todos  los  efectos,  etc,  del Amiga son mucho m s f ciles de implementar
+utilizando per¡odos).  S¢lo hay un  cambio:  los  per¡odos usados en PC (al
+menos, por el Scream Tracker) son el cu druple de los de Amiga, para  poder
+soportar "extra slides".
+
+	Dada  una  nota cualquiera, existe un per¡odo para la misma.  En la
+octava 4 estos valores son:
+
+	  nota   C    C#   D    D#   E    F    F#   G    G#   A    A#   B
+       per¡odo  1712 1616 1524 1440 1356 1280 1208 1140 1076 1016 0960 0907
+       
+	Para averiguar per¡odos de otra octava, se multiplica el per¡odo de
+la octava 4 por 16, y se  divide  por 2^octava (observa que estos son meras
+rotaciones de bits).
+
+	Para implementar  el  valor  de  C2SPD  se  multiplica  el  per¡odo
+resultante por 8363, y se divide por C2SPD.
+
+	NOTA:  Todo  esto, seg£n mis fuentes, es correcto, y sin embargo MI
+LIBRERIA REPRODUCE LOS  SONIDOS  DEMASIADO  GRAVES,  en  comparaci¢n con el
+Scream Tracker 3. Quiz  sea un "bug" pero por m s que he  mirado  creo  que
+sigo a rajatabla estas indicaciones. ¨Qu‚ puede estar mal?
+
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+	    4.4. S3M y efectos
+	úúúÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄúúú
+
+        Para tocar un S3M necesitas una rutina que se ejecute 50 veces
+por segundo (en caso de tempo=125) para  procesar  la  canci¢n.   En  mi
+librer¡a  esta rutina es llamada por la del vector 8 de interrupci¢n,
+por lo que  hay  una  relaci¢n entre  el  "tempo" y el tama¤o del Chunk.
+Debido a que el tama¤o del Chunk no es por ahora  modificable  en  mitad
+de  la  ejecuci¢n, mi librer¡a ­no admite variaciones de tempo!  Esta es
+la m s seria limitaci¢n que tiene,  a mi juicio.  Cambiar el  tempo
+implicar¡a  cambiar  el  tama¤o del Chunk, a parte de la constante del
+PIT, y dado que no puedo cambiar  el  tama¤o  del buffer  de  DMA  en
+mitad del sonido, me encontrar¡a con Chunks "partidos" entre el comienzo
+y el final del buffer,  algo  para  lo  que  mi  sencilla rutina de
+mezclas no est  preparada.  No es una dificultad seria: permitir‚
+variaciones de tempo en una pr¢xima versi¢n.
+
+        La  rutina  que procesa la canci¢n 50 veces por segundo se encarga
+de cambiar per¡odos y  vol£menes  seg£n los efectos correspondientes.  As¡,
+esta rutina modificar  en 2 un per¡odo afectado por un  efecto  Exx  o  Fxx
+cada  vez  que  es  llamada.   Por  lo  tanto,  la gesti¢n de efectos no es
+complicada, pero s¡ larga y penosa de hacer.
+
+	Me he dejado en el  tintero  efectos importantes, algunos porque no
+estoy seguro de c¢mo deben implementarse.  Otros  porque  no  ten¡a  ganas.
+As¡,  el  importante efecto de "vibrato" no est  implementado.  Tampoco los
+"delays" de patr¢n y de nota, ni los "loops" en el patr¢n, ni el glissando,
+ni las formas de onda  para  tremolo  o  vibrato.   No  hay duda de que son
+carencias  importantes,  que  resolver‚  inmediatamente  para  una  pr¢xima
+versi¢n. No quer¡a tardar m s en distribuir esto.
+
+	Para avanzar una fila en el S3M hay que hacerlo cada X veces que la
+funci¢n  sea  llamada,  siendo  este X el valor de Speed de la canci¢n.  El
+resto del proceso del S3M se sobreentiende: es sencillo aunque trabajoso.
+
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                            5. Futuras mejoras
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	Las siguientes cosas no son  mejoras, sino m s bien necesidades que
+ser n implementadas en una pr¢xima versi¢n inmediatamente:
+
+	- Soporte a los efectos que faltan del S3M
+	- Nueva forma de tratar los patrones, ahorrando mucha m s
+	  memoria y handles de EMS
+	- Soporte a los cambios de tempo
+	- El efecto de "tone portamento" Gxx parece que tiene alg£n bug.
+	  Me enfrascar‚ en resolverlo
+	- Documentaci¢n y ampliaci¢n del apartado de filtros
+	
+	Lo siguiente son cosas que QUIERO hacer lo antes posible
+	
+	- Optimizaci¢n de las mezclas
+        - Optmizaci¢n de la gesti¢n de efectos, muy necesaria
+	- Reorganizaci¢n del c¢digo. Est  hecho un l¡o
+	- Soporte de m s dispositivos de sonido ­no s¢lo SB!
+	- Interface con Pascal
+	
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+                             6. Colaboraciones
+      úúúÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄúúú
+
+	Me llamo Jos‚ Luis Cebri n y no pertenezco a ning£n grupo de  demos
+ni tengo intenci¢n de  hacerlo.   Con  el  sello  de Exterminio Software he
+cedido al dominio p£blico varios programas con la intenci¢n  de  apoyar  el
+mundo de las aventuras conversacionales.
+
+	Desde  que las aventuras conversacionales vivieron su apogeo en los
+ordenadores de 8 bits, todo soporte comercial a las mismas ha desaparecido.
+Lo que no impide que  todav¡a  cuenten  con muchos fieles seguidores que no
+desean ver desaparecer el mundo que tanta diversi¢n les  ha  proporcionado.
+Si quieres saber m s sobre el tema puedes dirigirte al fanzine Z FOR ZERO.
+
+			Z FOR ZERO
+			Avenida das Camelias 28, 2§C
+			36202 VIGO
+			
+	Este  es  un fanzine distribu¡do exclusivamente por correo dedicado
+al mundo de la aventura (conversacional, gr fica...).   Por  cierto,  edita
+una secci¢n sobre programaci¢n gr fica hecha por m¡ mismo bastante maja ;-)
+
+	Sobre  la  librer¡a,  cualquier  colaboraci¢n  que pueda recibir es
+poca.  Una carta informando sobre un  bug,  o coment ndo la utilidad que le
+has dado, puede ser suficiente aliento como  para  no  olvidarla  en  alg£n
+directorio perdido.  Si teniendo el c¢digo decides hacer modificaciones, me
+gustar¡a ver el resultado, especialmente si va encaminado a resolver alguna
+carencia de la misma.  Pueden incorporarse los cambios a la pr¢xima versi¢n
+de la librer¡a.
+
+	Para contactar conmigo  (recuerda  que  es  preciso notificarme tus
+intenciones si ‚stas son las de utilizar la librer¡a) hazlo escribiendo a
+
+			Jos‚ Luis Cebri n Page
+			P/M¦ AurŠlia de Capmany 3A 4§ 1¦
+			St. Joan Desp¡
+			08970 BARCELONA
+			
+	Lamentablemente no dispongo de  direcci¢n  en  correo  electr¢nico,
+pero  si  vuelvo a tener m¢dem pr¢ximamente (como espero), ser‚ localizable
+en Micaco BBS (tlf (93)3846169) con el sobrenombre de Skipper.

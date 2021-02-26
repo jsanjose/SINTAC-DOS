@@ -1,0 +1,351 @@
+; -------------------------------------
+;	TUTOR men£s secciones.
+; -------------------------------------
+tutor_menu_secc:
+	call SG2,fondo
+	call SG2,menu_secc
+	opc_constantes
+
+	databegin
+		"CONSTANTES"
+		"La opci¢n 'Constantes' da acceso"
+		"a la secci¢n inicial de la base de"
+		"datos. Normalmente en esta secci¢n"
+		"se colocan las definiciones de"
+		"constantes simb¢licas que luego"
+		"se usan en la base de datos."
+	dataend
+	vtexto 99,99,6,1
+
+	call SG2,fondo
+	secc_org
+	waitkey 1000
+	call SG2,menu_secc
+	opc_mensajes_sistema
+
+	databegin
+		"MENSAJES DEL SISTEMA"
+		"La opci¢n 'Mensajes sistema'"
+		"permite editar la secci¢n que"
+		"contiene los mensajes del sistema."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	secc_msy
+	waitkey 1000
+	call SG2,menu_secc
+	opc_vocabulario
+
+	databegin
+		"VOCABULARIO"
+		"Mediante la opci¢n 'Vocabulario'"
+		"puede editarse el vocabulario de"
+		"la base de datos."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	secc_voc
+	waitkey 1000
+	call SG2,menu_secc
+	opc_mensajes
+
+	databegin
+		"MENSAJES"
+		"La opci¢n 'Mensajes' permite editar"
+		"una de las tablas de mensajes,"
+		"adem s de crear o borrar tablas de"
+		"mensajes."
+		""
+		"Una vez seleccionada esta opci¢n"
+		"se presentar  un cuadro de"
+		"di logo."
+	dataend
+	vtexto 99,99,8,1
+
+	mensajes
+	waitkey 1000
+
+	databegin
+		"MENSAJES"
+		"En la zona superior del cuadro de"
+		"di logo aparecer  una lista de las"
+		"tablas de mensajes que hay creadas"
+		"hasta el momento."
+		""
+		"Seleccionando una de estas y pulsando"
+		"el bot¢n 'Vale', la correspondiente"
+		"tabla de mensajes pasar  al editor"
+		"donde podr  ser modificada."
+	dataend
+	vtexto 99,99,9,1
+
+	call SG2,fondo
+	secc_msg
+	waitkey 1000
+	call SG2,menu_secc
+	opc_mensajes
+	mensajes
+
+	databegin
+		"MENSAJES"
+		"El bot¢n 'Borrar' permite eliminar"
+		"la tabla seleccionada."
+		""
+		"El bot¢n 'Nueva tabla' permite insertar"
+		"una nueva tabla de mensajes."
+		"Para ello hay que indicar en el"
+		"recuadro marcado como 'Tabla' el n£mero"
+		"de la nueva tabla a crear y luego"
+		"pulsar sobre 'Nueva tabla'."
+	dataend
+	vtexto 99,99,9,1
+
+	call SG2,fondo
+	secc_msg
+	call SG2,menu_secc
+	opc_localidades
+
+	databegin
+		"LOCALIDADES"
+		"La opci¢n 'Localidades' da acceso a"
+		"la tabla de localidades de la base"
+		"de datos."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	secc_loc
+	waitkey 1000
+	call SG2,menu_secc
+	opc_objetos
+
+	databegin
+		"OBJETOS"
+		"Por medio de la opci¢n 'Objetos'"
+		"puden editarse los objetos de la"
+		"base de datos."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	secc_obj
+	waitkey 1000
+	call SG2,menu_secc
+	opc_procesos
+
+	databegin
+		"PROCESOS"
+		"La opci¢n 'Procesos' permite editar"
+		"cada uno de los procesos de la base"
+		"de datos."
+		""
+		"Tras seleccionar esta opci¢n"
+		"aparecer  un cuadro de di logo."
+	dataend
+	vtexto 99,99,6,1
+
+	procesos
+	waitkey 1000
+
+	databegin
+		"PROCESOS"
+		"En la zona superior del cuadro de"
+		"di logo aparecer  una lista de los"
+		"procesos que hay creados en la"
+		"base de datos."
+		""
+		"Seleccionando uno de ellos y pulsando"
+		"el bot¢n 'Vale', el proceso pasar "
+		"al editor donde podr  ser modificado."
+	dataend
+	vtexto 99,99,8,1
+
+	call SG2,fondo
+	secc_pro
+	waitkey 1000
+	call SG2,menu_secc
+	opc_procesos
+	procesos
+
+	databegin
+		"PROCESOS"
+		"El bot¢n 'Borrar' permite eliminar"
+		"el procesos seleccionado."
+		""
+		"El bot¢n 'Nuevo proceso' permite"
+		"insertar un nuevo proceso."
+		"Para ello hay que indicar en el"
+		"recuadro marcado como 'Pro' el n£mero"
+		"del nuevo proceso a crear y luego"
+		"pulsar sobre 'Nuevo proceso'."
+	dataend
+	vtexto 99,99,9,1
+
+	call SG2,fondo
+
+	return
+
+opc_constantes:
+	color 7,0
+	text 19,21," Constantes       "
+	return
+
+opc_mensajes_sistema:
+	color 7,0
+	text 19,20," Mensajes sistema "
+	return
+
+opc_vocabulario:
+	color 7,0
+	text 19,19," Vocabulario      "
+	return
+
+opc_mensajes:
+	color 7,0
+	text 19,18," Mensajes         "
+	return
+
+opc_localidades:
+	color 7,0
+	text 19,17," Localidades      "
+	return
+
+opc_objetos:
+	color 7,0
+	text 19,16," Objetos          "
+	return
+
+opc_procesos:
+	color 7,0
+	text 19,15," Procesos         "
+	return
+
+; -------------------------------------
+;	Secci¢n de constantes.
+; -------------------------------------
+secc_org:
+	cload SG2_ORG,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de mensajes sistema.
+; -------------------------------------
+secc_msy:
+	cload SG2_MSY,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de vocabulario.
+; -------------------------------------
+secc_voc:
+	cload SG2_VOC,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de mensajes.
+; -------------------------------------
+secc_msg:
+	cload SG2_MSG,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Cuadro selecci¢n mensajes.
+; -------------------------------------
+mensajes:
+	cload SG2MSG,3
+	cfade 8,2,5,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de localidades.
+; -------------------------------------
+secc_loc:
+	cload SG2_LOC,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de objetos.
+; -------------------------------------
+secc_obj:
+	cload SG2_OBJ,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Secci¢n de procesos.
+; -------------------------------------
+secc_pro:
+	cload SG2_PRO,3
+	cfade 20,0,0,3,100
+	cfree 3
+	return
+
+; -------------------------------------
+;	Cuadro selecci¢n procesos.
+; -------------------------------------
+procesos:
+	cload SG2PRO,3
+	cfade 11,2,5,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+

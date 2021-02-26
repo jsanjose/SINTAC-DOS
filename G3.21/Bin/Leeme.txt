@@ -1,0 +1,125 @@
+SINTAC G3
+(c)1995 JSJ Soft Ltd.
+(c)1998 Login:
+-------------------------
+
+
+Las siguientes son modificaciones introducidas a última hora y que no
+aparecen reflejadas en la documentación incluida con el sistema.
+
+
+AGRADECIMIENTOS
+---------------
+
+Quisiera agradecer la inestimable colaboración de José Luis Cebrián que
+ha dedicado parte de su valioso tiempo a descubrir y depurar los más
+recalcitrantes fallos que presentaba este programa en sus primeras fases
+de desarrollo, además de realizar valiosas sugerencias sobre mejoras en el
+sistema.
+
+
+MODIFICACIONES
+--------------
+
+- Se ha añadido resalte de sintaxis al editor. Esto quiere decir que los
+condactos, comentarios, etc... dentro de la base de datos aparecerán
+resaltados en diferentes colores. Esto mejora notablemente la legibilidad a
+la hora de editar las secciones.
+
+- Se han cambiado las teclas para marcar bloques. Ahora se soporta el uso de
+SHIFT en combinación con los cursores para marcar bloques. Se ha suprimido la
+función de la tecla F5 que anteriormente servía para marcar el inicio del
+bloque.
+
+- Se ha eliminado el programa de configuración que acompañaba a versiones
+anteriores del sistema, ahora existe una opción de configuración en el
+menú (­) del entorno.
+
+- Se puede interrumpir el proceso de compilación pulsando CTRL+BREAK.
+
+- El condacto EXTERN se ha ampliado. Ya NO restaura el modo de vídeo. Además
+pasa como parámetros adicionales al programa externo las direcciones de la
+tabla de variables y de la tabla de banderas. Una llamada a EXTERN prog num
+ejecutará el programa externo 'prog' y le pasará además del parámetro 'num'
+las direcciones de la tabla de variables y de banderas respectivamente. El
+formato con que se pasan estas direcciones es SEGMENTO:DESPLAZAMIENTO, donde
+SEGMENTO es el segmento de la dirección y DESPLAZAMIENTO el desplazamiento.
+Ambos se pasan en hexadecimal y formateados con ceros a la izquierda hasta
+completar cuatro dígitos (por ejemplo: 0A4F:00FE).
+  Por ejemplo, si ejecutamos EXTERN 1 100 se llamará al programa externo:
+
+	EXTERN1 100 SEG1:DESP1 SEG2:DESP2
+
+  donde SEG1:DESP1 es la dirección de la tabla de variables y SEG2:DESP2 la
+dirección de la tabla de banderas. La tabla de variables consiste en una
+sucesión de 256 bytes comenzando en SEG1:DESP1. Cada byte es una variable
+desde la 0 (la primera) hasta la 255 (la última). La tabla de variables es
+una sucesión de 32 bytes (256 bits) comenzando en SEG2:DESP2. Cada bit
+corresponde a una bandera. La bandera 0 es el bit más significativo del byte
+0, la bandera 8 el bit más significativo del byte 1, etc...
+
+  	+ bandera 0
+	¦+ bandera 1
+	¦¦+ bandera 2                                  + bandera 256
+	¦¦¦                                            ¦
+	00000000 00000000 00000000 00000000 ... 00000000
+
+  El siguiente programa muestra un ejemplo de acceso a la tabla de variables
+y banderas:
+
+/*****************************************************************************
+   EXTER1.C: Ejemplo de programa para ejecutar con el condacto EXTERN del
+	     SINTAC G3
+*****************************************************************************/
+
+#include "stdlib.h"
+#include "dos.h"
+
+void main(int argc, char *argv[])
+{
+unsigned char far *var;
+unsigned char far *flag;
+unsigned char mascara_flag;
+unsigned seg, off;
+int num, i;
+
+/*****************************************************************************
+   La llamada con EXTERN será:
+
+	EXTERN prog num
+
+   donde:
+
+	'prog' es el identificador del programa externo, así si es 1 se
+	       ejecutará el programa EXTER1, si es 23 se ejecutará
+	       el programa EXTER23, etc...
+
+	'num'  es el número que pasamos como parámetro al programa
+*****************************************************************************/
+
+/* recogemos 'num' que es el primer parámetro */
+num=atoi(argv[1]);
+
+/* el segundo parámetro es la dirección de la tabla de variables */
+/* la cual está en el formato XXXX:YYYY, siendo XXXX e YYYY números */
+/* hexadecimales que representan el segmento y el desplazamiento */
+/* respectivamente */
+sscanf(argv[2],"%04x:%04x",&seg,&off);
+var=(unsigned char far *)MK_FP(seg,off);
+
+/* el tercer parámetro es la dirección de la tabla de banderas */
+/* y tiene el mismo formato que el anterior */
+sscanf(argv[3],"%04x:%04x",&seg,&off);
+flag=(unsigned char far *)MK_FP(seg,off);
+
+/* imprimimos la variable */
+printf("Variable %i=%i\n",num,var[num]);
+
+/* como las banderas ocupan cada una 1 bit debemos averiguar el byte */
+/* correspondiente y la máscara que usaremos para acceder a la bandera */
+/* usando una operación AND */
+i=num/8;
+mascara_flag=0x80 >> (num%8);
+printf(" Bandera %i=%i\n",num,flag[i] & mascara_flag ? 1 : 0);
+
+}

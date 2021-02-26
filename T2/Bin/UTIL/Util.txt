@@ -1,0 +1,219 @@
+
+
+
+
+
+
+
+
+                                UTILIDADES SINTAC
+                              (c)1993 JSJ Soft Ltd.
+
+                                     PCXHEAD
+                                    ---------
+
+   Este programa  permite visualizar la informaci¢n  de cabecera  de un fichero
+   gr fico  en formato  PCX. El formato  PCX es  un formato  gr fico comprimido
+   soportado por la mayor¡a de los programas de dibujo para PC.
+   Esta  utilidad se  ha realizado  como apoyo  a PCXVIDEO, el  visualizador de
+   im genes PCX de 16 colores.
+   La utilidad se ejecuta desde la l¡nea del DOS de la siguiente forma:
+
+        PCXHEAD [nombre_de_fichero]
+
+   Si no  introducimos el nombre_de_fichero, el  programa lo  solicitar . Si no
+   se produjo ning£n  error se mostrar  la informaci¢n  de cabecera del fichero
+   PCX.
+   Entre  otros, los  datos  que se  mostrar n  ser n dimensiones  del gr fico,
+   n£mero de planos de bits, ...
+
+   Para que un fichero PCX sea utilizable con el visualizador PCXVIDEO se  debe
+   cumplir que el n£mero de  planos sea 4; lo  cual indica que se trata de  una
+   imagen de 16 colores.
+
+                                     PCXVIDEO
+                                    ----------
+
+   Esta utilidad es un  visualizador de ficheros gr ficos en formato PCX  de 16
+   o  256 colores. La  utilidad est  pensada para  ser usada  desde un aventura
+   por medio del condacto EXTERN. S¢lo funciona en tarjetas gr ficas EGA y  VGA
+   o compatibles (es necesaria una  tarjeta VGA para visualizar gr ficos a  256
+   colores).
+   El visualizador se ejecuta desde la l¡nea del DOS de la siguiente manera:
+
+   PCXVIDEO nombre_fichero [modo_pant] [x] [y] [ancho] [alto] [modo_vis]
+
+   El  par metro  nombre_fichero  es imprescindible  y  especifica  el  fichero
+   gr fico a cargar, los dem s son opcionales.
+   A continuaci¢n una explicaci¢n de todos los par metros:
+
+        - modo_pant: admite 3  valores E (o e), V (o  v) y M (o m) e  indica la
+        resoluci¢n  a  emplear para  visualizar el  gr fico. Con  E se  usa una
+        resoluci¢n  de 640x350  a  16 colores,  que es  admisible tanto  por la
+        tarjeta  EGA  como  por  la  VGA.  Con  V  se  especifica  un  modo  de
+        visualizaci¢n de 640x480  a 16 colores que es  soportado por la VGA, no
+        por  la EGA. Con  M se  especifica el  modo de  320x200 a  256 colores,
+        solamente  admitido por  la  VGA. Por  tanto  se deber   especificar un
+        valor  en  este   par metro  de  E   cuando  se   quiera  mantener   la
+        compatibilidad  con tarjeta EGA.  S¢lo deben  usarse los valores  V o M
+        cuando estemos  seguros de que nuestros  gr ficos ser n  vistos s¢lo en
+        ordenadores que  dispongan de  tarjeta VGA.  Un valor  distinto de  los
+        anteriores en este  par metro seleccionar  el modo de  mayor resoluci¢n
+        posible  (entre el  de  640x350 y  el de  640x480)  para la  tarjeta en
+        cuesti¢n. Lo  mismo ocurre  si  no especificamos  este par metro.  Esto
+        quiere decir  que  para  visualizar  gr ficos  a  256  colores  SIEMPRE
+        deberemos especificar este par metro con valor M.
+
+
+
+
+
+
+
+        - x,  y: estos dos par metros  especifican las  coordenadas de pantalla
+        de visualizaci¢n del gr fico. La  coordenada x siempre se  redondear  a
+        un valor  m£ltiplo de 8 en  los modos de 16  colores (por cuestiones de
+        sencillez y  velocidad). El  origen (0,0)  est  situado  en la  esquina
+        superior izquierda de la pantalla.
+        -  ancho,   alto:  especifican  las  dimensiones  del  gr fico  que  se
+        visualizar n. Mediante estos par metros podemos hacer  que solamente se
+        visualice  parte  del  gr fico (siempre  medido  desde  el  origen  del
+        mismo).  El ancho se redondear  a  un valor m£ltiplo de  8 en los modos
+        de 16 colores (por cuestiones de sencillez y velocidad). Un valor de  0
+        en el ancho har   que se visualice la anchura completa del  gr fico; un
+        valor de  0 en  el alto  har  que  se visualice la  altura del  gr fico
+        completa.
+        - modo_vis: puede tener 3 valores;
+                  0 - visualiza el gr fico seg£n lo va leyendo del disco
+                  1 - pone  la pantalla en blanco,  lee el gr fico del  disco y
+                  lo visualiza cuando est  completo
+                  2 -  visualiza el  gr fico seg£n  lo  lee del  disco pero  no
+                  modifica la paleta actual de colores
+        Cualquier  otro  valor   tendr   el  mismo  efecto  que  si  hubi‚semos
+        introducido el valor 2.
+
+   El visualizador devuelve unos  c¢digos de salida  que pueden ser usados  por
+   otros  programas  para detectar  condiciones  de  error  (o  por el  comando
+   ERRORLEVEL del DOS si se ejecuta desde un fichero de proceso por lotes).
+   Los c¢digos de salida del visualizador son los siguientes:
+
+             0    - sin error
+             1    - error de apertura de fichero PCX
+             2    - error de lectura de fichero PCX
+             4    - modo de pantalla incorrecto
+             10   - falta nombre de fichero PCX
+             11   - no se encontr¢ tarjeta EGA o VGA en el sistema
+
+   Como este visualizador  est  pensado para  usarse como  utilidad externa  de
+   las aventuras  creadas con  el sistema SINTAC  no imprimir   ning£n tipo  de
+   mensaje  de error  u  otro  en pantalla.  Consulta  la secci¢n  dedicada  al
+   condacto  EXTERN en el manual del  sistema SINTAC para m s informaci¢n sobre
+   como comprobar el c¢digo de salida de los programas externos.
+   A continuaci¢n  se exponen  unos ejemplos  de  uso de  este visualizador  en
+   aventuras creadas con el SINTAC.
+
+   Caso  1:  supongamos  que  hemos  creado con  una  utilidad  de  dibujo  los
+   siguientes fichero  gr ficos: CASA.PCX, TABERNA.PCX  y SALON.PCX los  cuales
+   deber   visualizarse  cuando  entremos  en  una  localidad  de  la  aventura
+   determinada. Queremos que se  visualicen en resoluci¢n 640x350, ya que es en
+   la que los hemos creado  y adem s sabemos que cada  gr fico ocupa 320 pixels
+   de  ancho  y  300  de alto.  La  siguiente  tabla  muestra  las  localidades
+   correspondiente a cada gr fico:
+
+             Gr fico        Localidad
+             -------        ---------
+             CASA.PCX       5
+             TABERNA.PCX    6
+             SALON.PCX      7
+
+
+
+
+
+
+
+   Primero  copiaremos el visualizador al directorio d¢nde se encuentre nuestra
+   aventura, por ejemplo:
+
+        copy c:\sintac\util\pcxvideo.exe c:\sintac\mio\graf.exe
+
+   De paso le hemos dado un nombre m s corto: GRAF.EXE
+   Ahora  copiamos los  ficheros  gr ficos al  directorio  de la  aventura, por
+   ejemplo:
+
+        copy c:\dibujos\casa.pcx c:\sintac\mio\5.grf
+        copy c:\dibujos\taberna.pcx c:\sintac\mio\6.grf
+        copy c:\dibujos\salon.pcx c:\sintac\mio\7.grf
+
+   Les hemos  nombrado a  cada fichero con el  n£mero de la localidad  a que se
+   corresponden y la extensi¢n .GRF.
+   Creamos un archivo  de proceso por lotes (BAT)  que responder  a un condacto
+   EXTERN 0 n, d¢nde  'n' ser  el n£mero de la localidad cuyo  gr fico queremos
+   imprimir; el fichero BAT se llamar  EXTER0.BAT y contendr  lo siguiente:
+
+        @echo off
+        echo off
+        graf %1.grf e 160
+
+   La  'e'  especifica que  el  gr fico se  visualizar   con una  resoluci¢n de
+   pantalla de 640x350,  y el '160' la  coordenada x, en este caso  para que la
+   imagen salga centrada.
+   Ahora dentro de  la aventura ya podemos  insertar un proceso que  sirva para
+   imprimir los gr ficos cuando estemos en la localidad adecuada:
+
+        \PRO 15 ; proceso para imprimir los gr ficos de localidades
+
+        _         _         ATGT      4
+                            ATLT      8
+                            EXTERN    0    [1]
+
+        \END
+
+   Este proceso  comprueba si estamos  en alguna de  las localidades a las  que
+   les corresponde  un gr fico (entre la 5 y  la 7) y llama al programa externo
+   EXTER0.BAT pas ndole el  n£mero de localidad. As¡ si estamos en la localidad
+   6, el  condacto EXTERN 0 [1] equivale a teclear en  la l¡nea de comandos del
+   DOS:
+
+        EXTER0 6
+
+   lo  cual ejecutar   una  llamada  al  visualizador GRAF.EXE  pas ndole  como
+   par metro el nombre del fichero 6.GRF que es el que queremos visualizar.
+
+   Caso 2:  el mismo  que el  anterior pero  esta vez  queremos visualizar  los
+   gr ficos en el modo de mayor resoluci¢n posible y sin centrar en pantalla.
+   En este caso copiaremos el visualizador al  directorio de la aventura de  la
+   siguiente forma:
+
+        copy c:\sintac\util\pcxvideo.exe c:\sintac\mio\exter0.exe
+
+
+
+
+
+
+
+   Esta vez  no  crearemos un  fichero  BAT  intermedio sino  que  ejecutaremos
+   directamente  el visualizador.  Para ello deberemos  copiar los  gr ficos al
+   directorio de la aventura de la siguiente forma:
+
+        copy c:\dibujos\casa.pcx c:\sintac\mio\5
+        copy c:\dibujos\taberna.pcx c:\sintac\mio\6
+        copy c:\dibujos\salon.pcx c:\sintac\mio\7
+
+   Con lo que  tendremos los ficheros 5,  6, 7 (sin extensi¢n)  conteniendo los
+   gr ficos a visualizar.
+   Insertaremos un proceso  como el descrito anteriormente en el caso anterior,
+   el  cual nos  permitir   invocar al  visualizador  para imprimir  el gr fico
+   correspondiente.
+
+   Estos casos son s¢lo  una muestra de lo que se  puede conseguir por medio de
+   un buen uso del condacto EXTERN  y el visualizador de gr ficos PCX. No se ha
+   tratado el  modo de  restaurar el  contenido de  la pantalla  a como  estaba
+   antes de ejecutar el visualizador, pero como  esto var¡a seg£n cada caso  se
+   saldr¡a fuera  de los l¡mites  de este manual el  exponer una  por una todas
+   las posibilidades.
+   El  visualizador  permite  f cilmente insertar  gr ficos  en  las  aventuras
+   creadas por medio  del sistema SINTAC. Adem s  se ofrece como muestra  de lo
+   que puede llegar a conseguirse mediante el uso de programas externos.
+

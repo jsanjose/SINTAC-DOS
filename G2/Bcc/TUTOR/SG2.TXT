@@ -1,0 +1,427 @@
+; -----------------------------------------------------------------------------
+;	TUTOR DEL ENTORNO DE DESARROLLO DEL SINTAC G2
+;	(c)1994 JSJ Soft Ltd.
+; -----------------------------------------------------------------------------
+	global opc 0
+
+	set space off
+
+	ifvideo 1,cga
+	color 0
+	clearscr
+	color 7,0
+	text "Este programa requiere CGA."$chr(10)
+	text "Pulsa una tecla."
+	waitkey
+	exit
+cga:
+	video 1
+	color 0
+	clearscr
+
+	intro
+
+	cload SG2FONDO,1
+
+	databegin
+		"TUTOR"
+		"Bienvenido al tutor del entorno"
+		"de desarrollo del SINTAC G2."
+		""
+		"A lo largo de este programa"
+		"aprender s a usar el entorno"
+		"de desarrollo que forma parte"
+		"del sistema SINTAC G2."
+		""
+		"En cualquier momento puedes pulsar"
+		"ESC para abandonar el programa."
+	dataend
+	vtexto 99,99,10,1
+
+	color 0
+	clearscr
+	color 7,0
+	text 0,24,"C:\SINTACG2>"
+	text "eds",50
+	waitkey 200
+
+	fondo
+	call SG2TUT1,copyright
+
+	databegin
+		"INTRODUCCION"
+		"La primera pantalla que ver s nada"
+		"m s ejecutar el entorno desde la"
+		"l¡nea de comandos del DOS contiene"
+		"un cuadro con un mensaje de"
+		"copyright."
+		""
+		"Pulsando la tecla V o RETURN, o"
+		"con el rat¢n si es que est "
+		"conectado, desaparecer  este cuadro."
+	dataend
+	vtexto 99,99,9,1
+
+tecla1:
+	waitkey
+	ifkey "V",sigue1
+	ifkey "v",sigue1
+	ifkey return,sigue1
+	databegin
+		"ATENCION"
+		"Pulsa V o RETURN para"
+		"continuar."
+	dataend
+	vtexto 0,0,2,0
+	goto tecla1
+sigue1:
+	fondo
+
+	databegin
+		"INTRODUCCION"
+		"Ahora quedan a nuestra disposici¢n"
+		"las opciones de la barra superior."
+		""
+		"Podemos seleccionar las mismas por"
+		"medio de las teclas del cursor,"
+		"pulsando la tecla marcada con"
+		"diferente color o pulsando con el"
+		"bot¢n izquierdo del rat¢n sobre la"
+		"opci¢n requerida."
+	dataend
+	vtexto 99,99,9,1
+
+	databegin
+		"INTRODUCCION"
+		"A continuaci¢n puedes seleccionar"
+		"un men£ usando las teclas del cursor"
+		"o la tecla marcada con diferente"
+		"color. Pulsando RETURN ver s una"
+		"explicaci¢n de cada una de las"
+		"opciones del men£."
+	dataend
+	vtexto 99,99,6,1
+
+elige_menu:
+	barra_menu
+
+	if @opc==0
+		call SG2TUT1,tutor_menu_sys
+	endif
+	if @opc==1
+		call SG2TUT2,tutor_menu_fich
+	endif
+	if @opc==2
+		call SG2TUT3,tutor_menu_secc
+	endif
+	if @opc==3
+		call SG2TUT4,tutor_menu_comp
+	endif
+	if @opc==4
+		call SG2TUT5,tutor_menu_util
+	endif
+	if @opc==5
+		call SG2TUT6,tutor_menu_ayuda
+	endif
+	goto elige_menu
+
+	exit
+
+; -------------------------------------
+;	Presentaci¢n.
+; -------------------------------------
+intro:
+	cload TUTOR,1
+
+	float -45,15,15,15,1,5,1
+	putup 15,15,1
+	endfloat
+
+	cfree 1
+	cload S,1
+	cload I,2
+	cload N,3
+	cload T,4
+	cload A,5
+	cload C,6
+
+	tran on,0
+	float 13,30,13,7,1,5,1
+	putup 13,7,1
+	float 24,30,24,8,1,5,2
+	putup 24,8,2
+	float 26,30,26,8,1,5,3
+	putup 26,8,3
+	float 37,30,37,8,1,5,4
+	putup 37,8,4
+	float 44,30,44,8,1,5,5
+	putup 44,8,5
+	float 55,30,55,8,1,5,6
+	putup 55,8,6
+	tran off
+
+	cfree 1 2 3 4 5 6
+	
+	color 15
+	text 29,0,"(c)1994 JSJ Soft Ltd."
+
+	waitkey
+
+	return
+
+; -------------------------------------
+;	Dibuja fondo.
+; -------------------------------------
+fondo:
+	putup 0,0,1
+	return
+
+; -------------------------------------
+;	Men£ del sistema.
+; -------------------------------------
+menu_sys:
+	cload SG2B1,3
+	cload SG20,4
+	putup 0,22,3
+	putup 2,18,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Men£ de ficheros.
+; -------------------------------------
+menu_fich:
+	cload SG2B2,3
+	cload SG2FICH,4
+	putup 0,22,3
+	putup 7,12,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Men£ de secciones.
+; -------------------------------------
+menu_secc:
+	cload SG2B3,3
+	cload SG2SECC,4
+	putup 0,22,3
+	putup 18,14,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Men£ del compilador.
+; -------------------------------------
+menu_comp:
+	cload SG2B4,3
+	cload SG2COMP,4
+	putup 0,22,3
+	putup 31,16,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Men£ de utilidades.
+; -------------------------------------
+menu_util:
+	cload SG2B5,3
+	cload SG2UTL,4
+	putup 0,22,3
+	putup 43,19,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Men£ de ayuda.
+; -------------------------------------
+menu_ay:
+	cload SG2B6,3
+	cload SG2AY,4
+	putup 0,22,3
+	putup 52,14,4
+	cfree 3
+	cfree 4
+	return
+
+; -------------------------------------
+;	Imprime texto en ventana.
+;	Entrada:
+;		@1 coordenada X
+;		@2 coordenada Y
+;		@3 n§ de l¡neas (sin
+;		   contar t¡tulo)
+;		@4 retardo de impresi¢n
+;	Si cualquiera de las coordenadas
+;	es 99, la ventana se centrar .
+;	El texto se define entre
+;	un DATABEGIN y un DATAEND
+;	antes de la llamada; se deben
+;	definir @3 l¡neas de texto, la
+;	primera ser  el t¡tulo de la
+;	ventana
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+
+; -------------------------------------
+;	Gestiona barra men£s.
+; -------------------------------------
+barra_menu:
+
+	if @opc==0
+		menu_sys
+	endif
+	if @opc==1
+		menu_fich
+	endif
+	if @opc==2
+		menu_secc
+	endif
+	if @opc==3
+		menu_comp
+	endif
+	if @opc==4
+		menu_util
+	endif
+	if @opc==5
+		menu_ay
+	endif
+
+tecla_bm:
+	waitkey
+	ifkey return,salir_bm
+	ifkey left,opc_izq
+	ifkey right,opc_der
+	ifkey "F",opc_1
+	ifkey "f",opc_1
+	ifkey "S",opc_2
+	ifkey "s",opc_2
+	ifkey "C",opc_3
+	ifkey "c",opc_3
+	ifkey "U",opc_4
+	ifkey "u",opc_4
+	ifkey "A",opc_5
+	ifkey "a",opc_5
+	databegin
+		"AVISO"
+		"Usa los cursores para ver los"
+		"diferentes men£s desplegables."
+		"Tambi‚n puedes usar las teclas"
+		"marcadas con diferente color."
+		""
+		"Pulsa RETURN para seleccionar"
+		"el men£ y ver una explicaci¢n"
+		"sobre ‚l."
+	dataend
+	vtexto 0,0,8,0
+	goto tecla_bm
+opc_1:
+	set opc 1
+	fondo
+	menu_fich
+	goto tecla_bm
+opc_2:
+	set opc 2
+	fondo
+	menu_secc
+	goto tecla_bm
+opc_3:
+	set opc 3
+	fondo
+	menu_comp
+	goto tecla_bm
+opc_4:
+	set opc 4
+	fondo
+	menu_util
+	goto tecla_bm
+opc_5:
+	set opc 5
+	fondo
+	menu_ay
+	goto tecla_bm
+opc_izq:
+	if @opc>0
+		set opc @opc-1
+	else
+		set opc 5
+	endif
+	goto opcion
+opc_der:
+	if @opc<5
+		set opc @opc+1
+	else
+		set opc 0
+	endif
+opcion:
+	fondo
+	if @opc==0
+		menu_sys
+	endif
+	if @opc==1
+		menu_fich
+	endif
+	if @opc==2
+		menu_secc
+	endif
+	if @opc==3
+		menu_comp
+	endif
+	if @opc==4
+		menu_util
+	endif
+	if @opc==5
+		menu_ay
+	endif
+	goto tecla_bm
+
+salir_bm:
+	return
+

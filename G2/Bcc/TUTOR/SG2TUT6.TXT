@@ -1,0 +1,216 @@
+; -------------------------------------
+;	TUTOR men£ utilidades.
+; -------------------------------------
+tutor_menu_ayuda:
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_indice
+
+	databegin
+		"INDICE"
+		"La opci¢n 'Indice' muestra un"
+		"cuadro con el ¡ndice de temas"
+		"de la ayuda en l¡nea."
+	dataend
+	vtexto 99,99,3,1
+
+	indice
+	waitkey 1000
+
+	databegin
+		"INDICE"
+		"El cuadro muestra la lista de"
+		"temas que pueden ser consultados."
+		""
+		"Una vez seleccionado un tema, por"
+		"medio del bot¢n 'Seleccionar tema'"
+		"puede consultarse el texto de"
+		"ayuda que hay sobre el mismo."
+	dataend
+	vtexto 99,99,7,1
+
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_indice
+	referencias
+	waitkey 1000		
+
+	databegin
+		"INDICE"
+		"La ayuda sobre el tema seleccionado"
+		"se mostrar  en una ventana de un"
+		"cuadro de di logo."
+		"Al lado hay otra ventana en la que"
+		"se muestran los temas relacionados."
+		"Seleccionando uno de estos y pulsando"
+		"sobre el bot¢n 'Ir a referencia'"
+		"aparecer  la ayuda disponible sobre"
+		"ese tema."
+		""
+		"El bot¢n 'Indice' nos lleva de vuelta"
+		"al ¡ndice de la ayuda, mientras que el"
+		"bot¢n 'Anterior' permite volver al"
+		"ultimo tema que hayamos consultado."
+	dataend
+	vtexto 99,99,14,1
+
+	databegin
+		"AYUDA"
+		"El resto de opciones del men£ muestran"
+		"ayuda sobre diferentes temas."
+	dataend
+	vtexto 99,99,2,1
+
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_ay1
+	waitkey 200
+	ay1
+	waitkey 1000
+
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_ay2
+	waitkey 200
+	ay2
+	waitkey 1000
+
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_ay3
+	waitkey 200
+	ay3
+	waitkey 1000
+
+	call SG2,fondo
+	call SG2,menu_ay
+	opc_ay4
+	waitkey 200
+	ay4
+	waitkey 1000
+
+	call SG2,fondo
+
+	return
+
+opc_indice:
+	color 7,0
+	text 53,21," Indice                 "
+	return
+
+opc_ayuda_sobre:
+	color 7,0
+	text 53,20," Ayuda sobre...         "
+	return
+
+opc_ay1:
+	color 7,0
+	text 53,18," Teclas del editor      "
+	return
+
+opc_ay2:
+	color 7,0
+	text 53,17," Teclas cuadro di logo  "
+	return
+
+opc_ay3:
+	color 7,0
+	text 53,16," Variables y banderas   "
+	return
+
+opc_ay4:
+	color 7,0
+	text 53,15," Lista de condactos     "
+	return
+
+; -------------------------------------
+;	Indice ayuda.
+; -------------------------------------
+indice:
+	cload SG2AYIND,3
+	cfade 22,2,3,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+;	Referencias.
+; -------------------------------------
+referencias:
+	cload SG2AYREF,3
+	cfade 23,2,3,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+;	Temas de ayuda.
+; -------------------------------------
+ay1:
+	cload SG2AYTEC,3
+	cfade 24,2,3,3,50
+	cfree 3
+	return
+
+ay2:
+	cload SG2AYTC,3
+	cfade 25,2,3,3,50
+	cfree 3
+	return
+
+ay3:
+	cload SG2AYBV,3
+	cfade 24,2,3,3,50
+	cfree 3
+	return
+
+ay4:
+	cload SG2AYCON,3
+	cfade 25,2,3,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+

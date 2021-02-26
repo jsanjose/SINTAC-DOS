@@ -1,0 +1,114 @@
+
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+Sistema Integrado de creaci¢n de
+Aventuras Conversacionales
+S.I.N.T.A.C. versi¢n G3
+
+Conversor de gr ficos
+
+(c)1995 JSJ Soft Ltd
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+                                 I N D I C E
+şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş
+
+
+
+
+
+      1 INTRODUCCION. . . . . . . . . . . . . . . . . . . . . . . . . . . .  1
+      2 MANEJO DEL PROGRAMA . . . . . . . . . . . . . . . . . . . . . . . .  1
+      3 OPCIONES DEL PROGRAMA . . . . . . . . . . . . . . . . . . . . . . .  1
+      4 USO DE LOS FICHEROS GRAFICOS. . . . . . . . . . . . . . . . . . . .  2
+
+                                1 INTRODUCCION
+
+
+      El conversor de gr ficos permite agrupar los gr ficos de la aventura en
+ficheros de librer¡a. Los gr ficos son creados por cualquier programa de dibujo y
+grabados en formato PCX. El conversor los agrupa en ficheros que pueden contener
+hasta 256 gr ficos.
+
+
+
+                             2 MANEJO DEL PROGRAMA
+
+
+      Si se tiene conectado un rat¢n compatible Microsoft (y cargado el controlador
+correspondiente) se podr n seleccionar las opciones de los men£s simplemente
+pulsando con el rat¢n sobre ellas. Adem s otros elementos tambi‚n pueden ser
+accionados con el rat¢n como los botones de las cajas de di logo y las barras de
+desplazamiento horizontal y vertical.
+      Si no se dispone de rat¢n se puede usar el teclado. En general la letra
+resaltada de una opci¢n se corresponde con la tecla que hay que pulsar para
+acceder a esa opci¢n. A veces ser  necesario pulsar la tecla ALT junto a la letra
+resaltada para activar una opci¢n.
+
+
+
+                            3 OPCIONES DEL PROGRAMA
+
+
+      El programa se puede ejecutar desde el entorno de desarrollo (EDS) usando
+la opci¢n correspondiente del men£ de Utilidades. Tambi‚n puede ejecutarse desde
+el DOS tecleando GRFS. En cualquier caso se nos mostrar  una caja de selecci¢n de
+ficheros. Podemos teclear el nombre de un nuevo fichero con lo que se crear  o
+usar uno ya creado para modificarlo.
+      Despu‚s aparecer  una pantalla como la siguiente:
+
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄ Im genes ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÉÍÍÍÍÍÍÍÍ»  ÚÄÄÄÄÄÄÄÄÄÄ¿
+³                                     º A¤adir º  ³ Eliminar ³
+³                                    ş ÈÍÍÍÍÍÍÍÍ¼  ÀÄÄÄÄÄÄÄÄÄÄÙ
+³                                    ± ÚÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÚÄÄÄÄÄÄÄ¿
+³                                    ± ³ Visualizar ³ ³ Salir ³
+³                                    ± ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ ÀÄÄÄÄÄÄÄÙ
+³                                    ±                         
+³                                    ±            ÚÄÄÄÄ¿       
+³                                      N§ Imagen ³0   ³       
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ            ÀÄÄÄÄÙ       
+
+
+      En la parte izquierda se muestra una lista de los gr ficos que hay en el
+fichero. Junto a cada gr fico aparecen sus dimensiones, el n£mero de colores y la
+cantidad de memoria que ocupa.
+      A la derecha tenemos una serie de opciones:
+
+      -     A¤adir: a¤ade un gr fico. El n£mero del gr fico debe teclearse en la
+            casilla N§ imagen.
+
+      -     Eliminar: borra el gr fico sobre el que se encuentra el cursor en la
+            lista.
+
+      -     Visualizar: muestra el gr fico sobre el que se encuentra el cursor.
+
+      -     Salir: abandona el programa y graba el fichero de librer¡a.
+
+
+
+                        4 USO DE LOS FICHEROS GRAFICOS
+
+
+      Mediante el condacto GRAPHIC del SINTAC se puede mostrar un gr fico en
+pantalla. Los gr ficos deben estar organizados en ficheros de librer¡a creados con
+el conversor. Podemos, por ejemplo, almacenar todos los gr ficos de las localidades
+en un fichero de librer¡a que llamaremos G#LOC.1, otros gr ficos pueden ir en otro
+fichero llamado G#VAR.2. En cualquier caso los nombre de los ficheros de librer¡a
+gr ficos debe tener este formato: G#XXXXXX.NNN. Los caracteres XXXXXX pueden ser
+cualesquiera que nosotros elijamos. En cambio la extensi¢n NNN debe ser un n£mero
+entre 0 y 255. Este n£mero sirve para que el condacto GRAPHIC identifique el
+fichero.
+      El condacto GRAPHIC tiene la sintaxis: GRAPHIC lib graf modo
+      El par metro lib hace referencia al fichero gr fico de librer¡a a usar. Se
+usar  el fichero cuya extensi¢n coincida con el n£mero dado en este par metro.
+      El par metro graf indica el n£mero de gr fico dentro del fichero de librer¡a.
+      El par metro modo indica el modo en que se mostrar  el gr fico. Para m s
+informaci¢n consultar el manual del SINTAC.
+      Retomando el ejemplo anterior, si queremos cargar y mostrar el gr fico
+correspondiente a la localidad 20 tendr¡amos que ejecutar el siguiente condacto:
+
+      GRAPHIC 1 20 1
+
+      Que usa el fichero de librer¡a 1 (G#LOC.1) que es donde tenemos los gr ficos
+de las localidades y el gr fico 20 correspondiente a la localidad que deseamos
+mostrar.
+

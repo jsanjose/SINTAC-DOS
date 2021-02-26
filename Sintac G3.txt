@@ -1,0 +1,2347 @@
+
+---------------------------------------------------------------
+Sistema Integrado de creación de Aventuras Conversacionales
+S.I.N.T.A.C. versión G3
+
+(c)1995 JSJ Soft Ltd
+
+
+
+
+----------------------------------------------------------------
+    I N D I C E
+---------------------------------------------------------------
+
+
+PARTE I: Introducción al sistema SINTAC   1
+    1 PROLOGO     1
+        1.1 Presentación      1
+        1.2 Requerimientos de hardware    1
+    2 INTRODUCCION    2
+        2.1 La base de datos      2
+        2.2 Vocabulario   2
+        2.3 Localidades   3
+        2.4 Mensajes del Sistema      3
+        2.5 Mensajes      3
+        2.6 Objetos   4
+        2.7 Procesos      4
+    3 VARIABLES y BANDERAS    5
+        3.1 Variables del sistema     5
+        3.2 Banderas del sistema      5
+    4 INDIRECCION     7
+    5 ETIQUETAS Y SALTOS      8
+    6 VENTANAS    9
+    7 MODOS GRAFICOS Y LOS COLORES    10
+
+PARTE II: Compilador, intérprete-debugger y linkador      11
+    8 EL COMPILADOR   11
+        8.1 Cómo compilar la base de datos    11
+            8.1.1 Los ficheros    11
+            8.1.2 Los mensajes de error   11
+            8.1.3 El proceso de compilación   11
+        8.2 Estructura de la base de datos    12
+        8.3 Comentarios en la base de datos   12
+        8.4 Constantes simbólicas     13
+        8.5 Descripción de las distintas secciones    14
+            8.5.1 Sección de Vocabulario      14
+            8.5.2 Secciones de Mensajes y Mensajes del Sistema    16
+            8.5.3 Sección de Localidades      17
+            8.5.4 Sección de Objetos      18
+            8.5.5 Secciones de Procesos   19
+    9 EL INTERPRETE-DEBUGGER      22
+        9.1 Conceptos básicos     22
+        9.2 Ejecutar la base de datos compilada   22
+            9.2.1 Cómo entrar en el intérprete-debugger   22
+            9.2.2 Mensajes de error   22
+        9.3 La ventana de depuración      23
+        9.4 Opciones del debugger     23
+            9.4.1 Visualizar y editar variables   23
+            9.4.2 Visualizar y editar banderas    24
+        9.5 Frase y sentencia lógica      24
+        9.6 La sentencia lógica   24
+            9.6.1 Acciones encadenadas    24
+            9.6.2 Variables del sistema asociadas a la sentencia lógica   25
+            9.6.3 Introducción de la sentencia lógica     26
+            9.6.4 Diálogo con personajes      26
+    10 LINKADOR   28
+    11 CONDACTOS      29
+        PROCESS   29
+        DONE      29
+        NOTDONE   29
+        RESP      30
+        NORESP    30
+        DEFWIN    30
+        WINDOW    30
+        CLW   30
+        LET   30
+        EQ    30
+        NOTEQ     31
+        LT    31
+        GT    31
+        MES   31
+        NEWLINE   31
+        MESSAGE   31
+        SYSMESS   31
+        DESC      31
+        ADD   31
+        SUB   31
+        INC   31
+        DEC   31
+        SET   31
+        CLEAR     32
+        ZERO      32
+        NOTZERO   32
+        PLACE     32
+        GET   32
+        DROP      32
+        INPUT     33
+        PARSE     33
+        SKIP      33
+        AT    34
+        NOTAT     34
+        ATGT      34
+        ATLT      34
+        ADJECT1   34
+        NOUN2     34
+        ADJECT2   34
+        LISTAT    34
+        ISAT      34
+        ISNOTAT   34
+        PRESENT   35
+        ABSENT    35
+        WORN      35
+        NOTWORN   35
+        CARRIED   35
+        NOTCARR   35
+        WEAR      35
+        REMOVE    35
+        CREATE    35
+        DESTROY   35
+        SWAP      35
+        RESTART   36
+        WHATO     36
+        MOVE      36
+        ISMOV     36
+        GOTO      37
+        PRINT     37
+        DPRINT    37
+        CLS   37
+        ANYKEY    37
+        PAUSE     37
+        LISTOBJ   37
+        FIRSTO    37
+        NEXTO     37
+        SYNONYM   38
+        HASAT     38
+        HASNAT    38
+        LIGHT     38
+        NOLIGHT   38
+        RANDOM    38
+        SEED      38
+        PUTO      39
+        INKEY     39
+        COPYOV    39
+        CHANCE    39
+        RAMSAVE   39
+        RAMLOAD   39
+        ABILITY   39
+        AUTOG     40
+        AUTOD     40
+        AUTOW     40
+        AUTOR     40
+        ISDOALL   40
+        ASK   40
+        QUIT      41
+        SAVE      41
+        LOAD      41
+        EXIT      41
+        END   42
+        PRINTAT   42
+        SAVEAT    42
+        BACKAT    42
+        NEWTEXT   42
+        PRINTC    42
+        INK   42
+        PAPER     42
+        BRIGHT    42
+        BLINK     42
+        COLOR     43
+        DEBUG     43
+        WBORDER   43
+        CHARSET   43
+        EXTERN    44
+        GTIME     44
+        TIME      44
+        TIMEOUT   44
+        MODE      44
+        GRAPHIC   45
+        REMAPC    45
+        SETAT     45
+        CLEARAT   45
+        GETRGB    46
+        PLAYFLI   46
+        MOUSE     46
+        MOUSEXY   46
+        MOUSEBT   46
+        PLAY      46
+        MUSIC     47
+
+PARTE III: Apéndices      48
+    APENDICE A: Mensajes de aviso del compilador      48
+    APENDICE B: Mensajes de error del compilador      49
+    APENDICE C: Mensajes del sistema      55
+    APENDICE D: Códigos de teclado    56
+    APENDICE E: Historia del SINTAC   58
+
+INDICE ALFABETICO     60
+
+
+
+PARTE I: Introducción al sistema SINTAC
+
+
+
+    PROLOGO
+
+
+Presentación:
+
+    El sistema SINTAC es un sistema integrado de desarrollo de aventuras conversacionales para ordenadores PC y compatibles. La versión actual, permite el desarrollo de aventuras de tipo conversacional en los modos gráficos de 16 y 256 colores de la tarjeta VGA.
+    El SINTAC está compuesto de varios programas entre los que se encuentra un intérprete-debugger para analizar paso a paso la aventura creada, un compilador de bases de datos y un linkador que genera ficheros ejecutables de las bases de datos compiladas, además de un entorno integrado de programación que incluye su propio editor de textos y un completo sistema de ayuda en línea.
+    Aparte de estos que constituyen el núcleo principal del sistema se suministran algunas utilidades de apoyo como un editor de juegos de caracteres.
+
+
+Requerimientos de hardware:
+
+    Esta versión funciona en cualquier ordenador compatible PC con al menos 512K de memoria instaladas, aunque es recomendable tener 640K sobre todo si se trabaja desde el entorno de desarrollo.
+    Si se utiliza el entorno integrado de programación es recomendable eliminar los programas residentes no utilizados para liberar la máxima cantidad de memoria convencional posible.
+    Las aventuras compiladas precisan una cantidad de memoria que varía de acuerdo al tamaño de la base de datos. El compilador informa de la memoria que ocupa cada sección una vez compilada. Todas las secciones se cargarán en memoria en el momento de ejecutar el programa excepto las tablas de mensajes que serán cargadas en el momento en que sean requeridas. Para más información consultar la sección 0, página 7.
+    Esta versión funciona solamente con tarjetas gráficas VGA o compatibles.
+
+
+    INTRODUCCION
+
+    A continuación se expondrán brevemente una serie de conceptos básicos sobre el sistema SINTAC que habrá que tener en cuenta a la hora de programar.
+
+
+La base de datos:
+
+    La base de datos es un fichero de texto que contiene una serie de secciones, cada una de las cuales definen distintos apartados del programa, como son las descripciones de las localidades, los mensajes, los objetos y el programa que controla todo. Hay una serie de comandos, denominados condactos, que permiten la programación de complejas aventuras conversacionales. Una explicación más detallada de la base de datos puede encontrarse en el apartado correspondiente.
+    El fichero de texto que compone la base de datos será procesado por el compilador, el cual lo compactará y codificará creando un fichero de datos para el intérprete.
+    Este fichero de datos podrá ser ejecutado por el intérprete-debugger (DS.EXE), nunca por sí mismo ya que se trata de un fichero de datos solamente, aunque por medio del linkador podemos transformarlo en un fichero ejecutable.
+    Para crear el fichero de texto hace falta disponer de un editor ASCII o de un procesador de textos, o usar el editor incorporado en el entorno de programación el cual incorpora capacidades especiales que facilitan la edición de las bases de datos. Si se emplea un procesador de textos habrá que tener especial cuidado al salvar el fichero. Hay que usar el modo NO DOCUMENTO o EXPORTAR el texto en formato Texto del DOS dependiendo del procesador de textos que estemos usando. Si no se hace así el procesador de textos puede incluir códigos de control y formato en el fichero que confundirían al compilador.
+    Una elección adecuada, para los que dispongan del sistema operativo MS-DOS 5.00 o superior es emplear el editor (EDIT) que incorpora el propio sistema.
+
+
+Vocabulario:
+
+    El vocabulario está compuesto por una serie de palabras a las cuales se les asigna un número y un tipo. El tipo determinará si la palabra es un nombre, un verbo, un adjetivo o una conjunción. Los verbos normalmente se usarán para indicar acciones. Los nombres serán asignados a objetos, personajes o lugares. Los adjetivos permiten que dos objetos (o personas o lugares) cuyos nombres coincidan puedan ser diferenciados. Las conjunciones actúan como separadores dentro de la frase tecleada por el jugador.
+    Normalmente dos palabras del mismo tipo cuyo número coincida serán consideradas como sinónimos. Esto permite dar variedad al vocabulario y que el jugador no tenga que encontrar la palabra exacta a la hora de realizar una acción.
+    Cuando se inserta una palabra en el vocabulario sólo se consideran como significativos los 6 primeros caracteres. Esto quiere decir que palabras como MONTAR y MONTARSE son equivalentes. Ten muy en cuenta esto cuando crees el vocabulario.
+    Además hay que destacar tres tipos especiales de palabras en el vocabulario: las palabras de movimiento, los nombres convertibles y los nombres propios. Las palabras de movimiento son usadas para indicar las conexiones entre las distintas localidades. Palabras de movimiento son, por ejemplo, NORTE, SUBIR, SALIR. Pueden ser tanto verbos como nombres.
+    Los nombre convertibles se denominan así ya que si en la sentencia lógica no aparece un verbo, pero aparece uno de estos automáticamente se convierten en verbos. Los nombres propios son usados para nombres de lugares, de personajes. Estos nombres no son sustituidos cuando se usa un verbo con terminación (COGELO, COGELA, COGELE).
+
+
+Localidades:
+
+    Una localidad es un lugar, una habitación o un territorio en el que el jugador de la aventura puede estar en un momento determinado. Una localidad se define dentro de la base de datos mediante un texto que es el que se imprimirá cuando se pida una descripción de esa localidad. Este texto debería ser, valga la redundancia, lo más descriptivo posible; debe dar al jugador una idea exacta de dónde se encuentra.
+    Un aspecto importante a tener en cuenta respecto a las localidades es que estas no tiene por que tener una extensión fija. Pueden ser tan pequeñas como el interior de una maleta o tan grandes como un valle entre montañas. Este aspecto debe tomarse en cuenta a la hora de diseñar la aventura.
+    Además en la base de datos también se incluirá una lista con las conexiones de la localidad con las que le rodean.
+
+
+Mensajes del Sistema:
+
+    Los mensajes del sistema son empleados, como su nombre indica, por el propio intérprete para informar de ciertas condiciones cuando se ejecuta un condacto. Así, por ejemplo, el condacto GET informa con un mensaje del tipo 'Has cogido una manzana.' cuando, efectivamente, se pudo coger la manzana. Este es un mensaje del sistema. Todos los mensajes del sistema se pueden modificar libremente o insertar nuevos. Hay 255 mensajes del sistema disponibles, del 0 al 254, de los cuales algunos deben ser fijos ya que son usados por los condactos del SINTAC. A parte de estos el programador es libre de insertar los mensajes del sistema que más le convengan o modificar los que son fijos para que se adapten a su gusto. Los mensajes del sistema se imprimen por medio del condacto SYSMESS.
+    Hay un carácter especial común a todo tipo de mensajes, el símbolo de subrayado (_). Si es encontrado este carácter será sustituido por la descripción del último objeto referenciado (cuyo número está en la variable del sistema 8). Esta característica es útil para acciones genéricas del tipo COGER. Así el mensaje del sistema que indica que se ha cogido un objeto es, en realidad, 'Has cogido _.', el cual sirve para todos los objetos existentes en el juego.
+
+
+Mensajes:
+
+    Aparte de los 255 mensajes del sistema, existen unas tablas de mensajes disponibles para el programador. Estos mensajes son generales y pueden ser usados para cualquier propósito. Se imprimen por medio de dos condactos: MES y MESSAGE.
+    Existen 255 tablas de mensajes que pueden albergar hasta 255 mensajes cada una proporcionando un total de más de 65000 mensajes.
+    Las mismas consideraciones, en cuanto al símbolo de subrayado, hechas para los mensajes del sistema, se consideran también para estos.
+    El uso de tablas de mensajes puede parecer un tanto complicado pero hay que considerar que facilitan la estructuración de la base de datos. Por ejemplo podríamos usar una tabla de mensajes para los mensajes de descripción de los objetos, otra para diálogos con PSIs, etc. Además mediante el uso de tablas de mensajes se puede "romper" la barrera impuesta por la memoria disponible ya que se usa un sistema de paginación que carga en memoria sólo la tabla de mensajes que está siendo usada. Esto también tiene un inconveniente y es que se debe acceder a disco cada vez que se necesita una nueva tabla de mensajes. Esta pequeña sobrecarga se puede minimizar, como ya se ha comentado, agrupando los mensajes según su categoría. Por otro lado el tiempo de acceso al disco es mínimo ya que se usa un sistema de índices que permite acceder directamente a la tabla de mensajes requerida.
+
+
+Objetos:
+
+    Un elemento importante de cualquier aventura conversacional son los objetos. Los objetos dentro del sistema SINTAC están definidos por un número, además cada objeto lleva asociado un nombre y un adjetivo que deben ser palabras presentes en el vocabulario. Puede haber definidos hasta 255 objetos, del 0 al 254. El número de objeto 255 queda reservado como número de objeto no válido.
+    Aparte de esto un objeto también tiene definido un mensaje que es el que se imprimirá en vez del símbolo de subrayado o cuando se pida una lista de objetos.
+    Junto a todo esto un objeto viene definido también por una serie banderas, las cuales indican si es una fuente de luz, una prenda (banderas del sistema) o cualquier otra cosa gracias a la posibilidad de definir 16 banderas de usuario para cada objeto. Las banderas de un objeto se comprueban mediante los condactos HASAT y HASNAT. Las banderas de usuario permiten definir distintas propiedades de un objeto, si es pesado o ligero, si es grande o pequeño, si es frágil o robusto,... lo cual permite una gran flexibilidad a la hora de programar una aventura.
+
+
+Procesos:
+
+    Los procesos son el corazón de la aventura ya que ellos son los que controlan el mundo creado por el programador. En los procesos quedan reflejadas todas las posibles acciones del jugador, así como las rutina que dan vida a los personajes que interaccionan con él.
+    Un proceso consta de una serie de entradas, cada una de las cuales a su vez consta de una serie de condactos. Los condactos se ejecutan en orden dentro de una entrada. Cuando uno de los condactos falla (una condición no se cumple o una acción no pudo llevarse a cabo) el flujo del programa se dirige a la siguiente entrada y así sucesivamente hasta que se produzca una salida del proceso en curso. Esta salida puede estar ocasionada por que se alcanzó el último condacto de la última entrada del proceso, o por la ejecución de un condacto que ocasione la salida del proceso en curso; como por ejemplo los condactos DONE y NOTDONE. Dentro de la descripción de cada condacto se explican los efectos de que una condición se cumpla o no, o de que una acción se ejecute o no.
+    El sistema, cuando se inicializa, empieza la ejecución en la primera entrada del Proceso 0, esto es importante ya que todas las acciones de inicialización deben ejecutarse en este proceso (imprimir pantalla de presentación, definir las ventanas, colocar ciertas variables del sistema a sus valores adecuados, etc...).
+
+
+    VARIABLES y BANDERAS
+
+    El sistema SINTAC posee dos tipos de datos con los que se puede trabajar, se trata de las variables y las banderas. Hay disponibles para el usuario 256 de cada una de ellas (256 variables y 256 banderas). Las variables y las banderas son totalmente independientes; cuando se modifica una variable no se afecta a ninguna bandera y viceversa. La diferencia está en que las variables pueden contener valores en un rango de 0 a 255 y las banderas solamente pueden contener 0 o 1.
+    Las operaciones que se pueden realizar con variables son bastante diversas: darles un valor, compararlas con otras variables, sumarles o restarles un valor, etc... En cambio, las operaciones que se pueden realizar con las banderas son limitadas (pero suficientes): ponerlas a 1 o a 0 y comprobar si están a 1 o a 0.
+    Hay ciertas variables y banderas denominadas del sistema, que son usadas por el intérprete internamente. A continuación se listan por orden numérico:
+
+
+Variables del sistema:
+
+    0:  número de ventana activa
+    1:  número de localidad actual
+    2:  número de verbo de la última sentencia analizada por PARSE
+    3:  ídem pero nombre
+    4:  ídem pero adjetivo
+    5:  ídem pero nombre 2
+    6:  ídem pero adjetivo 2
+    7:  máximo número de objetos que se pueden llevar (0=ilimitados)
+    8:  número de objeto actual
+    9:  primer código ASCII IBM (usado por el condacto INKEY)
+    10: segundo código ASCII IBM
+    11: variable interna usada por QUIT, SAVE y END
+    12: código devuelto por el condacto INPUT
+    13: código de salida de un programa externo ejecutado con EXTERN
+    14: número de columnas de caracteres en pantalla (40 o 80)
+    15: número de filas en pantalla (25 o 30)
+    16: tiempo muerto en un condacto INPUT (en segundos)
+    17: número de tabla de mensajes cargada en memoria
+    18: fila del ratón
+    19: columna del ratón
+    20: reservada
+
+
+Banderas del sistema:
+
+    0:  indicador de oscuridad (1=si, 0=no)
+    1:  si es 1 LISTAT imprime en formato encolumnado, si es 0 imprime los objetos seguidos
+    2:  indicador usado para evitar las inicializaciones en el Proceso 0 (DESC lo pone a 0)
+    3:  bandera de usuario
+    4:  puesta a 1 si la tarjeta de video es EGA o VGA (siempre estará a 1 en esta versión del sistema)
+    5:  estará a 0 si modo 640x480x16 colores o a 1 si modo 320x200x256 colores
+    6:  modo de temporización de INPUT, 0 si el tiempo se da para teclear la frase completa, 1 si se da hasta teclear primer carácter
+    7:  modo de funcionamiento de LISTAT y LISTOBJ (para más información consultar las secciones correspondientes a estos condactos)
+    8:  1 si el botón izquierdo del ratón está pulsado, 0 si no
+    9:  1 si el botón derecho del ratón está pulsado, 0 si no
+    10: 1 ratón activado, 0 ratón desactivado
+    11 a 20:    reservadas
+
+
+
+    INDIRECCION
+
+    El término indirección se refiere a la posibilidad de usar los valores almacenados en las variables como parámetros de los condactos. De esta forma se consigue que los parámetros indireccionados dependan del contenido de las variables que se usan para indireccionar.
+    Todos los parámetros de un condacto pueden ser indireccionados. Por ejemplo:
+
+    DESC 1, describirá siempre la localidad número 1, en cambio,
+    DESC [1], describirá la localidad cuyo número esté contenido en la variable número 1.
+
+    Para indicar que un parámetro es indireccionado se escribe entre corchetes []; así se indica que se usará el contenido de la variable cuyo número está entre corchetes, en vez del número directamente.
+    La indirección permite mucha flexibilidad a la hora de programar ya que mediante ella se pueden crear bucles. Por ejemplo:
+
+    _   _   LET 100 101     
+    $repite
+    _   _   LET [100]   10
+            INC 100
+            EQ  100 106
+            DONE
+    _   _   SKIP    $repite
+
+    Esta secuencia de condactos pone a 10 las variables 101 a 105 usando la indirección para crear un sencillo bucle. La línea clave es en la que aparece:
+
+    _   _   LET [100]   10
+
+    Mediante esta línea conseguimos que la variable cuyo número está en la variable 100 sea puesta a 10. Esto que puede sonar muy lioso es bastante fácil de asimilar. Asegúrate que entiendes lo que hace este pequeño ejemplo.
+
+
+    ETIQUETAS Y SALTOS
+
+    El sistema SINTAC posee la capacidad de realizar saltos desde un punto de un proceso a otro punto dentro del mismo proceso. Esto se consigue mediante el uso del condacto SKIP. El condacto SKIP debe ir seguido siempre de una etiqueta. Las etiquetas se colocan al inicio de una entrada, y solamente al inicio. No está permitido colocarlas en mitad de una entrada.
+    Una etiqueta se define por el símbolo $ seguido del nombre de la etiqueta. Aunque el nombre de la etiqueta puede ser tan largo como una línea de texto, sólo los primeros 14 caracteres son significativos. El nombre de la etiqueta puede contener todos los caracteres alfabéticos y numéricos así como los siguientes caracteres especiales: '+', '-', '*' y '_'
+Así son válidas etiquetas como $saltar_aquí, $ad+d, $coger-cosa, $123-456.
+    Las etiquetas son locales al proceso. Es decir, sólo existen dentro del proceso en el que se definieron. Así se pueden tener dos etiquetas de nombre igual en procesos diferentes sin que se interfieran entre sí; el condacto SKIP saltará a la etiqueta que se encuentre en su mismo proceso.
+    El máximo número de etiquetas que puede haber dentro de un proceso es de 100; además el máximo número de llamadas, dentro de un proceso, a etiquetas definidas posteriormente al condacto SKIP que las llama es de 100. Esto último es los que denominaremos saltos 'forward'
+
+
+    VENTANAS
+
+    Las ventanas permiten dividir la pantalla en zonas separadas e independientes unas de otras. Estas zonas de pantalla son rectangulares con unas dimensiones definidas mediante el condacto DEFWIN. Además cada ventana tiene unos colores por defecto que son también definidos por este condacto. El máximo número de ventanas que pueden ser definidas es de 10, numeradas de la 0 a la 9.
+    Todos los textos que se impriman se mandarán a la ventana activa la cual se selecciona por medio del condacto WINDOW. La ventana es activa hasta que se cambie por medio de otro condacto WINDOW o hasta que se modifique, por cualquier medio, el contenido de la variable del sistema 0.
+    Además cada ventana tiene unos colores independientes, así los condactos INK y PAPER sólo afectan a la ventana activa. Estos condacto seleccionan los colores actuales de impresión en la ventana activa. Los colores de la ventana activa sólo se modificarán si se cambian por medio de estos condactos, o si se ejecuta alguno de los condactos siguientes:
+
+    - CLW   que restaurará los colores de la ventana a los colores que se dieron en el condacto DEFWIN
+    - DEFWIN    que colocará los colores de la ventana al color especificado en sus parámetros
+
+    Las ventanas pueden tener borde; inicialmente cuando son creadas por el condacto DEFWIN las ventanas no tienen borde. Mediante el condacto WBORDER se puede definir un tipo de borde para la ventana. Si se quiere definir una ventana con borde es aconsejable colocar el condacto WBORDER inmediatamente a continuación del DEFWIN que la define.
+
+
+    MODOS GRAFICOS Y LOS COLORES
+
+    Los ordenadores de la familia PC y compatibles permiten una amplia gama de colores si se dispone de la configuración adecuada para visualizarlos, es decir de una tarjeta gráfica de color VGA y de un monitor que permita visualizar la pantalla en color.
+    Bajo estos requisitos se podrán visualizar un máximo de 16 colores simultáneamente en el modo 640x480 (MODE 0) y hasta 256 colores simultáneamente en pantalla en el modo 320x200 (MODE 1).
+    Estos son los dos únicos modos que soporta la versión actual del sistema SINTAC.
+    El número real de colores disponibles es mayor, en concreto 262144, lo que ocurre que sólo un número muy reducido de ellos (16 o 256 según el modo) se pueden visualizar a la vez en pantalla.
+    El número del color (0 a 15 o 0 a 255) realmente es un índice a una paleta de colores, esta paleta tendrá capacidad para 16 o 256 colores y en ella estarán almacenadas las 'verdaderas' representaciones de los colores.
+    Un color se puede definir mediante sus componentes de color rojo, verde y azul o componentes RGB. En la tarjeta VGA estas componentes pueden tomar valores de 0 a 63 cada una. Así el color negro se representa por (0 0 0) y el blanco intenso por (63 63 63), serán pues estos valores los que estarán almacenados en la paleta de color.
+    En algunos programas de dibujo cada componente de color RGB se representa mediante un porcentaje del 0 al 100%. Es fácil establecer una relación entre porcentaje y valor real sabiendo que el 0% se corresponde a una componente de valor 0 y el 100% a una de valor 63. Mediante una regla de tres podemos a partir del porcentaje sacar el valor real de la componente tal y como lo entiende la tarjeta VGA. Así una componente del 20% en el programa de dibujo da un valor real de (63*20)/100=12.6 que redondeando hacia abajo nos da 12.
+    ¿Y a qué viene todo esto?. Pues que si tienes un programa de dibujo que te permite ajustar la paleta de colores (Deluxe Paint, Paint Brush, ...) puedes probar combinaciones de color hasta encontrar la que más te guste, anotar los porcentajes de cada una de sus componentes y luego usarlos en el condacto REMAPC, aplicando la conversión descrita, para modificar uno de los colores de la paleta.
+    Los primeros 16 colores disponibles inicialmente en la paleta se listan a continuación:
+
+        SIN BRILLO          CON BRILLO
+    Valor       Color   Valor       Color
+    0       Negro   8       Gris
+    1       Azul    9       Azul pálido
+    2       Verde   10      Verde pálido
+    3       Cían    11      Cían pálido
+    4       Rojo    12      Rojo pálido
+    5       Magenta 13      Magenta pálido
+    6       Marrón  14      Amarillo
+            7       Blanco    15        Blanco intenso
+
+
+PARTE II: Compilador, intérprete-debugger y linkador
+
+
+
+    I. EL COMPILADOR
+
+
+A. Cómo compilar la base de datos:
+
+
+Los ficheros:
+
+    El compilador permite codificar el fichero de texto que compone la base de datos y transformarlo en un formato compacto listo para ser ejecutado mediante el intérprete. Para compilar una base de datos se debe entrar al compilador con la siguiente línea desde el sistema operativo:
+
+    CS [base_de_datos] [fichero_salida]
+
+    El parámetro base_de_datos es el nombre de la base de datos que queremos compilar. El parámetro fichero_salida es el nombre del fichero que contendrá la base de datos compilada. Si hemos suministrado en la línea de llamada el nombre de la base de datos, como nombre de fichero de salida se cogerá este sustituyendo su extensión por DAT.
+
+
+Los mensajes de error:
+
+    Si se produce algún error durante la compilación se mostrarán los errores producidos. Se presenta una lista de los errores junto al número de línea de la base de datos donde se produjeron (0 si no se aplica número de línea, por ejemplo cuando se produce un error de apertura de fichero).
+    El compilador reserva cierta cantidad de memoria para compilar las secciones. Si aparece el mensaje de error de memoria insuficiente habrá que liberar memoria eliminando programas residentes como controladores de ratón, emuladores de memoria expandida, discos ram,... e intentar compilar de nuevo.
+
+
+El proceso de compilación:
+
+    Durante la compilación se irán presentando una serie de mensajes informativos sobre lo que está haciendo el compilador en ese momento. En concreto se mostrará una lista de secciones. Una marca indicará la sección que está siendo compilada. Cuando se termine se mostrará cierta información referente a la sección. El primer número indica la cantidad de palabras si es el vocabulario, el número de mensajes del sistema, tablas de mensajes, localidades, procesos, objetos. El segundo número indica lo que ocupa la sección en bytes una vez compilada, en el caso de tablas de mensajes indica el número total de mensajes compilados.
+
+
+B. Estructura de la base de datos:
+
+    Como ya se comentó anteriormente la base de datos es un fichero de texto, el cual puede ser creado por cualquier editor o procesador de textos, o mejor desde el entorno de programación.
+    En la base de datos, las distintas secciones del programa están claramente delimitadas unas de otras; esto es así para que el compilador sepa de que sección se trata a la hora de compilar y codificar la base de datos.
+    Normalmente el inicio de una sección se indica mediante la secuencia de caracteres \XXX, donde XXX indica el tipo de sección. Los distintos tipos de secciones se listan a continuación:
+
+    \VOC    : sección de vocabulario
+    \OBJ    : sección de descripción de objetos
+    \LOC    : sección de localidades
+    \MSG    : sección de mensajes
+    \MSY    : sección de mensajes del sistema
+    \PRO    : sección de procesos
+
+    En la sección de mensajes habrá tantos \MSG como tablas de mensajes haya en la base de datos, así mismo en la sección de procesos habrá tantos \PRO como procesos haya en el programa.
+    El final de una sección también debe ser indicado; esto se realiza mediante la secuencia de caracteres \END. Estas secuencias de caracteres, tanto la de inicio como la de final, deben siempre estar colocadas en líneas separadas; así:
+
+    \LOC
+    ..... aquí irían las descripciones de localidades .....
+    \END
+
+
+C. Comentarios en la base de datos:
+
+    Los comentarios normalmente deben ir precedidos de un punto y coma (;). Se pueden colocar comentarios en prácticamente cualquier lugar de la base de datos teniendo en cuenta que cualquier línea que comience por punto y coma es considerada un comentario. Se debe tener cuidado con esto ya que cualquier línea de un texto de descripción de localidad, mensaje, mensaje del sistema o descripción de objeto, que contenga como primer carácter un punto y coma es considerada como comentario. Por ejemplo:
+
+    @001 Esta descripción de localidad no es correcta
+    ; ya que esta línea es considerada como comentario
+    y por tanto la siguiente línea real de texto es esta
+
+    Además se pueden colocar comentarios tras la definición de cualquier elemento como palabras de vocabulario, conexiones, objetos, condactos; incluso detrás de las secuencias de inicio y final de sección:
+
+    \VOC
+    ; sección de vocabulario
+    NORTE   5   Nombre  ; verbo de movimiento
+
+
+D. Constantes simbólicas:
+
+    Dentro de la base de datos se pueden definir constantes simbólicas. Una constante simbólica puede ser usada en cualquier lugar de la base de datos donde sería usado un número, con la comodidad de que es más fácil recordar un nombre que un número.
+    Las constantes simbólicas pueden estar definidas en cualquier lugar de la base de datos; tanto al principio, como al final, como en medio de cualquier sección.
+    El compilador realiza una primera pasada en busca de constantes y las va almacenando en una tabla. El máximo número de constantes es de 1000.
+    La definición de una constante debe ir en una línea que debe ser de la forma:
+
+    \\nombre_constante  valor
+
+donde los caracteres '\\' indican el inicio de la definición de constante, nombre_constante es el nombre que queremos asignar a la constante y que no debe tener más de 14 caracteres de longitud. El campo valor es un valor numérico de 0 a 255 que queremos asignar a la constante.
+    El nombre de la constante NO DEBE empezar con un número y puede contener letras, números y los caracteres '_', '+', '-' y '*'.
+    No es necesario definir una constante antes del lugar de uso de la misma; una constante que esté definida al final de la base de datos puede ser usada incluso al principio de esta.
+    A continuación unos ejemplos de uso de constantes simbólicas:
+
+    \\HABLAR_PSIS   15
+    ...
+    \PRO 3
+
+    DECIR   _   PROCESS HABLAR_PSIS
+            DONE
+    ...
+    \END
+
+    \PRO HABLAR_PSIS
+    
+    ; constantes con los números de mensajes usados en
+    ; conversaciones
+    \\MENS_CAMARERO     18
+    \\MENS_CRIADA   23
+    \\VAR_CAMARERO  100 ; variable con localidad de
+                ; camarero
+    \\VAR_CRIADA    101 ; ídem para la criada
+
+    _   CAMARERO    EQ  [VAR_CAMARERO]  [1]
+            MESSAGE 0   MENS_CAMARERO
+            DONE
+    _   CRIADA  EQ  [VAR_CRIADA]    [1]
+            MESSAGE 0   MENS_CRIADA
+            DONE
+    ...
+
+    \END
+
+    \\VAR_INPUT     12  ; variable con el código
+                ; devuelto por INPUT
+    \\TECLA_F1  255 ; código de tecla F1
+    \\TECLA_F2  254 ; código de tecla F2
+    \\INVENTARIO    24  ; proceso que imprime inventario
+    \\MIRAR     25  ; proceso que imprime
+                ; descripción
+
+    \PRO 23
+
+    _   _   EQ  VAR_INPUT   TECLA_F1
+            PROCESS INVENTARIO
+            DONE
+    _   _   EQ  VAR_INPUT   TECLA_F2
+            PROCESS MIRAR
+            DONE
+    ...
+
+    \END
+
+    Hay una serie de constantes simbólicas con un significado especial; estas son las siguientes:
+
+    - V_MOV su valor indica el máximo número de palabra de vocabulario que será considerado como verbo de movimiento. Su valor por defecto es 14.
+    - N_CONV    su valor indica el máximo número de palabra de vocabulario que será considerado como nombre convertible. Su valor por defecto es 20.
+    - N_PROP    su valor indica el máximo número de palabra de vocabulario que será considerado como nombre propio. Su valor por defecto es 50.
+
+    Si estas constantes no son definidas se tomará su valor por defecto y se producirá un mensaje de aviso.
+
+
+E. Descripción de las distintas secciones:
+
+    Seguidamente se describen una a una las distintas secciones. Los campos encerrados entre corchetes ([]) son opcionales y pueden o no aparecer. El resto de los campos deben aparecer siempre, además en el orden en que se indican. Los campos deben ir separados unos de otros por uno o más espacios en blanco o por uno o más códigos de tabulación.
+
+
+Sección de Vocabulario:
+
+    La sección de vocabulario se inicia con \VOC seguido de una serie de líneas de la forma:
+
+    palabra número  tipo    [;comentario]
+
+    Los distintos campos se comentan a continuación:
+
+    - palabra   es la palabra que se quiere insertar en el vocabulario. Puede estar escrita tanto en mayúsculas como en minúsculas, el compilador la convertirá automáticamente a mayúsculas. Sólo son significativos los 6 primeros caracteres.
+    - número    es el número que se quiere asignar a la palabra en el rango 1 a 254 inclusive.
+    - tipo  indica el tipo de palabra de que se trata. El tipo de palabra puede ser:
+
+                V para verbo
+                N para nombre
+                A para adjetivo
+                C para conjunción
+
+                Puede estar en mayúscula o minúscula indiferentemente. Si en este campo se especifica más de un carácter, sólo se considera el primero. Así son equivalentes: Nombre, nombre, nomb, nada y n; verbo, V, v, verdadero y verb; etc...
+
+    Unos ejemplos de definición de la sección de vocabulario:
+
+    \VOC
+
+    NORTE   1   nombre
+    SUR 2   n
+    SUBIR   9   verbo
+    ; acción de coger cosas
+    COGER   20  verbo   ; coger
+    coge    20  VERB
+    CoJo    20  V
+    COGELO  20  verbosio
+    COGeLa  20  verbum
+    PREGUNtar   29  verbo
+    vieja   1   adj
+    Y   1   conjunción
+    luego   1   conj.
+
+    \END
+
+    Dentro del campo palabra sólo son admitidos como caracteres válidos letras y números (ABC..XYZ, 01..9) nunca otro tipo de caracteres. Además no se podrán insertar en el vocabulario palabras repetidas, es decir, cuyos 6 primeros caracteres del campo palabra coincidan.
+    A parte de esto hay que tener en cuenta que el número asignado a una palabra puede modificar el tipo de esta; así:
+
+    - Nombres y verbos cuyo número sea menor que el valor de la constante V_MOV son considerados como palabras de movimiento.
+    - Los nombres cuyo número sea menor que el valor de la constante N_CONV son considerados nombres convertibles.
+    - Los nombres cuyo número sea menor que el valor de la constante N_PROP son considerados nombres propios.
+
+    Para más información ver la sección 0, página 15.
+
+    Dos palabras del mismo tipo cuyo número coincida son considerados como sinónimos; pueden ser usadas indistintamente una de otra.
+    Si el campo palabra de un verbo tiene menos de 6 letras se deben añadir las correspondientes entradas de ese mismo verbo con terminación LA, LO o LE. Por ejemplo:
+
+    DEJAR   21  verbo
+    DEJARL  21  verbo
+    DEJA    21  verbo
+    DEJALO  21  verbo
+    DEJALA  21  verbo
+    DEJALE  21  verbo
+    PONER   22  verbo
+    PONERL  22  verbo   
+    PON 22  verbo
+    PONLO   22  verbo
+    PONLA   22  verbo
+
+    Como se puede observar si un verbo tiene al menos 5 letras en su campo palabra sólo hay que insertar una entrada más añadiendo una 'L' final. En cambio, si tiene 4 o menos letras en su campo palabra hay que insertar el verbo con su correspondiente terminación. En el ejemplo anterior se reconocerían las formas con terminación PONLO y PONLA del verbo PON, pero no la forma PONLE ya que esta no ha sido insertada.
+
+
+Secciones de Mensajes y Mensajes del Sistema:
+
+    Estas dos secciones por su similitud se explican juntas. La sección de Mensajes se inicia con la secuencia de caracteres \MSG nnn, donde nnn es el número de tabla de mensajes, y la sección de Mensajes del Sistema con la secuencia \MSY. Seguidamente se definirán cada uno de los mensajes de la forma:
+
+    @nnn ..... Texto del mensaje .....
+    que puede ocupar varias líneas
+    seguidas. Al final se pondrá el carácter@
+
+    Se inicia el mensaje con el carácter @ seguido de un número en el rango 0 a 255. Los mensajes deben ir en orden numérico ascendente es decir primero el @1, luego el @2 y por último el @254. No es necesario que estén definidos los 255 mensajes, puede haber 'huecos', pero aquellos que se definan deben estar ordenados. Así podemos definir el mensaje 1 y luego el 10 sin definir el 2, el 3, ..., el 9; pero no podemos colocar primero el mensaje 10 y luego el 1, deben ir en orden numérico ascendente.
+    Seguidamente, separado por un espacio o por una tabulación, escribiremos el mensaje que puede ocupar varias líneas consecutivas. Hay que tener en cuenta que los retornos de carro no se insertarán como parte del mensaje, así el mensaje:
+
+    @1 Este mensaje se imprimirá
+     en una sola línea.@
+
+    Se imprimirá en pantalla:
+
+    Este mensaje se imprimirá en una sola línea.
+
+    Además las sucesivas líneas a partir de la primera se tomarán tal cual desde su primera columna, si hay espacios iniciales estos se respetarán, si no sencillamente no se insertarán. La primera línea es un tanto especial ya que el texto de esta se tomará a partir del carácter siguiente al espacio o tabulación que sigue al campo @nnn. Así si queremos un espacio inicial al principio del mensaje deberemos poner:
+
+    @1  Este mensaje tiene un espacio inicial.@
+
+    El cual se imprimirá con un espacio al inicio. Además hay un carácter con significado especial, el carácter (|) cuyo código ASCII es el 124. Este carácter será sustituido por un avance de línea con lo que el resto del mensaje se imprimirá en la siguiente línea de pantalla. Por ejemplo:
+
+    @1 Esto va en la primera línea|
+    y esto en la segunda|
+     esto en la tercera.@
+
+    Se imprimirá en pantalla:
+
+    Esto va en la primera línea
+    y esto en la segunda
+     esto en la tercera.
+
+    Se pueden insertar cuantos caracteres de avance de línea sean necesarios sin límite alguno. Recordar también que cualquier línea que comience por una serie de espacios o tabulaciones seguidos de un punto y coma (;) se considera un comentario. Así mismo las líneas en blanco se desechan.
+
+    En cuanto a las tablas de mensajes decir que deben estar colocadas en orden, no vale colocar, por ejemplo, la tabla 10 antes que la 2. Lo que si se acepta es que haya tablas sin definir. Por ejemplo se puede definir la tabla de mensajes 1 y luego la 5 sin haber definido las tablas de la 2 a la 4.
+
+    Seguidamente se incluyen unos cuantos ejemplos de secciones de mensajes:
+
+    \MSG 0  ; tabla de mensajes 0
+    @01  Mensaje con espacio inicial.@
+    @002 Mensaje con avance de línea|intermedio.@
+    @4 este mensaje no dará error aunque su número sea el 4 y no el 3@
+    @5 @    ; mensaje nulo
+       @6 Antes del número de mensaje puede haber cuantos espacios o tabulaciones se precisen.@
+    @007 ; esto no se considera comentario y se introducirá como parte del mensaje.
+    ; en cambio esto es un comentario que no se incluirá
+        ; ni esto tampoco
+    @
+    @8 Este mensaje en realidad ocupa solamente
+
+
+     dos líneas, ya que las dos anteriores son desechadas.@
+    \END
+
+
+Sección de Localidades:
+
+    La sección de localidades se inicia con la secuencia \LOC seguida de la descripción de localidad de la forma:
+
+    @nnn ..... Texto de localidad .....
+    que igual que los textos de mensajes
+    puede ocupar varias líneas.@
+
+    Luego van las conexiones de la forma:
+
+    # palabra_de_movimiento nnn [;comentario]
+    # palabra_de_movimiento nnn [;comentario]
+    # palabra_de_movimiento nnn [;comentario]
+    ...
+
+    El texto de la localidad se define de la misma forma que los mensajes (ver sección 0, página 19). Tras el texto de localidad se colocarán las conexiones. Cada conexión está compuesta de una palabra de movimiento seguida de uno o varios espacios, o una o varias tabulaciones, y después el número de localidad con la que conecta en el rango 0 a 251.
+    Cada conexión debe ir en una línea separada, comenzando con varios espacios o tabulaciones opcionales, seguidos del carácter (#). Se considera finalizada la lista de conexiones para esa localidad cuando se encuentra una línea que no sea ni comentario, ni esté en blanco y cuyo primer carácter no blanco (ni espacio ni tabulación) sea distinto del carácter (#).
+    La lista de conexiones es opcional y puede aparecer o no. A continuación se incluyen algunos ejemplos de definiciones de localidades:
+
+    \LOC
+
+    @0 Estás en un castillo medieval. Ves una herrumbrosa
+     armadura apoyada contra una pared.@
+    # NORTE 1   ; al patio de armas
+    # SUR   4   ; al salón del trono
+    # SUBIR 6   ; al torreón
+
+    @1 El patio de armas está vacío y desolado. Desde aquí ves la
+     puerta de entrada al castillo.@
+    # SUR   0   ; al interior del castillo
+
+    ; Ahora van unas cuantas localidades sin usar
+    ; que definiremos posteriormente
+    ; la localidad 2 la reservamos para los establos
+    ; la localidad 3 la reservamos para la armería
+
+    @4 El salón del trono está lleno de polvo y telarañas.@
+    # NORTE 0
+    @5 Estás en el fondo de un oscuro pozo. Parece que no hay
+     salida.@
+    @6 Desde el torreón divisas el desolado paisaje exterior.@
+    # BAJAR 0
+
+    \END
+
+
+Sección de Objetos:
+
+    La sección de objetos se inicia con \OBJ seguida de la descripción de los objetos de la forma:
+
+    @nnn    nombre  adjetivo    l.i [tipo]  banderas_usuario
+    texto_de_descripción_del_objeto
+
+    El campo @nnn indica el número del objeto en el rango 0 a 254 (el 255 es un número de objeto reservado). Seguidamente y separado por espacios o tabulaciones va el nombre del objeto el cual debe ser un nombre insertado en el vocabulario. Luego va el adjetivo el cual deber ser, también, un adjetivo válido del vocabulario o el símbolo del subrayado (_), que indica que no hay adjetivo. Tras este va la localidad inicial, un número de localidad válido o los valores especiales para objeto no creado (252), objeto puesto (253) u objeto cogido (254).
+    Tras la localidad inicial va el tipo del objeto que viene indicado por una serie de caracteres separados por espacios o tabulaciones. Estos caracteres puede ir en mayúscula o minúscula indiferentemente; y son:
+
+    - P para indicar que el objeto es una prenda; es decir puede ser puesto y quitado (WEAR, REMOVE).
+    - L para indicar que el objeto es una fuente de luz; es decir que permite la descripción de localidades oscuras cuando está presente.
+
+    Si aparecen varios caracteres seguidos, sin separación, se tomará solamente el primero de ellos; así: p, P, prenda, Poner son equivalentes, también: l, L, luz, luminosos son equivalentes.
+    Luego van las banderas de usuario que son una secuencia de 16 caracteres seguidos, sin espacios intermedios. El carácter (x) o (X) se usa para indicar bandera activa, el carácter (o) u (O) se usa para indicar bandera inactiva. El orden de colocación de las banderas de usuario es de izquierda a derecha, con el primer carácter indicando el estado de la bandera 0 y el último el de la bandera 15.
+    En la línea siguiente a las definiciones del objeto va el texto de descripción, el cual será impreso en los listados de objetos así como en sustitución al símbolo de subrayado (_) que aparece en los mensajes. El texto de descripción del objeto no puede ocupar más de una línea.
+    A continuación unos cuantos ejemplos de definición de objetos:
+
+    \OBJ
+
+            ; Pesado            ---------------+
+            ; Pequeño           --------------+¦
+            ; Elástico          -------------+¦¦
+            ; Inflamable        ------------+¦¦¦
+            ;                       ¦¦¦¦
+    @0  LINTERNA    VIEJA   1   L   OOOOOOOOOOOOOOOO
+    una vieja linterna
+    @1  ESPADA  _   2       ooooooooooooooox
+    una espada
+    @2  GUANTE  ROJO    252 P   ooooooooOOOOOOXO
+    un guante de lana rojo
+    @3  GUANTE  VERDE   3   prenda  OOOOooooOOOOxxxo
+    un guante verde, de nylon
+
+    \END
+
+
+Secciones de Procesos:
+
+    Las secciones de procesos se inician mediante \PRO nnn, donde nnn es el número de proceso a definir. Habrá pues tantas secciones de procesos como procesos contenga el programa. Los procesos deben ir colocados en orden numérico ascendente y deben empezar a numerarse desde 0 en adelante, aunque como en el caso de los mensajes puede haber 'huecos' o procesos sin definir. El campo nnn debe ser un número en el rango 0 a 255. Tras el inicio del proceso irán un número variable de entradas de la forma:
+
+    verbo   nombre  condacto    [;comentario]
+            condacto    [;comentario]
+            ...
+    verbo   nombre  condacto    [;comentario]
+            condacto    [;comentario]
+            ...
+    ... ...
+
+    Donde el campo verbo es un verbo o un nombre convertible del vocabulario o el símbolo de subrayado (_), el campo nombre es un nombre válido del vocabulario o el símbolo de subrayado (_) y el campo condacto se refiere a un condacto con sus parámetros. El primer carácter del campo verbo debe ser el primer carácter de la línea ya que si hay espacios o tabulaciones antes, la entrada se considera inválida. Luego van los condactos; tras el campo nombre siempre debe haber un condacto. Los condactos deben ir en líneas separadas y antecedidos por espacios o tabulaciones. Se considera el final de la entrada cuando se encuentra una línea (que no sea comentario) cuyo primer carácter no es ni un espacio ni una tabulación; es decir cuando se encuentra una etiqueta, el inicio de otra entrada o el final de la sección de proceso (\END).
+    Por ejemplo:
+
+    \PRO 0  ; se ejecuta tras cada inicialización y DESC
+    _   _   PROCESS 4   ; inicializaciones
+    _   _   NOTZERO 2   ; si hay que saltar
+                    ; acciones DESC
+            SKIP    $buc_princ
+    _   _   SET 2   ; aquí llega si es inicio
+                    ; o DESC
+    ; Ejecuta diversas acciones tras una descripción.
+    _   _   NORESP
+    _   _   LISTOBJ     ; lista objetos
+            PROCESS 1
+    $buc_princ
+    _   _   SYSMESS 6
+            INPUT       ; pide frase de entrada
+            SKIP    $buc_princ
+    _   _   NEWLINE
+    ...
+    \END
+
+    \PRO 001
+    \END
+
+    \PRO 5
+    ; este es el proceso donde se analizan las frase del jugador
+    _   _   PARSE       ; analiza frase del
+                    ; jugador
+            NOTDONE
+    _   _   RESP
+    ...
+    INVEN   _   SYSMESS 14  ; inventario
+            LISTAT  254
+            SYSMESS 15
+            LISTAT  253
+            DONE
+    COGER   _   AUTOG
+            DONE
+    ...
+    \END
+
+
+    II. EL INTERPRETE-DEBUGGER
+
+
+A. Conceptos básicos:
+
+    El debugger (o mejor intérprete-debugger) permite la ejecución paso a paso de la base de datos, presentando en cada momento el estado de las banderas y variables así como el condacto que está siendo ejecutado.
+    El debugger dispone de una serie de opciones para modificar banderas y variables, ejecutar paso a paso, etc... que serán explicadas en detalle más adelante.
+
+
+B. Ejecutar la base de datos compilada:
+
+
+Cómo entrar en el intérprete-debugger:
+
+    La ejecución de la base de datos compilada se realiza entrando al intérprete-debugger, desde el sistema operativo, mediante el comando:
+
+    DS nombre_de_fichero [opciones]
+
+    El nombre_de_fichero es el nombre del fichero que contiene la base de datos compilada. Si no se da el nombre del fichero se producirá un mensaje de error:
+
+    Falta nombre de fichero
+
+    Además se puede especificar la opción /lxx o /Lxx, donde xx es el número de línea de pantalla en la que queremos que se presente la ventana de depuración. Por ejemplo:
+
+    DS aventura /L5
+
+
+Mensajes de error:
+
+    Si se produce algún error durante la apertura del fichero con la base de datos compilada (no existe, por ejemplo), aparecerá el mensaje:
+
+    Error de apertura fichero de entrada
+
+    Si el fichero existe pero no es un fichero conteniendo una base de datos correcta se dará el mensaje de error:
+
+    Fichero de entrada no válido
+
+    Si se produce algún error durante la lectura de la base de datos compilada aparecerá el error:
+
+    Error en fichero de entrada
+
+    El error:
+
+    No hay suficiente memoria
+
+indica que la cantidad de memoria disponible es insuficiente para ejecutar la base de datos compilada.
+    Principalmente estos son todos los mensajes de error referentes al fichero que contiene la base de datos compilada.
+
+
+C. La ventana de depuración:
+
+    La ventana de depuración es una pequeña franja de pantalla en la cual aparece la información del proceso de depuración. Puede ser colocada en cualquier posición de pantalla horizontalmente sin más que especificar el parámetro adecuado a la hora de entrar en el debugger (ver sección 0, página 24).
+La información que presenta la ventana de depuración es la siguiente:
+
+    PRO nnn Var xxx=xxx ______ Band xxx=x
+    ddddd: VERBO NOMBRE
+    ... condacto + parámetros ...
+
+    Donde nnn indica el número de proceso actual, luego van la variable y bandera que están siendo visualizadas actualmente junto con sus valores.
+    El campo ddddd indica la dirección del condacto en curso (esto es útil para calcular donde saltará un condacto SKIP). Seguidamente van el VERBO y el NOMBRE de la entrada actual si estamos en su primera línea, si no estos campos aparecerán en blanco. Después va el condacto que se va a ejecutar y sus parámetros, los cuales si van entre corchetes ([]) indicará que están indireccionados (ver sección 0, página 10).
+    Junto al valor de la variable aparecerá, si se trata de una variable relacionada con la sentencia lógica, la palabra de vocabulario correspondiente al contenido de la variable.
+
+
+D. Opciones del debugger:
+
+    En principio las opciones disponibles son las siguientes:
+
+    Var.  Band.  Pant.  Desact.  Salir
+
+    - La opción V permite visualizar y editar variables.
+    - La opción B permite visualizar y editar banderas.
+    - La opción P quita momentáneamente la ventana del debugger de la pantalla, espera hasta que se pulse una tecla y luego la restaura. Esto sirve para visualizar los efectos de algún condacto de salida por pantalla.
+    - La opción D desactiva el paso a paso.
+    - La opción S sale al sistema operativo.
+
+    Para regresar al paso a paso se deberá pulsar F10 durante la ejecución de la aventura. Además otro método de regresar al paso a paso es colocando un condacto DEBUG 1 en algún lugar de la aventura.
+
+
+Visualizar y editar variables:
+
+    Pulsando V desde las opciones principales pasaremos al modo de edición de variables, aparecerá la siguiente línea de menú:
+
+    Otra  Modificar  Fin
+
+    Se puede pasar a la siguiente variable pulsando el cursor arriba y a la anterior con el cursor abajo.
+    - La opción O permite seleccionar una variable, para lo cual aparecerá un cursor en el campo correspondiente y se podrá introducir el número de la nueva variable.
+    - La opción M permite modificar el valor de la variable. Igualmente aparecerá un cursor en el campo correspondiente al valor de la variable que nos permitirá introducir el nuevo valor.
+    - La opción F permite regresar a las opciones principales.
+
+
+Visualizar y editar banderas:
+
+    Pulsando B desde las opciones principales aparece la siguiente línea reemplazando las opciones anteriores:
+
+    Otra  Modificar  Fin
+
+    Se puede pasar a la siguiente bandera pulsando el cursor arriba y a la anterior con el cursor abajo.
+    - La opción O permite seleccionar una bandera, para lo cual aparecerá un cursor en el campo correspondiente y se podrá introducir el número de la nueva bandera.
+    - La opción M permite modificar el valor de la bandera. Igualmente aparecerá un cursor en el campo correspondiente al valor de la bandera que nos permitirá introducir el nuevo valor (0 para desactivarla y 1 para activarla).
+    - La opción F permite regresar a las opciones principales.
+
+
+E. Frase y sentencia lógica:
+
+    A lo largo de este manual consideraremos que frase es la línea que teclea el jugador cuando esta es solicitada por el condacto INPUT, en cambio sentencia lógica es la conversión de la frase en códigos numéricos por medio del analizador (condacto PARSE). Por ejemplo, si el jugador tecleó la frase:
+
+    COGER MARTILLO Y CLAVAR EL CLAVO.
+
+    El condacto PARSE extraerá de ella la sentencia lógica, así el primer condacto PARSE que se ejecute después de teclear la frase extraerá la siguiente sentencia lógica:
+
+    Verbo   Nombre  Adjetivo    Nombre2 Adjetivo2
+    COGER   MARTILLO    ninguno ninguno ninguno
+
+    El siguiente condacto PARSE que se ejecute extraerá la sentencia lógica:
+
+    Verbo   Nombre  Adjetivo    Nombre2 Adjetivo2
+    CLAVAR  CLAVO   ninguno ninguno ninguno
+
+
+F. La sentencia lógica:
+
+
+Acciones encadenadas:
+
+    Una frase puede contener varias sentencias lógicas, esto permite la introducción de acciones encadenadas; por ejemplo:
+
+    COGER PIEDRA GRANDE, LANZARLA AL GUARDIA, IR AL OESTE Y COGER MARTILLO
+
+    Esta frase será descompuesta por sucesivos condactos PARSE en las siguientes sentencias lógicas:
+
+    Verbo   Nombre  Adjetivo    Nombre2 Adjetivo2
+1.  COGER   PIEDRA  GRANDE  ninguno ninguno
+2.  LANZAR  PIEDRA  GRANDE  GUARDIA ninguno
+3.  OESTE   OESTE   ninguno ninguno ninguno
+4.  COGER   MARTILLO    ninguno ninguno ninguno
+
+    Merece la pena observar las sentencias lógicas 2 y 3. La sentencia lógica 2 hace uso de una potente característica del analizador; el uso de verbos con terminación. Esto permite que el verbo LANZARLA se refiera al último nombre y adjetivo referidos, en este caso PIEDRA GRANDE.
+    La sentencia lógica 3, puede observarse que tiene repetida la misma palabra en el verbo y en el nombre. Esto ocurrirá si IR no está definida en el vocabulario y si OESTE es un nombre convertible. ¿Por qué sucede esto?. El analizador, cuando encuentra un nombre convertible en la frase y no encontró antes un verbo u otro nombre convertible, duplica el nombre encontrado en el verbo y en el nombre de la sentencia lógica. Esto permite que se más tarde se encuentra una entrada del tipo:
+
+    _   OESTE   ...
+            DONE
+
+o del tipo:
+
+    OESTE   _   ...
+            DONE
+
+    Se ejecutará con esta sentencia lógica siempre que la comprobación verbo-nombre al inicio de cada entrada este activada (condacto RESP); si no estuviese activada esta comprobación las entradas descritas arriba se ejecutaría siempre, independientemente de la sentencia lógica actual.
+
+
+Variables del sistema asociadas a la sentencia lógica:
+
+    La sentencia lógica se almacena en una serie de variables del sistema que se indican a continuación:
+
+    2:  número de verbo de la última sentencia analizada por PARSE
+    3:  ídem pero nombre
+    4:  ídem pero adjetivo
+    5:  ídem pero nombre 2
+    6:  ídem pero adjetivo 2
+
+    Los números de verbo, nombre y adjetivo son aquellos que se especificaron cuando la palabra se introdujo en el vocabulario. Los números contenidos en estas variables son los que se emplearán para realizar las comprobaciones de verbo-nombre para saber si una entrada se ha de ejecutar.
+
+
+Introducción de la sentencia lógica:
+
+    La forma tradicional de introducir la sentencia lógica es a través de la frase tecleada por el jugador mediante el condacto INPUT, la cual luego es descompuesta por medio del condacto PARSE. Esto no quiere decir que sea la única forma posible de introducir la sentencia lógica.
+    Es posible crear una aventura dirigida por menús de opciones sustituyendo el condacto INPUT por un sistema de introducción a base de opciones, quizá usando el condacto INKEY. Usando este sistema alternativo habrá que colocar directamente, en las variables correspondientes, la sentencia lógica adecuada para que se ejecuten las entradas correctas. Así si se tecleó la opción de COGER objeto, habría que colocar en la variable 2 el número del verbo COGER, en la variable 3 el número del nombre del objeto y en la variable 4 el número del adjetivo del objeto; las variables 5 y 6 sería conveniente que estuviesen a 255 (ninguna palabra).
+    Con un poco de imaginación y con los condactos disponibles del SINTAC se pueden conseguir resultados excepcionales.
+
+
+Diálogo con personajes:
+
+    El condacto PARSE permite, además de analizar la frase del jugador, extraer de la misma diálogos con personajes. Normalmente un diálogo con personajes es una frase dentro de la frase tecleada por el jugador, la cual queremos que, en presencia de cierto personaje provoque alguna acción en este. Así por ejemplo:
+
+    DECIR A JUAN "COGE LA MANGUERA"
+
+    Queremos que cuando le digamos esto al personaje Juan, este coja la manguera si es posible (o si quiere).
+    El condacto PARSE analizaría la anterior frase hasta el primer separador, en este caso serían las comillas dobles ("), dando la sentencia lógica:
+
+    Verbo   Nombre  Adjetivo    Nombre2 Adjetivo2
+    DECIR   JUAN        ninguno ninguno ninguno
+
+    Esta sentencia lógica la usaríamos para ejecutar el proceso con las posibles respuestas de Juan, de la forma:
+
+    DECIR   JUAN    PROCESS 8   ; proceso de diálogos de
+                    ; Juan
+            DONE
+
+    El proceso con las posibles respuestas de Juan debería contener un condacto PARSE que analice el texto entre comillas y produzca una respuesta adecuada, así:
+
+    \PRO 8
+    _   _   PARSE
+            MESSAGE 0   '¿Qué dices?'
+            DONE
+    COGE    MANGUERA    ... ; condactos para coger manguera
+            MESSAGE 0   'Juan: Vale.'
+            DONE
+    ... ; aquí otras posibles frases que deba entender Juan
+    _   _   MESSAGE 0   '¿Qué dices?'
+            DONE
+    \END
+
+    Esta es una posibilidad, desde luego no es la única. Además el condacto PARSE no distingue si el texto para Juan va entre comillas o no, sólo busca un separador (ver condacto PARSE). Por lo tanto las siguiente frases son equivalentes entre sí:
+
+    DECIR A JUAN "COGE LA MANGUERA"
+    DECIR A JUAN 'COGE LA MANGUERA
+    DECIR A JUAN, COGE LA MANGUERA
+    DECIR A JUAN: COGE LA MANGUERA.
+    DECIR A JUAN; COGE LA MANGUERA
+
+    Hay muchas otras posibles combinaciones, lo cual da bastante flexibilidad al jugador para elegir la que más se ajuste a sus gustos.
+
+
+    III. LINKADOR
+
+    El linkador que se suministra con el sistema SINTAC permite convertir las bases de datos compiladas en ficheros ejecutables. Para ello se suministra un módulo 'runtime' (SINTAC.RUN) que contiene una versión del intérprete que puede ser unida a la base de datos para conseguir un fichero ejecutable independiente.
+    El linkador se ejecuta con:
+
+    LKS [base_de_datos_compilada] [fichero_exe]
+
+    El parámetro base_de_datos_compilada es el nombre del fichero que contiene la base de datos ya compilada. El parámetro fichero_exe es el nombre del fichero ejecutable que queremos generar.
+    Si hemos suministrado el la línea de llamada el nombre de la base de datos, como nombre de fichero ejecutable se cogerá este sustituyendo su extensión por EXE.
+    Una vez se finaliza el proceso de linkado, y si no se produjo ningún error, tendremos una versión ejecutable de nuestra base de datos.
+
+
+    I. CONDACTOS
+
+    A continuación se listan todos los condactos disponibles. Cuando proceda se incluirá un breve ejemplo de su uso o sus posibles usos.
+    Cada condacto irá seguido de los parámetros necesarios separados por un espacio.
+
+    Las abreviaturas utilizadas son:
+        procno  : número de Proceso
+        nw      : número de ventana
+        varno   : número de variable (0 a 255)
+        bandno  : número de bandera (0 a 255)
+        tabno   : número de tabla de mensajes
+        mesno   : número de mensaje
+        sysmesno    : número de mensaje del sistema
+        locno       : número de localidad
+        locno+  : número de localidad, además se admiten los siguientes como números de localidades con significado especial:
+            255=    se sustituye por el número de localidad actual
+            254=    localidad para los objetos cogidos pero no puestos
+            253=    localidad para los objetos puestos
+            252=    localidad para los objetos no creados
+        objno   : número de objeto
+        $etiqueta   : nombre de etiqueta
+        adjetivo    : adjetivo del vocabulario
+        nombre  : nombre del vocabulario
+        verbo   : verbo del vocabulario
+
+PROCESS procno
+    Ejecuta una llamada a un Proceso. Existe una pila interna para almacenar la dirección de retorno. La capacidad de esta pila está limitada a 100 niveles.
+    Cada vez que se ejecuta un condacto PROCESS se almacena la dirección de retorno en la pila. Al finalizar el Proceso llamado (mediante DONE, NOTDONE o porque no se encontraron más entradas) se recupera esta dirección.
+    Si se realiza un número superior de llamadas que los niveles permitidos por la pila interna, sin su correspondiente retorno, se devolverá INMEDIATAMENTE el control al Sistema Operativo con el mensaje de error: 'Rebosamiento de la pila interna'.
+
+DONE
+    Finaliza un Proceso y retorna al condacto situado tras el PROCESS que realizó la llamada (recuperando la dirección de retorno de la pila interna). Si el condacto PROCESS que realizó la llamada es el último de la entrada actual, DONE saltará a la siguiente entrada (si la hay).
+    Si la pila interna donde se almacenan las direcciones de retorno está vacía (es decir se ejecutó un DONE en Proceso 0) se devolverá INMEDIATAMENTE el control al Sistema Operativo.
+
+NOTDONE
+    Es similar a DONE sólo que salta a la entrada siguiente a la que contiene el PROCESS que realizó la llamada.
+
+RESP
+    Activa la comprobación de verbo-nombre al inicio de cada entrada. Esta activación es válida hasta que se ejecute el condacto NORESP.
+    Estando la comprobación activa una entrada sólo se ejecutará si su verbo-nombre correspondiente coinciden con los contenidos de las variables del sistema 2 y 3 respectivamente.
+    Si no coinciden se saltará a la siguiente entrada y así sucesivamente hasta que se encuentre una entrada que coincida o hasta que se alcance el final del Proceso.
+
+NORESP
+    Desactiva la comprobación de verbo-nombre al inicio de cada entrada. Esta desactivación es válida hasta que se ejecute el condacto RESP.
+    Cuando la comprobación esta desactivada se ejecutan todas las entradas independientemente de si su verbo-nombre correspondiente coincide o no con los contenidos en las variables 2 y 3 respectivamente.
+
+DEFWIN nw color_fondo color_pplano fila columna ancho alto
+    Define la ventana número nw y le asigna los colores de fondo y primer plano dados (ver sección 0, página 13). Su posición vendrá determinada por los parámetros fila y columna, y su tamaño por los parámetros ancho y alto (medidos en caracteres).
+    Si como fila o columna de la ventana se da 255 la ventana quedará centrada en pantalla y si como anchura o altura se da 255, la ventana tomará las máximas dimensiones posibles para el modo actual de pantalla; así:
+
+    DEFWIN 1 0 15 255 10 25 15
+
+definirá una ventana centrada horizontalmente, en la columna 10 y de dimensiones 25 de ancho y 15 de alto y:
+
+    DEFWIN 2 0 15 10 20 255 10
+
+definirá una ventana de la máxima anchura posible y 10 de altura.
+    Además el cursor se colocará en la fila superior izquierda de esa ventana, posición (0,0). Nota que este condacto define la ventana, no la pone en uso (ver condacto WINDOW).
+    En principio la ventana definida con DEFWIN no tendrá marco pero se le puede añadir uno mediante el condacto WBORDER.
+
+WINDOW nw
+    Selecciona como ventana activa nw. Todos los textos o gráficos se dirigirán a esa ventana hasta que se cambie a otra por medio de este condacto.
+
+CLW nw
+    Borra la ventana cuyo número es nw. Los colores se pondrán al valor por defecto que se indicó cuando se definió por última vez la ventana (ver DEFWIN, parámetros de color).
+    Para borrar la ventana actual puede utilizarse CLW [0].
+
+LET varno valor
+    Asigna un valor a una variable.
+
+EQ varno valor
+    Comprueba si el contenido de una variable es igual a un valor dado. Si el contenido de la variable es igual al valor se ejecuta el siguiente condacto, si no se salta a la siguiente entrada.
+
+NOTEQ varno valor
+    Comprueba si el contenido de una variable es distinto de un valor dado. Si el contenido de la variable es distinto del valor se ejecuta el siguiente condacto, si no se salta a la siguiente entrada.
+
+LT varno valor
+    Comprueba si el contenido de una variable es menor que un valor dado. Si el contenido de la variable es menor que el valor se ejecuta el siguiente condacto, si no se salta a la siguiente entrada.
+
+GT varno valor
+    Comprueba si el contenido de una variable es mayor que un valor dado. Si el contenido de la variable es mayor que el valor se ejecuta el siguiente condacto, si no se salta a la siguiente entrada.
+
+MES tabno mesno
+    Imprime el mensaje cuyo número es mesno de la tabla de mensajes tabno, dentro de la ventana activa, en la posición actual del cursor.
+
+NEWLINE
+    Imprime un avance de línea, dentro de la ventana activa, en la posición actual del cursor.
+
+MESSAGE tabno mesno
+    Imprime el mensaje cuyo número es mesno de la tabla de mensajes tabno, dentro de la ventana activa, en la posición actual del cursor. Añade un avance de línea al final del mensaje.
+
+SYSMESS sysmesno
+    Imprime el mensaje del sistema cuyo número es sysmesno, dentro de la ventana activa, en la posición actual del cursor.
+
+DESC locno
+    Imprime la descripción de la localidad cuyo número es locno. Si la bandera 0 está a 1 (oscuro), y no hay presente ninguna fuente de luz se imprimirá en su lugar el mensaje del sistema número 23 (Está oscuro...).
+    Además DESC pondrá a 0 la bandera número 2, que puede ser usada para realizar ciertas inicializaciones como listar objetos presentes en la localidad actual, etc...
+    El condacto DESC realiza un RESTART para saltar al inicio del Proceso 0.
+
+ADD varno valor
+    Suma un valor (0 a 255) a la variable cuyo número es varno.
+
+SUB varno valor
+    Resta un valor (0 a 255) a la variable cuyo número es varno.
+
+INC varno
+    Incrementa en 1 el valor de la variable cuyo número es varno. Si el valor de la variable era 255 pasará a ser 0.
+
+DEC varno
+    Decrementa en 1 el valor de la variable cuyo número es varno. Si el valor de la variable era 0 pasará a valer 255.
+
+SET bandno
+    Pone a 1 la bandera cuyo número es bandno.
+
+CLEAR bandno
+    Pone a 0 la bandera cuyo número es bandno.
+
+ZERO bandno
+    Comprueba si la bandera bandno es 0. Si la bandera es 0 ejecuta el siguiente condacto, si no, salta a la siguiente entrada.
+
+NOTZERO bandno
+    Es el condacto complementario a ZERO. Comprueba si la bandera bandno no es 0. Si la bandera es 1 ejecuta el siguiente condacto, si no, salta a la siguiente entrada.
+
+PLACE objno locno+
+    Coloca el objeto número objno en la localidad locno+. Si la localidad en la que se encuentra el objeto es la misma que la indicada por locno+, el condacto no hace nada.
+    Si el objeto pasa a estar cogido o puesto, y no estaba ni cogido ni puesto se incrementa el número de objetos que se llevan. Si el objeto estaba cogido o puesto, y lo pasa a otra localidad se decrementa el número de objetos llevados.
+
+GET objno
+    Coge el objeto cuyo número es objno. Si el objeto no existe (objno es mayor que el número del último objeto en la base de datos) se imprime el mensaje del sistema número 1 (Aquí no está eso). Si el objeto ya estaba cogido o puesto se imprime el mensaje del sistema 3 (Ya tienes eso). Si el objeto no está en la localidad actual se imprime el mensaje del sistema 1 (Aquí no está eso). Si el número de objetos llevados es mayor o igual que el contenido de la variable 7 (siempre que esta no sea 0) se imprime el mensaje del sistema 2 (No puedes coger _. Llevas demasiadas cosas).
+    En otro caso pasa el objeto a cogido e imprime el mensaje del sistema 0 (Has cogido _). Si el objeto se pudo coger pasa al siguiente condacto, si no salta a la siguiente entrada.
+
+DROP objno
+    Deja el objeto cuyo número es objno. Si el objeto no existe (objno es mayor que el número del último objeto en la base de datos) se imprime el mensaje del sistema 5 (No tienes eso). Si el objeto no está cogido ni puesto imprime el mensaje del sistema 5 (No tienes eso). En otro caso coloca el objeto en la localidad actual (decrementando el número de objetos llevados) e imprime el mensaje del sistema 4 (Dejas _).
+    Si el objeto se pudo dejar pasa al siguiente condacto, si no salta a la siguiente entrada.
+
+INPUT
+    Recoge texto introducido desde teclado hasta que se pulse RETURN. Esto permite introducir la frase a analizar por el condacto PARSE.
+    El cursor puede desplazarse por la línea de entrada usando las teclas del cursor, además de las teclas de <Origen> y <Fin> que moverán el cursor al inicio y final del texto respectivamente. Para borrar los caracteres tecleados pueden usarse las teclas de corrección <- y <Borrar>. Esta última borra el carácter a la derecha del cursor.
+    Primero inicializa las variables 2 a 6 con el valor de la palabra nula (_) y luego pasa a recoger la frase introducida por teclado. El cursor será el primer carácter del mensaje del sistema 7.
+    Si se tecleó algo salta a la siguiente entrada, en cambio, si no se introdujo ningún carácter, se pulsó una tecla de función o se pulsó un botón del ratón (estando este activado; ver condacto MOUSE) pasa al siguiente condacto.
+    En caso de que se pulsase una tecla de función o un botón del ratón, la variable del sistema 12 contendrá un código según la siguiente tabla:
+
+    Tecla de función o ratón        Código
+    F1          255
+    F2          254
+    F3          253
+    F4          252
+    F5          251
+    F6          250
+    F7          249
+    F8          248
+    F9          247
+    F10         246
+    BOTON RATON     238
+
+    Esto puede usarse para realizar alguna acción especial cuando se pulsa una de estas teclas de función o se usa el ratón.
+    Además es posible recuperar la última frase tecleada pulsando la tecla de cursor arriba estando al inicio de la línea.
+    NOTA: el puntero para PARSE se colocará al inicio de la línea introducida.
+
+PARSE
+    Analiza la frase tecleada mediante el último condacto INPUT ejecutado. PARSE analiza hasta el siguiente separador o hasta que se alcance el final de la línea de entrada. Los separadores reconocidos por PARSE son todas las conjunciones definidas en el vocabulario y los caracteres (.) (,) (;) (:) (") (').
+    El puntero para la siguiente llamada a PARSE se deja en el carácter posterior al último separador encontrado; esto permite analizar frases encadenadas mediante separadores.
+    Si se analizó toda la frase tecleada pasa al siguiente condacto, si todavía queda más por analizar salta a la siguiente entrada.
+
+SKIP $etiqueta
+    Este condacto realiza un salto a la dirección donde se encuentra la etiqueta indicada. En realidad la etiqueta se sustituye por un valor entre -32768 y 32767 que indica la dirección relativa del salto. Esta dirección relativa se suma a la dirección donde se encuentra el condacto SKIP para calcular la nueva dirección a la que saltar.
+    El salto puede ser tanto hacia delante como hacia atrás. Sólo están permitidos saltos al inicio de una entrada, no se puede saltar a la posición de un condacto dentro de una entrada.
+
+AT locno+
+    Comprueba si se está en una determinada localidad (es decir compara el contenido de la variable 1 con locno+). Si se está en la localidad locno+ continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+NOTAT locno+
+    Es el condacto complementario a AT. Comprueba si no está en una determinada localidad (es decir compara el contenido de la variable 1 con locno+). Si no se está en la localidad locno+ continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+ATGT locno+
+    Comprueba si está en una localidad cuyo número es superior a locno+. Si la localidad actual (contenido de la variable 1) es mayor que locno+ continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+ATLT locno+
+    Comprueba si está en una localidad cuyo número es inferior a locno+. Si la localidad actual (contenido de la variable 1) es menor que locno+ continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+ADJECT1 adjetivo
+    Comprueba si el primer adjetivo (cuyo número está almacenado en la variable 4) extraído de la sentencia lógica actual coincide con el dado. Si el adjetivo coincide continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+NOUN2 nombre
+    Comprueba si el segundo nombre (cuyo número está almacenado en la variable 5) extraído de la sentencia lógica actual coincide con el dado. Si el nombre coincide continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+ADJECT2 adjetivo
+    Comprueba si el segundo adjetivo (cuyo número está almacenado en la variable 6) extraído de la sentencia lógica actual coincide con el dado. Si el adjetivo coincide continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+LISTAT locno+
+    Lista los objetos presentes en una localidad. Si no hay ningún objeto en la localidad dada no se imprimirá nada, a menos que la bandera 7 esté a 1 en cuyo caso se imprimirá el mensaje del sistema 10 (nada). Si la bandera 1 está puesta a 1, LISTAT imprimirá la lista de objetos encolumnados (un objeto en cada línea), si no los imprimirá seguidos separados por el mensaje del sistema 11 (, ) excepto los dos últimos que irán separados por el mensaje del sistema 12 ( y ). Al final se añadirá el mensaje del sistema 13 (.).
+
+ISAT objno locno+
+    Comprueba si un objeto está en la localidad especificada por locno+. Si el objeto está en la localidad continuará en el siguiente condacto, si no saltará a la siguiente entrada.
+
+ISNOTAT objno locno+
+    Es el condacto complementario a ISAT. Comprueba si un objeto no está en la localidad especificada por locno+. Si el objeto no está en la localidad continuará en el siguiente condacto, si no saltará a la siguiente entrada.
+
+PRESENT objno
+    Comprueba si un objeto está presente (en la localidad actual, cogido o puesto). Si el objeto está presente continuará en el siguiente condacto, si no saltará a la siguiente entrada.
+
+ABSENT objno
+    Es el condacto complementario a PRESENT. Comprueba si el objeto no está presente (ni en la localidad actual, ni cogido, ni puesto). Si el objeto no está presente continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+WORN objno
+    Comprueba si el objeto está puesto. Si está puesto continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+NOTWORN objno
+    Es el condacto complementario a WORN. Comprueba si el objeto no está puesto. Si no lo está continúa con el siguiente condacto, si lo está salta a la siguiente entrada.
+
+CARRIED objno
+    Comprueba si el objeto está cogido. Si está cogido continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+NOTCARR objno
+    Es el condacto complementario a CARRIED. Comprueba si el objeto no está cogido. Si no lo está continúa en el siguiente condacto, si lo está salta a la siguiente entrada.
+
+WEAR objno
+    Pone un objeto que esté marcado como prenda. Si el objeto no existe imprime el mensaje del sistema 5 (No tienes eso). Si el objeto ya está puesto imprime el mensaje del sistema 16 (Ya llevas puesto _). Si el objeto no está presente imprime el mensaje del sistema 1 (Aquí no está eso). Si el objeto no está cogido imprime el mensaje del sistema 5 (No tienes eso). Si el objeto no es una prenda imprime el mensaje del sistema 17 (No puedes ponerte _). En otro caso pone el objeto e imprime el mensaje del sistema 18 (Te pones _).
+    Si se pudo poner el objeto continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+REMOVE objno
+    Quita un objeto que esté puesto. Si el objeto no existe o no se lleva puesto imprime el mensaje del sistema 19 (No llevas puesto eso). En cualquier otro caso pasa el objeto a cogido e imprime el mensaje del sistema 20 (Te quitas _).
+    Si se pudo quitar el objeto continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+CREATE objno
+    Pasa un objeto de la localidad de objetos no creados a la localidad actual.
+
+DESTROY objno
+    Pasa un objeto a la localidad de objetos no creados.
+
+SWAP objno1 objno2
+    Intercambia entre sí dos objetos. El objeto objno1 pasará a la localidad del objeto objno2, y viceversa.
+
+RESTART
+    Salta al inicio del Proceso 0. Además cancela todas las llamadas a procesos limpiando la pila interna.
+
+WHATO
+    Devuelve el número del objeto cuyo nombre y adjetivo se corresponden con los contenidos en las variables 3 y 4 respectivamente. El número del objeto se coloca en la variable 8. Si no se encontró un objeto que se corresponda con el nombre y adjetivo dados en las variables 3 y 4, la variable 8 contendrá 255 (número de objeto no válido).
+
+MOVE varno
+    Actualiza el contenido de la variable varno de acuerdo a su contenido actual, a la sentencia lógica actual y a la tabla de conexiones. El contenido de varno antes de llamar a este condacto debe ser el número de una localidad válida. MOVE comprobará las conexiones de esa localidad hacia la dirección dada por la palabra de movimiento de la sentencia lógica actual, y colocará en varno el número de localidad con la que conecta.
+    Si hay conexión en la dirección dada, varno se modificará para contener el nuevo número de localidad y se ejecutará el siguiente condacto. Si no varno quedará sin modificar y se saltará a la siguiente entrada.
+    Por ejemplo, si en el vocabulario tenemos definido NORTE como nombre de movimiento cuyo número es 1. Suponemos que en la tabla de conexiones hemos definido que la localidad 3 conecta al NORTE con la 7.
+    El valor del las variables es como sigue:
+
+    variable 3      = 1 (NORTE)
+    variable 4      = 255   (no palabra)
+    variable 100    = 3
+
+    Una entrada como:
+
+    _   _   MOVE    100
+
+    Dejará las variables con los siguientes valores:
+
+    variable 3      = 1
+    variable 4      = 255
+    variable 100    = 7
+
+ISMOV
+    Comprueba si la sentencia lógica actual es de movimiento. Una sentencia lógica se considera de movimiento si se cumple alguna de las siguientes condiciones:
+
+    variable 3  = 255 (no palabra)
+    variable 4  = palabra de movimiento
+
+    variable 3  = palabra de movimiento
+    variable 4  = 255 (no palabra)
+
+    variable 3  = palabra de movimiento
+    variable 4  = palabra de movimiento
+
+    Si la sentencia lógica es de movimiento continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+GOTO locno
+    Va a una localidad dada. La variable del sistema 1 contiene el numero de la localidad actual. Si locno es un número de localidad no válido la variable 1 no se alterará. Si locno es un número de localidad válido se colocará en la variable 1.
+
+PRINT varno
+    Imprime el contenido de una variable, como un número en el rango 0 a 255, en la posición actual del cursor y dentro de la ventana actual.
+
+DPRINT varno
+    Imprime el contenido de dos variables consecutivas, como un número en el rango 0 a 65535, en la posición actual del cursor y dentro de la ventana actual. Ese número es calculado por la fórmula (varno)*256+(varno+1); es decir, el contenido de varno actúa como la parte alta y el de varno+1 como la parte baja de un número de 16 bits.
+    Si varno es 255 el número impreso será impredecible.
+
+CLS
+    Borra la pantalla dejándola con los atributos por defecto (primer plano blanco, fondo negro, sin brillo ni parpadeo).
+
+ANYKEY
+    Imprime el mensaje del sistema 22 (Pulsa una tecla) y espera hasta que se pulse una tecla.
+
+PAUSE valor
+    Realiza una pausa de una duración determinada por valor en décimas de segundo. Si se pulsa una tecla se saldrá de la pausa. Si valor es 0 se esperará hasta que se pulse una tecla.
+
+LISTOBJ
+    Lista los objetos de la localidad actual. Si está oscuro y no hay una fuente de luz no hace nada. Si no, imprime el mensaje del sistema 9 (También puedes ver:) y lista los objetos. Si no hay objetos en la localidad actual no imprime nada, a menos que la bandera 7 esté a 1 en cuyo caso imprime el mensaje del sistema 9 seguido del mensaje del sistema 10 (nada). Al igual que LISTAT, este condacto tiene en cuenta el valor de la bandera 1, si esta es 1 los objetos se listan encolumnados, si no se listan seguidos (ver LISTAT para más información).
+
+FIRSTO
+    Coloca el puntero para NEXTO al principio de la tabla de objetos y activa el indicador para bucle DOALL.
+    Este condacto, junto con NEXTO e ISDOALL permite ejecutar bucles que afecten a todos los objetos de una localidad (denominados bucles DOALL) para acciones del tipo COGER TODO, DEJAR TODO,...
+
+NEXTO locno+
+    Mueve el puntero al siguiente objeto, dentro de la tabla de objetos, que esté en la localidad especificada, siempre que el indicador para bucle DOALL esté activo (este indicador se activa por medio de FIRSTO).
+    Además coloca en las variables 3 y 4 el nombre y adjetivo del objeto, sustituyendo los que hubiese y dejando intacto el verbo, lo cual permite la creación de acciones del tipo COGER TODO,...
+    Si el objeto es el último dentro de la localidad especificada se desactiva el bucle DOALL; no obstante su nombre y adjetivo se colocan en las variables 3 y 4 para poder usarlos.
+
+SYNONYM verbo nombre
+    Coloca el verbo y el nombre dados en las variables 2 y 3 respectivamente. Si alguno de ellos es el carácter de no palabra (símbolo de subrayado, _) la variable correspondiente queda sin modificar.
+    Este condacto facilita la creación de diversas sentencias lógicas que realicen la misma acción (sinónimos) pero sin más que repetir una vez los condactos de esa acción. Por ejemplo:
+
+    USAR    HACHA   NOUN2   ARBOL   ; Usar Hacha en Arbol
+            SYNONYM CORTAR ARBOL
+
+    GOLPEAR ARBOL   NOUN2   HACHA   ; Golpear Arbol con Hacha
+            SYNONYM CORTAR ARBOL
+
+    CORTAR  ARBOL   AT  5   ; localidad del árbol
+            CARRIED 8   ; lleva el hacha
+            ZERO    100 ; el árbol está intacto
+            SET 100 ; lo corta
+            MESSAGE 0   5
+            DONE
+
+HASAT valor
+    Comprueba si el objeto actual, cuyo número está en la variable 8) tiene activada una bandera de usuario.
+    Si valor está entre 0 y 15 comprueba la bandera de usuario correspondiente, si valor es 16 comprueba si es prenda y si valor es 17 comprueba si es fuente de luz.
+    Si la bandera comprobada está activada continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+HASNAT valor
+    Es el condacto complementario a HASAT. Comprueba si el objeto actual, cuyo número está en la variable 8) tiene desactivada una bandera de usuario.
+    Si valor está entre 0 y 15 comprueba la bandera de usuario correspondiente, si valor es 16 comprueba si no es prenda y si valor es 17 comprueba si no es fuente de luz.
+    Si la bandera comprobada está desactivada continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+LIGHT
+    Comprueba si hay presente (en la localidad actual, cogida o puesta) una fuente de luz. Si la hay continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+NOLIGHT
+    Es el condacto complementario a LIGHT. Comprueba si no hay presente (no está en la localidad actual, ni cogida, ni puesta) una fuente de luz. Si no la hay continúa en el siguiente condacto, si la hay salta a la siguiente entrada.
+
+RANDOM varno valor
+    Genera un número aleatorio entre 0 y valor-1. El número generado se coloca en la variable varno.
+
+SEED valor
+    Coloca el punto de inicio del generador de números aleatorios en una posición. Esto evita que la secuencia de números generada sea siempre la misma. Si valor es 0 se reinicializa la secuencia en una posición aleatoria.
+
+PUTO locno+
+    Coloca el objeto actual, cuyo número está en la variable 8, en la localidad especificada.
+
+INKEY
+    Coloca en las variables 9 y 10 el par de códigos ASCII IBM de la última tecla pulsada (si se pulsó alguna).
+    Si se pulsó alguna tecla continúa en el siguiente condacto y además coloca en la variable 9 el primer código ASCII IBM (código ASCII del carácter si es distinto de 0), y en la variable 10 el segundo código ASCII IBM (código de la tecla pulsada).
+    Si no se pulsó ninguna tecla salta a la siguiente entrada y deja las variables 9 y 10 sin modificar.
+
+COPYOV objno varno
+    Copia el número de la localidad en la que está el objeto dado por objno en la variable varno.
+
+CHANCE valor
+    Comprueba una probabilidad en tanto por ciento. El parámetro valor debe ser un número en el rango 0 a 100.
+    Si el número aleatorio generado internamente por CHANCE es menor o igual que valor se ejecuta el siguiente condacto, si no salta a la siguiente entrada.
+    Este condacto es útil para llevar a cabo acciones un número aleatorio de veces. Por ejemplo:
+
+    _   _   CHANCE  25
+            MESSAGE 0   1
+
+    Imprimirá el mensaje número 1 un 25 por ciento de las veces que se ejecute la entrada.
+
+RAMSAVE banco
+    Graba el estado actual (variables, banderas y posición actual de los objetos) en uno de los bancos de memoria disponibles.
+    Los bancos de memoria disponibles son 2, el 0 y el 1. El parámetro banco determina en cual de ellos se grabará el estado actual.
+
+RAMLOAD banco valor1 valor2
+    Recupera el estado actual desde uno de los bancos de memoria. El banco a usar se determina mediante el parámetro banco. Los bancos de memoria disponibles son 2, el 0 y el 1.
+    El parámetro valor1 determina el número máximo de variable a recuperar, y el parámetro valor2 el máximo número de bandera a recuperar. Se recuperarán desde el banco seleccionado únicamente las variables 0 hasta valor1 (inclusive) y las banderas 0 hasta valor2 (inclusive).
+    Esto permite conservar los valores de ciertas variables entre distintos estados grabados.
+    Si RAMLOAD se ejecutó sin ningún problema continuará con el siguiente condacto. Si se intentó usar un banco de memoria que previamente no fue grabado con RAMSAVE se saltará a la siguiente entrada.
+
+ABILITY valor
+    Designa el máximo número de objetos que pueden ser llevados. Si valor es 0 el número de objetos que pueden ser llevados es ilimitado.
+    La variable número 7 contiene este número; en realidad ABILITY valor es equivalente a LET 7 valor. Si de inicio algunos objetos comienzan cogidos (número de localidad 254) o puestos (localidad 253), conviene asignar mediante el condacto ABILITY un valor igual o mayor al número de objetos inicialmente cogidos o puestos.
+
+AUTOG
+    Coge el objeto cuyo nombre y adjetivo se encuentran en las variables 3 y 4 respectivamente. Esto permite coger el objeto referenciado por el nombre y adjetivo de la sentencia lógica actual. Por lo demás este condacto es equivalente a WHATO seguido de GET [8].
+    Si se pudo coger el objeto continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+AUTOD
+    Deja el objeto cuyo nombre y adjetivo se encuentran en las variables 3 y 4 respectivamente. Esto permite dejar el objeto referenciado por el nombre y adjetivo de la sentencia lógica actual. Por lo demás este condacto es equivalente a WHATO seguido de DROP [8].
+    Si se pudo dejar el objeto continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+AUTOW
+    Pone el objeto cuyo nombre y adjetivo se encuentran en las variables 3 y 4 respectivamente. Esto permite poner el objeto referenciado por el nombre y adjetivo de la sentencia lógica actual. Por lo demás este condacto es equivalente a WHATO seguido de WEAR [8].
+    Si se pudo poner el objeto continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+AUTOR
+    Quita el objeto cuyo nombre y adjetivo se encuentran en las variables 3 y 4 respectivamente. Esto permite quitar el objeto referenciado por el nombre y adjetivo de la sentencia lógica actual. Por lo demás este condacto es equivalente a WHATO seguido de REMOVE [8].
+    Si se pudo quitar el objeto continúa con el siguiente condacto, si no salta a la siguiente entrada.
+
+ISDOALL
+    Comprueba si se está ejecutando un bucle DOALL, es decir FIRSTO ha sido ejecutado y NEXTO no ha alcanzado todavía el último objeto de la tabla de objetos.
+    Si se está ejecutando un bucle DOALL continúa en el siguiente condacto, si no salta a la siguiente entrada.
+
+ASK sysmessno1 sysmessno2 varno
+    Este condacto permite realizar una pregunta y espera hasta que se introduce una respuesta de un sólo carácter. El mensaje del sistema sysmessno1 contiene el texto de la pregunta, el mensaje del sistema sysmessno2 contiene las posibles respuestas, cada una de una sola letra y seguidas sin separaciones (no importa si en mayúsculas o minúsculas). El máximo número de respuestas permitidas es de 256, si son más la variable varno contendrá un valor imprevisible tras la ejecución del condacto.
+    En varno se coloca el número de orden de la respuesta, 0 si se tecleó el primer carácter de sysmessno2, 1 si se tecleó el segundo y así sucesivamente.
+    El condacto esperará hasta que se introduzca uno de los caracteres de sysmessno2. El cursor que se imprime es el primer carácter del mensaje del sistema 7.
+    Un ejemplo, si tenemos lo siguiente:
+
+    MENSAJE SISTEMA 10 =
+        Elige: S:salir, C:continuar, G:grabar, L:cargar ->
+    MENSAJE SISTEMA 11 =
+        scgl
+
+    Una entrada como:
+
+    _   _   ASK 10  11  100
+
+    Imprimirá en la ventana actual:
+
+    Elige: S:salir, C:continuar, G:grabar, L:cargar ->
+
+y esperará a que se pulse una de las siguientes teclas: S, C, G, L
+    Si se tecleó S, la variable 100 contendrá 0, si se tecleó C contendrá 1, si se tecleó G contendrá 2 y si se tecleó L contendrá 3.
+
+QUIT
+    Presenta el mensaje del sistema 24 (¿Estás seguro?) y espera a que se pulse una tecla que puede ser uno de los caracteres del mensaje del sistema 25 (SN).
+    Si se responde con el primer carácter del mensaje del sistema 25 continúa con el siguiente condacto, si se responde con cualquier otro salta a la siguiente entrada.
+
+SAVE
+    Guarda el estado actual (variables, banderas y posición actual de los objetos) en disco. Primero presenta el mensaje del sistema 26 (Nombre del fichero:) preguntando por el nombre del fichero donde se guardará la posición. Si el fichero ya existe presenta el mensaje del sistema 27 (Fichero ya existe. ¿Quieres continuar?) tras lo cual, si se responde con el primer carácter del mensaje de sistema 25 (SN) graba la posición en el fichero dado.
+    Si al abrir el fichero se produjo un error imprimirá el mensaje del sistema 28 (Error de apertura de fichero). Si se produce un error de escritura en el fichero imprime el mensaje del sistema 29 (Error de entrada/salida en fichero). Si la unidad de disco no está preparada se imprimirá el mensaje del sistema 32 (Error crítico).
+
+LOAD valor1 valor2
+    Recupera una posición (variables, banderas y posición de los objetos) grabada en disco con SAVE.
+    Primero pregunta por el nombre del fichero imprimiendo el mensaje del sistema 26 (Nombre del fichero:). Si al intentar abrir ocurrió un error imprime el mensaje del sistema 28 (Error de apertura de fichero). Si se produce un error al leer del fichero imprime el mensaje del sistema 29 (Error de entrada/salida en fichero). Si el fichero no contiene una posición grabada imprime el mensaje del sistema 30 (Fichero no válido).
+    El parámetro valor1 indica el máximo número de variable a recuperar desde la posición grabada, y el parámetro valor2 el máximo número de bandera.
+    Sólo se recuperarán las variables desde la 0 hasta valor1 (inclusive) y las banderas desde la 0 hasta valor2 (inclusive). Si la unidad de disco no está preparada se imprimirá el mensaje del sistema 32 (Error crítico).
+
+EXIT valor
+    Permite salir al sistema operativo o reinicializar. Si valor es 0 reinicializa el intérprete realizando las siguientes operaciones:
+
+    - borrado de la pantalla (CLS)
+    - inicialización de las variables y banderas
+    - y salto al inicio del Proceso 0 (RESTART)
+
+    Si valor es 1 sale al sistema operativo.
+
+END
+    Pregunta para salir o para otra partida, imprimiendo el mensaje del sistema 31 (¿Lo intentas de nuevo?). Si se responde con el primer carácter del mensaje del sistema 25 (SN) reinicializa el intérprete y salta al inicio del Proceso 0 (ejecutando un EXIT 0). Si no regresa al sistema operativo.
+
+PRINTAT fila columna
+    Coloca el cursor en una posición dada de la ventana actual. Si la posición especificada por los parámetros fila y columna sobrepasa los límites de la ventana, el cursor se colocará en la esquina superior izquierda de la ventana (posición 0,0).
+
+SAVEAT
+    Almacena la posición de impresión de la ventana actual. Cada ventana tiene sus propias posiciones de impresión almacenadas por separado.
+
+BACKAT
+    Recupera la posición de impresión guardada por el último SAVEAT ejecutado en la ventana actual. Si no se ejecutó ningún SAVEAT, la posición de impresión recuperada será la esquina superior izquierda de la ventana (0,0).
+
+NEWTEXT
+    Deshecha el resto de la línea de entrada (tecleada en el último condacto INPUT), que aún queda por analizar y coloca el puntero para PARSE al final de la misma.
+
+PRINTC valor
+    Imprime un carácter, cuyo código ASCII está dado por el parámetro valor, en la posición actual del cursor y dentro de la ventana activa.
+
+INK color
+    Selecciona el color del primer plano en la ventana activa. Todos los textos de esa ventana se imprimirán con ese color de primer plano hasta que sea cambiado o hasta que la ventana se borre (CLW).
+    Los colores válidos son del 0 al 15 en el modo de 16 colores (MODE 0) y del 0 al 255 en el modo de 256 colores (MODE 1).
+    Cuando se borra una ventana los colores se colocan automáticamente a aquellos que fueron indicados en la definición de la misma.
+
+PAPER color
+    Selecciona el color del fondo en la ventana activa. Todos los textos de esa ventana se imprimirán con ese color de fondo hasta que sea cambiado o hasta que la ventana se borre (CLW).
+    Los colores válidos son del 0 al 15 en el modo de 16 colores (MODE 0) y del 0 al 255 en el modo de 256 colores (MODE 1).
+    Cuando se borra una ventana los colores se colocan automáticamente a aquellos que fueron indicados en la definición de la misma.
+
+BRIGHT brillo
+    Este condacto no hace nada en la presente versión; se mantiene por razones de compatibilidad con las versiones anteriores.
+
+BLINK parpadeo
+    Este condacto no hace nada en la presente versión; se mantiene por razones de compatibilidad con las versiones anteriores.
+
+COLOR color
+    Selecciona el color (ver sección 0, página 13) en la ventana activa. Los 4 bits altos indican el color del fondo y los 4 bits bajos el color del primer plano; por ejemplo para seleccionar el color de fondo 4 y el de primer plano 6 el parámetro del condacto color sería 4*16+6=70. Todos los textos de esa ventana se imprimirán con ese color hasta que sea cambiado o hasta que la ventana se borre (CLW). Cuando se borra una ventana los colores se colocan automáticamente a aquellos que fueron indicados en la definición de la misma.
+
+DEBUG modo
+    Activa o desactiva el paso a paso en el intérprete-debugger. DEBUG 1 activa el paso a paso a partir de el punto donde aparezca y DEBUG 0 lo desactiva. Este condacto sólo es activo en el intérprete-debugger, por lo que no hay que preocuparse de eliminarlo de la base de datos definitiva.
+
+WBORDER nw borde
+    Define el tipo de borde que tendrá la ventana especificada por nw. Una ventana con borde se dibuja con un marco rodeándola; el tipo de marco depende del valor del parámetro borde. Los tipos de borde predefinidos se listan en la tabla siguiente:
+
+    VALOR DE borde      TIPO DE BORDE
+    0           sin borde
+    1           sencillo
+    2           doble
+    3           doble-sencillo laterales
+    4           sencillo-doble laterales
+    5           sombreado 1
+    6           sombreado 2
+    7           sombreado 3
+    8           relleno
+
+CHARSET juego
+    Carga y selecciona un nuevo juego de caracteres. El parámetro juego es un número de 0 a 255 que identifica el fichero que contiene el juego de caracteres. Se buscará un fichero de nombre F#??????.nnn, siendo nnn el valor del parámetro juego.
+    Los 6 últimos caracteres del nombre del fichero no son relevantes, así un condacto CHARSET 15 podrá cargar tanto el fichero F#SIMPLE.15 como F#MIO.15. Como el condacto no distinguirá entre uno y otro cargará uno de los dos arbitrariamente.
+    Los ficheros de juegos de caracteres deben haber sido creados con el editor de caracteres suministrado con el SINTAC.
+    Se ejecutará el siguiente condacto si pudo completarse con éxito, es decir, el juego de caracteres pudo cargarse.
+    Si el fichero correspondiente no existe, o no es un fichero creado con el editor de caracteres se saltará a la siguiente entrada.
+    Si el parámetro juego tiene valor 0 se restaurará el juego de caracteres por defecto del intérprete.
+
+EXTERN prog valor
+    Este condacto permite la ejecución de un programa externo, bien sea EXE, COM o BAT. El parámetro prog es un número identificativo del programa. Se ejecutará el fichero cuyo nombre sea EXTERn siendo n el valor del parámetro prog. Se buscará primero el fichero EXTERn.COM, si este no existe se buscará EXTERn.EXE y, finalmente, si este tampoco existe se buscará EXTERn.BAT. Si no se encontró el fichero se saltará a la siguiente entrada, dejando la variable del sistema 13 a 0.
+    El programa externo se ejecuta como si en la línea del DOS se hubiese tecleado:
+
+    EXTERn valor SEG1:DESP1 SEG2:DESP2
+
+    Es decir el parámetro valor se pasa al programa externo, además SEG1:DESP1 es la dirección (segmento y desplazamiento) de la tabla de variables y SEG2:DESP2 es la dirección de la tabla de banderas.
+    La tabla de variables consiste en una sucesión de 256 bytes comenzando en SEG1:DESP1. Cada byte es una variable desde la 0 (la primera) hasta la 255 (la última). La tabla de variables es una sucesión de 32 bytes (256 bits) comenzando en SEG2:DESP2. Cada bit corresponde a una bandera. La bandera 0 es el bit más significativo del byte 0, la bandera 8 el bit más significativo del byte 1, etc...
+    Al finalizar la ejecución del programa externo la variable 13 contendrá el código de salida del mismo. El código de salida de un programa externo es aquel que puede comprobarse con el comando ERRORLEVEL del DOS.
+    Tras ejecutarse el programa externo no se restaura el modo de video al modo seleccionado antes de ejecutar el condacto EXTERN, por lo que es responsabilidad del programador usar el condacto MODE adecuado.
+
+GTIME varno
+    Este condacto devuelve la hora real del sistema. El parámetro varno es el número de variable inicial donde se colocará la hora; la variable varno contendrá los segundos, varno+1 los minutos y, finalmente, varno+2 la hora.
+    En caso de que varno sea mayor que 253 el condacto no hará nada.
+
+TIME tiempo modo
+    Selecciona el 'tiempo muerto' y el modo de funcionamiento del condacto INPUT. El parámetro tiempo es el tiempo en segundos que queremos dar al jugador para que teclee la frase, si es 0 el jugador no tendrá tiempo límite. El parámetro modo especifica el funcionamiento de la temporización. Si vale 0 el tiempo se da para teclear la frase completa, si vale 1 el tiempo se cuenta sólo hasta que se introduzca el primer carácter.
+
+TIMEOUT
+    Comprueba si el jugador agotó el tiempo en el último condacto INPUT; si es que la temporización se activó con un condacto TIME. Si el jugador agotó el tiempo del último condacto INPUT se ejecutará el siguiente condacto, si no saltará a la siguiente entrada.
+
+MODE modo
+    Selecciona el modo de vídeo. Si el parámetro modo es 0 se selecciona el modo de alta resolución de 640x480 a 16 colores, si es 1 se selecciona el modo de media resolución de 320x200 a 256 colores. En cualquier caso se borra la pantalla y las variables del sistema 14 y 15, que contienen el número de filas y columnas de la pantalla, son actualizadas.
+
+GRAPHIC lib graf modo
+    Permite dibujar en la ventana actual un gráfico. El parámetro lib especifica el fichero gráfico a usar. El parámetro graf especifica el número del gráfico dentro del fichero. El condacto buscará un fichero cuyo nombre sea G#??????.nnn, siendo nnn el número de 0 a 255 dado en el parámetro lib. Los 6 últimos caracteres no son significativos y así un condacto GRAPHIC 7 1 0 podrá cargar tanto el fichero G#CASA.7 como G#RIO.7; hay que tener cuidado en que dos ficheros gráficos diferentes también difieran en su número de extensión.
+    Los gráficos deben haber sido creados por una utilidad de dibujo y grabados en formato PCX. La mayoría de los programas de dibujo disponibles soportan este formato o proporcionan conversores para el mismo. Estos gráficos se agruparán en un fichero único con ayuda de una utilidad suministrada con el SINTAC.
+    El parámetro modo especifica el modo de presentación del gráfico y puede tomar los siguientes valores:
+
+    0:  se establece la paleta de colores para acomodarla a la del gráfico y este se va presentando según se lee del disco
+    1:  se establece la paleta de colores de acuerdo con el gráfico, se carga en memoria y se presenta al final; si no hay suficiente memoria para guardar el gráfico este se va presentando según se lee del disco (como 0)
+    2:  como 0 pero no se modifica la paleta de colores actual
+    3:  como 1 pero no se modifica la paleta de colores actual
+
+    Cualquier otro valor aparte de los ya mencionados tendrá el mismo efecto que el 0.
+    Se ejecutará el siguiente condacto si el gráfico se cargó con éxito, si no se saltará a la siguiente entrada. Las causas que impiden que un gráfico pueda cargarse pueden ser debidas a que el fichero no existe o no tiene un nombre que se ajusta al esquema ya mencionado.
+
+REMAPC color r g b
+    Permite cambiar las componentes de un color de la paleta de colores. El parámetro color especifica un índice de color de la paleta, de 0 a 15 si estamos en el modo 0 (640x480x16) o de 0 a 255 si estamos en el modo 1 (320x200x256). Los otros tres parámetros pueden tomar valores de 0 a 63 e indican las nuevas componentes RGB del color.
+    Para más información consulta sección 0, página 13.
+
+SETAT valor
+    Activa una bandera de usuario del objeto actual; aquel cuyo número está en la variable del sistema 8 o, lo que es lo mismo, el último referido por el condacto WHATO. El parámetro valor indica el número de bandera de usuario a activar de 0 a 15. Si valor es 16 se activa el atributo de prenda del objeto y si es 17 se activa el de fuente de luz.
+
+CLEARAT valor
+    Es el condacto complementario a SETAT. Desactiva una bandera de usuario del objeto actual. El parámetro valor indica el número de bandera de usuario de 0 a 15, o 16 para el atributo de prenda y 17 para el de fuente de luz.
+
+GETRGB color varno1 varno2 varno3
+    Devuelve las componentes RGB de un color de la paleta de colores. El parámetro color especifica un índice de color de la paleta, de 0 a 15 si estamos en el modo 0 (640x480x16) o de 0 a 255 si estamos en el modo 1 (320x200x256). Los otros tres parámetros indican las variables en las que se dejará cada una de las componentes del color; la componente R (rojo) en la variable varno1, la componente G (verde) en la variable varno2 y la componente B (azul) en la variable varno3.
+    Para más información consulta sección 0, página 13.
+
+PLAYFLI fli modo
+    Ejecuta una animación contenida en un fichero con formato FLI. El parámetro fli especifica el número de la animación a ejecutar. El condacto buscará un fichero cuyo nombre sea A#??????.nnn, siendo nnn el número de 0 a 255 dado en el parámetro fli. Los 6 últimos caracteres no son significativos y así un condacto PLAYFLI 15 0 podrá cargar tanto el fichero A#DEMON.15 como A#INTRO.15; hay que tener cuidado en que dos ficheros de animación diferentes también difieran en su número de extensión.
+    Los ficheros de animación deben haber sido creados por una utilidad que soporte animaciones en formato FLI. Actualmente hay varias utilidades que soportan este tipo de formato.
+    El parámetro modo indica el modo de presentación de la animación:
+
+    0:  ejecuta la animación cíclicamente, hasta que se pulse una tecla
+    1:  ejecuta la animación una sola vez
+
+    Se ejecutará el siguiente condacto si la animación pudo ejecutarse con éxito, si no se saltará a la siguiente entrada.
+
+MOUSE modo
+    Activa o desactiva el ratón. Si el parámetro modo es 0 desactiva el ratón, si es 1 lo activa. Inicialmente el ratón está desactivado así que para poder utilizarlo habrá que usar MOUSE 1 para activarlo.
+
+MOUSEXY fil0 col0 fil1 col1
+    Comprueba si el ratón está dentro de unas coordenadas de pantalla. Los parámetros fil0, col0, fil1, col1 determinan un área de pantalla; fil0 y col0 son las coordenadas de la esquina superior izquierda, fil1 y col1 son las coordenadas de la esquina inferior derecha de una zona de la pantalla.
+    Si el ratón está dentro de la zona delimitada por fil0, col0, fil1 y col1 se ejecutará el siguiente condacto, si no se saltará a la siguiente entrada.
+
+MOUSEBT btn
+    Comprueba si hay algún botón del ratón pulsado. El parámetro btn indica el botón del ratón a comprobar. Si btn es 0 se comprueba el botón izquierdo, si btn es 1 se comprueba el botón derecho, si btn es 2 se comprueba si ambos están pulsados y si btn es 3 se comprueba si cualquiera de los dos está pulsado.
+    En cualquier caso, si el botón (o los botones) está pulsado se ejecutará el siguiente condacto, si no se saltará a la siguiente entrada.
+
+PLAY nota duración
+    Toca una nota por el altavoz del PC. El parámetro duración indica la duración del sonido en décimas de segundo. El parámetro nota indica la nota a tocar de acuerdo a la tabla siguiente:
+
+                    OCTAVA
+    NOTA    0   1   2   3   4   5   6   7
+
+    DO  0   12  24  36  48  60  72  84
+    DO# 1   13  25  37  49  61  73  85
+    RE  2   14  26  38  50  62  74  86
+    RE# 3   15  27  39  51  63  75  87
+    MI  4   16  28  40  52  64  76  88
+    FA  5   17  29  41  53  65  77  89
+    FA# 6   18  30  42  54  66  78  90
+    SOL 7   19  31  43  55  67  79  91
+    SOL#    8   20  32  44  56  68  80  92
+    LA  9   21  33  45  57  68  81  93
+    LA# 10  22  34  46  58  70  82  94
+    SI  11  23  35  47  59  71  83  95
+
+
+MUSIC musica modo
+    Reproduce una melodía contenida en un fichero. El parámetro musica especifica el número de la melodía. El condacto buscará un fichero cuyo nombre sea M#??????.nnn, siendo nnn el número de 0 a 255 dado en el parámetro musica. Los 6 últimos caracteres no son significativos y así un condacto MUSIC 55 0 podrá cargar tanto el fichero M#BANDA.55 como M#ORQUES.55; hay que tener cuidado en que dos ficheros de música diferentes también difieran en su número de extensión.
+    Los ficheros de música deben haber sido creados por la utilidad que se suministra a tal efecto con el sistema SINTAC.
+    El parámetro modo indica el modo de reprodución de la melodía:
+
+    0:  ejecuta la melodía una sola vez, sale si se pulsa una tecla
+    1:  ejecuta la melodía cíclicamente, hasta que se pulse una tecla
+
+    Se ejecutará el siguiente condacto si la melodía pudo reproducirse con éxito, si no se saltará a la siguiente entrada.
+
+
+PARTE III: Apéndices
+
+
+
+APENDICE A: Mensajes de aviso del compilador
+
+
+
+    Sección de nombre_de_sección no encontrada.
+    Si falta alguna sección en la base de datos se producirá un mensaje de aviso por cada sección que falte.
+
+    Constante V_MOV no definida.
+    La constante simbólica V_MOV no fue definida. Se asumirá el número máximo de palabra de vocabulario por defecto para verbos de movimiento.
+
+    Constante N_CONV no definida.
+    La constante simbólica N_CONV no fue definida. Se asumirá el número máximo de palabra de vocabulario por defecto para nombres convertibles.
+
+    Constante N_PROP no definida.
+    La constante simbólica N_PROP no fue definida. Se asumirá el número máximo de palabra de vocabulario por defecto para nombres propios.
+
+    Hay menos mensajes del sistema que los requeridos.
+    No se definieron todos los mensajes del sistema, lo cual puede provocar anomalías en el funcionamiento del intérprete. En el apéndice 0 hay una lista de los mensajes del sistema requeridos por esta versión.
+
+    Tabulación transformada en espacio, línea nnn.
+    En un texto de mensaje, localidad u objeto se encontró un código de tabulación el cual es transformado en un espacio por el compilador. Esto es debido a que las rutinas de salida por ventanas no soportan códigos de tabulación que algunos editores de texto insertan.
+
+    Demasiados campos, se ignoran los sobrantes, línea nnnnn.
+    Una entrada en un proceso tiene un condacto con más parámetros de los debidos. Esto puede ser debido a un comentario en la misma línea del condacto sin punto y coma inicial.
+
+    Constante redefinida: nombre_de_constante, línea nnnnn.
+    El compilador encontró una definición de una constante simbólica que ya ha sido definida anteriormente. Esto puede haber sido provocado intencionadamente por el programador, realmente no se incurre en un error, pero el compilador avisa por si esto no es lo deseado.
+
+
+APENDICE B: Mensajes de error del compilador
+
+
+
+    Error de indirección.
+    Indica algún tipo de error indefinido al usar la indirección en uno de los parámetros de un condacto.
+
+    Error de apertura de fichero temporal.
+    El compilador crea una serie de ficheros temporales mientras compila la base de datos. Este error puede ser debido a que en el disco en el que se está compilando no hay espacio suficiente para crear los ficheros temporales. Aproximadamente hace falta tanto espacio libre en el disco como el que ocupa la base de datos.
+
+    Error de escritura en fichero temporal.
+    Se produjo un error al intentar escribir en uno de los ficheros temporales. Esto puede estar ocasionado por la retirada del disco de una unidad en la que estamos compilando.
+
+    Error de lectura de fichero temporal.
+    Se produjo un error al intentar leer de uno de los ficheros temporales.
+
+    Error de apertura de fichero de entrada.
+    No se pudo abrir el fichero de la base de datos, probablemente se cometió un error al dar el nombre del fichero.
+
+    Error de lectura en fichero de entrada.
+    Durante la lectura del fichero de entrada se produjo un error.
+
+    Fin de fichero de entrada.
+    Se encontró el final del fichero de entrada. Este error puede producirse si el fichero de base de datos no contiene texto ASCII.
+
+    Error de apertura de fichero de salida.
+    No se pudo abrir el fichero de salida, quizá debido a falta de espacio en el disco o a que se retiró el diskette de la unidad.
+
+    Error de escritura en fichero de salida.
+    No se pudo escribir correctamente en el fichero de salida, seguramente debido a que se retiró el diskette de la unidad.
+
+    No hay suficiente memoria para ejecutar el programa.
+    El compilador no puede reservar la cantidad mínima de memoria para compilar correctamente la base de datos. Elimina programas residentes, discos RAM, etc... y vuelve a intentarlo.
+
+    Sección no válida.
+    Se encontró una marca de inicio de sección (\XXX) que no se corresponde con ninguna de las válidas.
+
+    Sección repetida.
+    Se encontró una marca de inicio de sección repetida.
+
+    Marca de sección no encontrada.
+    No se encontró la marca de inicio de sección.
+
+    Marca de fin de sección (\END) no encontrada.
+    Se encontró la marca de inicio de una sección sin encontrar antes el final de la anterior.
+
+    Faltan secciones.
+    Falta alguna de las secciones en el fichero de la base de datos.
+
+    Carácter no válido en palabra de vocabulario.
+    Se encontró un carácter que no es ni un número ni una letra en una palabra de la sección de vocabulario.
+
+    Faltan campos.
+    Faltan campos en la definición de una palabra de vocabulario, de las conexiones de una localidad, de un objeto, de una entrada de proceso o faltan parámetros de un condacto.
+
+    Número de palabra no válido.
+    El número de la palabra que se quiere insertar en el vocabulario no es válido.
+
+    Campo numérico no válido.
+    Un campo numérico tiene un valor no válido quizá debido a que es un número fuera de rango o hay caracteres no numéricos.
+
+    Tipo de palabra no válido.
+    La especificación de tipo para palabra definida en el vocabulario no es ninguno de los tipos de palabras válido (verbo, nombre, adjetivo o conjunción).
+
+    Palabra repetida.
+    La palabra que se quiere insertar en el vocabulario está repetida. Sus 6 primeros caracteres coinciden exactamente con los 6 primeros de otra palabra ya insertada.
+
+    Vocabulario lleno.
+    El número de palabras insertadas en el vocabulario rebosa la capacidad del mismo. En esta versión el máximo número de palabras en el vocabulario permitidas son 2500.
+
+    Falta '@'.
+    Se esperaba encontrar un carácter '@' de inicio de texto en las secciones de Mensajes, Mensajes del Sistema, Localidades, o al inicio de una definición de objeto.
+
+    Número fuera de secuencia.
+    El número de un mensaje, texto de localidad o proceso es menor que el número del anterior mensaje, texto de localidad o proceso definido.
+
+    Se rebasó la memoria reservada para la sección actual.
+    La sección actual rebasó la cantidad de memoria reservada para ella.
+
+    Número no válido.
+    El campo numérico encontrado es válido pero su valor se sale de los límites específicos para el tipo de elemento que está siendo compilado. Puede ocurrir, por ejemplo, cuando se intenta definir una de las localidades especiales.
+
+    Palabra no está en vocabulario.
+    Se intenta usar una palabra no definida en el vocabulario.
+
+    Nombre no está en vocabulario.
+    El nombre que se intenta usar no ha sido definido en el vocabulario.
+
+    Adjetivo no está en vocabulario.
+    El adjetivo que se intenta usar no ha sido definido en el vocabulario.
+
+    La palabra no es verbo de movimiento.
+    Se intenta usar como palabra de conexión, en la definición de las conexiones de la localidad actual, una que no está definida como verbo de movimiento en el vocabulario.
+
+    El primer campo debe ser un Nombre.
+    El primer campo en la definición de un objeto debe ser un nombre del vocabulario.
+
+    El segundo campo debe ser un Adjetivo.
+    El segundo campo en la definición de un objeto debe ser un adjetivo del vocabulario o el símbolo de subrayado '_'.
+
+    Localidad inicial no válida.
+    El número de localidad de inicio del objeto no es válido, debe ser una de las localidades definidas o una de las localidades especiales.
+
+    Banderas de objeto no válidas.
+    Se encontró un carácter no válido en la definición de las banderas para el objeto actual.
+
+    Falta texto de Objeto.
+    No se encontró el texto de descripción del objeto que está siendo compilado.
+
+    Comienzo de entrada no válido.
+    El primer carácter de una entrada no puede ser un espacio o tabulación.
+
+    Tabla de etiquetas llena.
+    Se alcanzó el límite de la tabla para almacenar etiquetas. Reduce el número de etiquetas dentro del proceso donde se produjo el error.
+
+    Etiqueta repetida.
+    El nombre de la etiqueta ya ha sido usado dentro del mismo proceso.
+
+    Nombre de etiqueta no válido.
+    El nombre de la etiqueta contiene caracteres no válidos.
+
+    Primera palabra en entrada no es verbo ni nombre convertible.
+    La primera palabra de una entrada debe ser un verbo o nombre convertible o el símbolo de subrayado (_), mira que la palabra esté definida en el vocabulario como tal.
+
+    Segunda palabra en entrada no es nombre.
+    La segunda palabra de la entrada debe ser un nombre o el símbolo de subrayado (_).
+
+    Condacto no válido.
+    El condacto especificado no es uno de los condactos válidos o está mal escrito.
+
+    Un proceso no puede llamarse a sí mismo.
+    Se encontró una llamada a procesos que llama al proceso en el que está definida.
+
+    Rebasado máximo número de llamadas 'forward' a procesos.
+    Cuando se encuentra una llamada a un proceso no compilado todavía, el compilador guarda cierta información en una tabla, la cual es vaciada al inicio de la compilación de un proceso. Esta tabla tiene capacidad para almacenar información sobre 2000 llamadas a procesos todavía no compilados (más que suficiente) dentro del proceso actual. Si se rebosa ese número, aparecerá este error.
+
+    Número de ventana no válido.
+    El número de ventana especificado en el condacto no es válido. Los números de ventanas permitidos son del 0 al 9.
+
+    Número de tabla de mensajes no válido.
+    Se especificó como parámetro del condacto un número de tabla de mensajes no válido.
+
+    Número de mensaje no válido.
+    Se especificó como parámetro del condacto un número de mensaje no válido.
+
+    Número de localidad no válido.
+    Se especificó como parámetro del condacto un número de localidad no definido o no válido.
+
+    Número de objeto no válido.
+    Se especificó como parámetro del condacto un número de objeto no definido.
+
+    Campo de etiqueta no válido.
+    Se especificó en un condacto que precisa de una etiqueta como parámetro, un campo de etiqueta no válido, es decir, que no comienza con '$'.
+
+    Rebasado máximo número de saltos 'forward' con SKIP.
+    Cada vez que se localiza un salto a una etiqueta no definida, todavía, dentro del proceso actual, se guarda cierta información en una tabla, la cual es vaciada al final de la compilación del proceso. Esta tabla tiene capacidad para almacenar información sobre 100 saltos a etiquetas no definidas. Si se rebosa esta capacidad saldrá este error.
+
+    Salto fuera de rango.
+    Se realizó un salto a una etiqueta anterior al condacto, que está fuera de los límites permitidos. Se puede saltar, hacia atrás, a etiquetas cuya dirección no difiera más de 32768 posiciones de la dirección del condacto que realiza el salto.
+
+    Adjetivo no válido.
+    El parámetro del condacto debe ser un adjetivo válido del vocabulario.
+
+    Nombre no válido.
+    El parámetro del condacto debe ser un nombre válido del vocabulario.
+
+    Bandera de usuario no válida.
+    El parámetro del condacto debe ser un número válido de bandera de usuario (0-15) o 16 (prenda) o 17 (fuente de luz).
+
+    Parámetro de CHANCE debe estar entre 0 y 100.
+    El parámetro del condacto CHANCE debe ser un número entre 0 y 100.
+
+    Banco de memoria no válido.
+    El número de banco de memoria especificado no es válido. Sólo se admite 0 o 1 como números de bancos de memoria.
+
+    Número de primer mensaje del sistema no válido.
+    El primer parámetro del condacto debe ser un número de mensaje del sistema válido.
+
+    Número de segundo mensaje del sistema no válido.
+    El segundo parámetro del condacto debe ser un número de mensaje del sistema válido.
+
+    Parámetro debe ser 0 o 1.
+    El parámetro del condacto debe ser obligatoriamente 0 o 1.
+
+    Número de color incorrecto.
+    El número de color especificado en el condacto no es válido. Los condactos INK y PAPER admiten números de color de 0 a 255, y los condactos BRIGHT y BLINK sólo admiten 0 o 1.
+
+    Conexión a localidad no válida.
+    Se encontró una conexión que lleva a una localidad no definida.
+
+    Etiqueta no definida.
+    Se intentó saltar a una etiqueta no definida dentro del proceso actual. Se mostrará el número de línea dentro del fichero de entrada donde se produjo el error.
+
+    Salto 'forward' fuera de rango.
+    Se realizó un salto a una etiqueta definida posteriormente al condacto, que está fuera de los límites permitidos. Se puede saltar, hacia delante, a etiquetas cuya dirección no difiera más de 32767 posiciones de la dirección del condacto que realiza el salto.
+
+    Llamada a proceso inexistente.
+    Se encontró, después de compilar todos los procesos, una llamada a un proceso no definido.
+
+    Tabla de constantes llena.
+    Ya no caben más constantes en la tabla por lo que se deberá reducir el número de las mismas.
+
+    Primer carácter de nombre de constante no válido.
+    El primer carácter del nombre de una constante no puede ser un número.
+
+    Falta valor de la constante.
+    Se encontró la definición de una constante pero sin el valor numérico de la misma.
+
+    Constante no definida.
+    Se encontró un nombre de constante simbólica que no se corresponde a ninguna de las definidas.
+
+    Nombre de constante no válido.
+    El nombre de la constante simbólica contiene caracteres no válidos. Sólo están permitidos caracteres alfabéticos, numéricos y los símbolos '+', '-', '*' y '_'.
+
+    Error en valor de constante.
+    El valor de la constante en la definición de la misma no es un número válido; debe ser un número entre 0 y 255.
+
+    Número de borde de ventana no válido.
+    El parámetro del condacto WBORDER no corresponde a un tipo de borde válido. Lee la descripción del condacto WBORDER para más información.
+
+    Segundo parámetro debe ser 0 o 1.
+    El segundo parámetro del condacto sólo admite como valores 0 o 1.
+
+    Componente RGB debe estar entre 0 y 63.
+    Una de las componentes RGB del condacto REMAPC es mayor que 63, máximo valor permitido.
+
+    Número de nota no válido
+    El número de la nota del condacto PLAY no es válido.
+
+
+APENDICE C: Mensajes del sistema
+
+
+
+    Los mensajes que se dan aquí son los posibles mensajes del sistema que puede tener la base de datos. Aunque el número de mensajes del sistema en la base de datos debe ser como mínimo igual al número de los que se listan a continuación, el contenido de los mismos puede diferir notablemente. Los mensajes del sistema que se dan aquí pueden usarse como pautas para crear los tuyos propios personalizados.
+    Los mensajes se listan entre comillas simples (') y se presentan tal y como serían insertados en la base de datos, sólo que sustituyendo las comillas por el inicio del mensaje (@nnn) y el final del mensaje (@).
+
+0:  'Has cogido _.|'
+1:  'Aquí no está eso.|'
+2:  'No puedes coger _. Llevas demasiadas cosas.|'
+3:  'Ya tienes eso.|'
+4:  'Dejas _.|'
+5:  'No tienes eso.|'
+6:  '|> '
+7:  '_'
+8:  'No puedes hacer eso.|'
+9:  'También puedes ver: '
+10: 'nada.|'
+11: ', '
+12: ' y '
+13: '.|'
+14: 'Tienes: '
+15: 'Llevas puesto: '
+16: 'Ya llevas puesto _.|'
+17: 'No puedes ponerte _.|'
+18: 'Te pones _.|'
+19: 'No llevas puesto eso.|'
+20: 'Te quitas _.|'
+21: 'No puedes ir en esa dirección.|'
+22: 'Pulsa una tecla.'
+23: 'Está oscuro. No puedes ver nada.'
+24: '¿Estás seguro? '
+25: 'SN'
+26: 'Nombre del fichero: '
+27: 'Fichero ya existe. ¿Quieres continuar? '
+28: 'Error de apertura de fichero.|'
+29: 'Error de entrada/salida en fichero.|'
+30: 'Fichero no válido.|'
+31: '¿Lo intentas de nuevo? '
+
+
+APENDICE D: Códigos de teclado
+
+
+
+    La siguiente tabla lista los códigos que se generan al pulsar las teclas. En cada columna aparecen dos códigos; el primero es el código de la tecla pulsada (el que deja en la variable 10 el condacto INKEY) y el segundo su código ASCII si es distinto de 0 (el que deja en la variable 9 el condacto INKEY). Si aparece (..) indica que ese código está indefinido y si aparece el signo (=) indica que los códigos son iguales a los de la columna anterior. TN indica una tecla del teclado numérico.
+
+Tecla
+
+Esc
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+Borr.
+Tab
+Q
+W
+E
+R
+T
+Y
+U
+I
+O
+P
+Return
+Ctrl
+A
+S
+D
+F
+G
+H
+J
+K
+L
+Ñ
+Sh-izq
+Z
+X
+C
+V
+B
+N
+M
+Sh-der
+Alt
+Espac.
+F1
+F2
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+F10
+TN 7
+TN 8
+TN 9
+TN -
+TN 4
+TN 5
+TN 6
+TN +
+TN 1
+TN 2
+TN 3
+
+
+
+
+
+
+
+
+Normal
+
+1 27
+2 49
+3 50
+4 51
+5 52
+6 53
+7 54
+8 55
+9 56
+10 57
+11 48
+14 08
+15 09
+16 113
+17 119
+18 101
+19 114
+20 116
+21 121
+22 117
+23 105
+24 106
+25 112
+28 13
+29 ..
+30 97
+31 115
+32 100
+33 102
+34 103
+35 104
+36 106
+37 107
+38 108
+39 164
+42 ..
+44 122
+45 120
+46 99
+47 118
+48 98
+49 110
+50 109
+54 ..
+55 ..
+57 32
+59 0
+60 0
+61 0
+62 0
+63 0
+64 0
+65 0
+66 0
+67 0
+68 0
+71 55
+72 56
+73 57
+74 45
+75 52
+76 53
+77 54
+78 43
+79 49
+80 50
+81 51
+
+Shift
+
+=
+2 173
+3 168
+4 35
+5 36
+6 37
+7 47
+8 38
+9 42
+10 40
+11 41
+=
+15 0
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+=
+=
+=
+=
+=
+=
+=
+
+=
+84 0
+85 0
+86 0
+87 0
+88 0
+89 0
+90 0
+91 0
+92 0
+93 0
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+Ctrl
+
+1 19
+
+3 0
+
+
+
+7 30
+
+
+
+
+14 127
+
+16 17
+17 23
+18 5
+19 82
+20 84
+21 89
+22 85
+23 73
+24 79
+25 80
+28 10
+
+30 1
+31 19
+32 4
+33 6
+34 7
+35 8
+36 10
+37 11
+38 12
+
+
+44 26
+45 24
+46 3
+47 22
+48 2
+49 14
+50 12
+
+=
+94 0
+95 0
+96 0
+97 0
+98 0
+99 0
+100 0
+101 0
+102 0
+103 0
+119 0
+
+132 0
+
+115 0
+
+116 0
+
+117 0
+
+118 0
+
+Alt
+
+
+120 0
+121 0
+122 0
+123 0
+124 0
+125 0
+126 0
+127 0
+128 0
+129 0
+
+
+16 0
+17 0
+18 0
+19 0
+20 0
+21 0
+22 0
+23 0
+24 0
+25 0
+
+
+30 0
+31 0
+32 0
+33 0
+34 0
+35 0
+36 0
+37 0
+38 0
+
+
+44 0
+45 0
+46 0
+47 0
+48 0
+49 0
+50 0
+
+
+=
+104 0
+105 0
+106 0
+107 0
+108 0
+109 0
+110 0
+111 0
+112 0
+113 0
+0 7
+0 8
+0 9
+
+0 4
+0 5
+0 6
+
+0 1
+0 2
+0 3
+
+
+
+APENDICE E: Historia del SINTAC
+
+
+
+Versión T1:
+
+    Primera versión del sistema SINTAC basado en el tan usado PAWS para Spectrum. El SINTAC pretende ser una revisión del PAWS para ordenadores de la gama PC con importantes mejoras sobre este antiguo, pero aún válido, sistema como son los saltos, posibilidad de hacer bucles, ventanas, ...
+    Esta primera versión del sistema sólo soporta el modo texto de 80x25 en cualquier tarjeta compatible CGA.
+
+Versión T2:
+
+    La versión T2 incorpora importantes mejoras. Ahora el compilador se ajusta automáticamente a la cantidad de memoria disponible, además el orden de las secciones dentro de la base de datos es indiferente y se permite el uso de constantes simbólicas lo cual dota de mayor flexibilidad al sistema.
+    Se ha corregido un pequeño error del compilador que provocaba que las bases de datos compiladas fuesen 1 byte más largas de lo debido. La gestión de ventanas también ha sido mejorada, permitiendo ahora que estas tengan marco.
+    Se ha ampliado la rutina de INPUT permitiendo mayor control del cursor (arriba, abajo, fin, origen...). Además ahora el condacto INPUT devuelve un código si se pulsó una tecla de función lo que permite asignar acciones especiales a las teclas de función.
+    Como consecuencia de la inclusión de juegos de caracteres se ha añadido una nueva utilidad al sistema: el editor de juegos de caracteres; ahora el sistema permite el uso de diferentes juegos de caracteres si se dispone de tarjeta EGA, VGA o compatible.
+    Se ha incrementado el número de letras significativas de las palabras de vocabulario a 6 y se han incorporado nuevos condactos, entre ellos destaca un condacto EXTERN para ejecutar programas externos.
+    El sistema se suministra con algunas utilidades externas; entre ellas un visualizador de ficheros gráficos PCX que permite por medio del condacto EXTERN incluir gráficos en las aventuras.
+
+Versión G1:
+
+    La versión G1 permite la incorporación de gráficos en formato PCX dentro de la aventura por medio del nuevo condacto GRAPHIC.
+    Esta versión soporta dos modos gráficos, el de 640x480 a 16 colores y el de 320x200 a 256 colores los cuales pueden seleccionarse a través del condacto MODE. Esta nueva versión sólo funcionará con tarjetas VGA o compatibles. También se puede modificar la paleta de colores usando el condacto REMAPC.
+    Además de este se han añadido condactos para el control del tiempo como el condacto GTIME que devuelve la hora real del sistema y los condactos TIME y TIMEOUT que permiten ajustar la cantidad de tiempo de que se dispone para teclear una frase por medio del condacto INPUT.
+    El condacto INPUT ha sido revisado y ahora permite repetir la última frase introducida sin más que pulsar la tecla de cursor arriba al inicio de la línea.
+    En esta versión se dispone de un completo entorno de programación con editor integrado. El entorno ha sido desarrollado para facilitar la tarea de crear la base de datos, compilarla y ejecutarla, tareas estas que se pueden desarrollar todas ellas desde dentro del entorno, además incorpora un completo sistema de ayuda en línea que incluye, entre otras cosas, una completa lista de condactos y variables del sistema.
+    El compilador también ha sido mejorado y ya no es necesario definir los mensajes, localidades, objetos o procesos consecutivos, se pueden dejar 'huecos' con mensajes (localidades, objetos o procesos) sin definir.
+    Se incluye una nueva versión del generador de juegos de caracteres que soporta las nuevas fuentes de 8x16 y de 8x8 y además incluye cuadros de selección de ficheros y cuadros diálogo.
+
+Versión G2:
+
+    Corregido un fallo en la documentación que hablaba sobre el condacto COPYOF (inexistente en el SINTAC) cuando en realidad debería tratarse del condacto COPYOV.
+    Se ha modificado el condacto GRAPHIC que ahora puede cargar gráficos en memoria y presentarlos al final de la carga. Ha sido añadido el condacto GETRGB que devuelve las componentes RGB de un color. Los condactos LISTAT y LISTOBJ han sido ampliados para permitir que si no hay objetos que listar no se imprima nada.
+    Se han expandido el número de mensajes disponibles. En esta versión se dispone de 255 tablas de mensajes con 255 mensajes cada tabla. A consecuencia de ello también han sido modificados los condactos MES y MESSAGE a los que se añade como nuevo parámetro el número de tabla del mensaje a imprimir.
+    Se soporta indirección en todos los parámetros y no sólo en los dos primeros como sucedía en versiones anteriores.
+    El entorno ha sido notablemente mejorado con soporte de ratón, cuadros de diálogo y ayuda en línea mejorada.
+    Se incluye un 'linkador' que permite generar ficheros ejecutables a partir de las bases de datos compiladas.
+
+Versión G3:
+
+    Los gráficos ahora pueden agruparse. Cada fichero gráfico ahora puede contener hasta 256 gráficos lo cual elimina el problema de tener una gran cantidad de ficheros.
+    Se ha añadido un completo soporte del ratón. Además se ha añadido sonido a través del altavoz del PC. Se pueden reproducir ficheros con melodías para lo cual se suministra un programa que permite su creación.
+    Ahora se pueden utilizar juegos de caracteres proporcionales. El generador de caracteres se ha modificado para soportar esta característica.
+    El entorno de programación ha sufrido ligeras mejoras. La más destacable es que ahora, cuando se ejecuta un programa externo desde el entorno se realiza un volcado de memoria a disco, o a EMS si el controlador correspondiente ha sido cargado, para liberar la máxima cantidad de memoria posible. Esto libera la mayoría de la memoría excepto unos 20K para el programa externo.
+
+

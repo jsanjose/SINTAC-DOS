@@ -1,0 +1,247 @@
+; -------------------------------------
+;	TUTOR men£ compilador.
+; -------------------------------------
+tutor_menu_comp:
+	call SG2,fondo
+	call SG2,menu_comp
+	opc_compilar
+
+	databegin
+		"COMPILAR BASE DE DATOS"
+		"La opci¢n 'Compilar...' procede a"
+		"compilar la base de datos que"
+		"tengamos cargada en el entorno."
+	dataend
+	vtexto 99,99,3,1
+
+	compilador1
+	waitkey 1000
+
+	databegin
+		"COMPILAR BASE DE DATOS"
+		"El compilador abrir  una ventana"
+		"donde se ir  mostrando informaci¢n"
+		"sobre el proceso."
+		""
+		"Se mostrar n datos como la cantidad"
+		"de bytes que ocupa cada secci¢n"
+		"compilada, as¡ como si se han"
+		"producido errores."
+	dataend
+	vtexto 99,99,8,1
+
+	compilador2
+	waitkey 1000
+
+	databegin
+		"COMPILAR BASE DE DATOS"
+		"En el caso de que se hubiesen"
+		"producido errores se abrir  una"
+		"ventana con los mensajes de error."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	call SG2,menu_comp
+	opc_compilar
+	error
+	waitkey 1000
+
+	databegin
+		"COMPILAR BASE DE DATOS"
+		"Si seleccionamos uno de estos"
+		"mensajes de error y pulsamos"
+		"sobre el bot¢n 'Vale', la l¡nea"
+		"causante del error se mostrar  en"
+		"la ventana de edici¢n y el cursor"
+		"se posicionar  en ella, lo cual nos"
+		"permite corregir el fallo causante"
+		"del error."
+	dataend
+	vtexto 99,99,8,1
+
+	call SG2,fondo
+	call SG2,menu_comp
+	opc_ejecutar
+
+	databegin
+		"EJECUTAR BASE DE DATOS"
+		"La opci¢n 'Ejecutar...' permite"
+		"ejecutar la base de datos compilada."
+		""
+		"En caso de haber modificado de alguna"
+		"forma la base de datos y no haberla"
+		"compilado previamente, esta opci¢n"
+		"nos da la posibilidad de hacerlo antes"
+		"de ejecutarla."
+	dataend
+	vtexto 99,99,8,1
+
+	bd_modif
+	waitkey 1000
+
+	call SG2,fondo
+	call SG2,menu_comp
+	opc_errores
+
+	databegin
+		"ERRORES"
+		"La opci¢n 'Errores' muestra una ventana"
+		"con los mensajes de error que se"
+		"produjeron la £ltima vez que compilamos"
+		"la base de datos."
+	dataend
+	vtexto 99,99,4,1
+
+	error
+	waitkey 1000
+
+	databegin
+		"ERRORES"
+		"Esta opci¢n es £til si se produjeron"
+		"varios errores y queremos corregirlos"
+		"todos antes de volver a compilar."
+	dataend
+	vtexto 99,99,3,1
+
+	call SG2,fondo
+	call SG2,menu_comp
+	opc_crear_ejecutable
+
+	databegin
+		"CREAR EJECUTABLE"
+		"La opci¢n 'Crear ejecutable' crea"
+		"un fichero ejecutable a partir de"
+		"la base de datos cargada en el"
+		"entorno."
+	dataend
+	vtexto 99,99,4,1
+
+	linkador
+	waitkey 1000
+
+	databegin
+		"CREAR EJECUTABLE"
+		"Primero se recompilar  la base de"
+		"datos tras lo cual se crear  un"
+		"fichero EXE totalmente independiente"
+		"y que podr  ser ejecutado desde"
+		"fuera del entorno."
+	dataend
+	vtexto 99,99,5,1
+
+	call SG2,fondo
+
+	return
+
+opc_compilar:
+	color 7,0
+	text 32,21," Compilar base de datos "
+	return
+
+opc_ejecutar:
+	color 7,0
+	text 32,20," Ejecutar base de datos "
+	return
+
+opc_errores:
+	color 7,0
+	text 32,19," Errores                "
+	return
+
+opc_crear_ejecutable:
+	color 7,0
+	text 32,17," Crear ejecutable       "
+	return
+
+; -------------------------------------
+;	Ventana compilador 1.
+; -------------------------------------
+compilador1:
+	cload SG2CMP1,3
+	cfade 12,2,5,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Ventana compilador 2
+; -------------------------------------
+compilador2:
+	cload SG2CMP2,3
+	cfade 9,2,5,3,200
+	cfree 3
+	return
+
+; -------------------------------------
+;	Cuadro de errores.
+; -------------------------------------
+error:
+	cload SG2ERR,3
+	cfade 15,2,5,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Ventana linkador.
+; -------------------------------------
+linkador:
+	cload SG2LNK,3
+	cfade 17,8,7,3,75
+	cfree 3
+	return
+
+; -------------------------------------
+;	Base datos modificada.
+; -------------------------------------
+bd_modif:
+	cload SG2BDMOD,3
+	cfade 18,12,8,3,200,100
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+

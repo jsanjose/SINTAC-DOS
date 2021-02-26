@@ -1,0 +1,153 @@
+; -------------------------------------
+;	TUTOR men£ sistema.
+; -------------------------------------
+tutor_menu_sys:
+	call SG2,fondo
+	call SG2,menu_sys
+	opc_acerca_de
+
+	databegin
+		"ACERCA DE..."
+		"La primera opci¢n de este men£ es"
+		"meramente informativa. Presenta"
+		"un cuadro con un mensaje de copyright"
+		"as¡ como la versi¢n del programa."
+	dataend
+	vtexto 99,99,4,1
+
+	copyright
+	waitkey 1000
+	call SG2,fondo
+	call SG2,menu_sys
+	opc_comando_dos
+
+	databegin
+		"COMANDO DEL DOS"
+		"La segunda opci¢n permite ejecutar"
+		"programas externos, as¡ como el acceso"
+		"al sistema operativo."
+	dataend
+	vtexto 99,99,3,1
+
+	dos
+	waitkey 1000
+
+	databegin
+		"COMANDO DEL DOS"
+		"En la zona de entrada de datos,"
+		"se¤alada como 'Comando'"
+		"introduciremos la orden del DOS"
+		"a ejecutar."
+		""
+		"Pulsando el bot¢n 'Ejecutar', se"
+		"ejecutar  dicha orden. Si no hemos"
+		"introducido orden alguna entonces se"
+		"saldr  moment neamente al DOS, desde"
+		"donde podemos regresar tecleando EXIT."
+		""
+		"La casilla 'Pausa', si est  activa"
+		"provoca que despu‚s de ejecutado el"
+		"comando correspondiente se realice"
+		"una pausa antes de regresar al entorno."
+	dataend
+	vtexto 99,99,15,1
+
+	color 0,7
+	text 31,14,"dir",50
+	waitkey 200
+	color 0
+	clearscr
+	color 7,0
+	text 0,24," El volumen de la unidad C es MS-DOS"$chr(10)
+	text " El n£mero de serie es 1CFD-B3CA"$chr(10)
+	text " Directorio de C:\SINTACG2"$chr(10)$chr(10)
+	text ".           <DIR>         05/05/94   13:05"$chr(10)
+	text "..          <DIR>         05/05/94   13:05"$chr(10)
+	text "EDS      EXE       39.784 05/05/94   13:05"$chr(10)
+	text "EDS      AYD       73.537 05/05/94   13:05"$chr(10)
+	text "EDS      IYD        5.760 05/05/94   13:05"$chr(10)
+	text "EDS      UTL           61 05/05/94   13:05"$chr(10)
+	text "SINTAC   CFG          269 05/05/94   13:05"$chr(10)
+	text "        7 archivo(s)       119.411 bytes"$chr(10)
+	text "                        17.727.488 bytes libres"$chr(10)$chr(10)
+	text "Pulsa una tecla."
+	waitkey
+
+	call SG2,fondo
+
+	return
+
+opc_acerca_de:
+	color 7,0
+	text 3,21," Acerca de...    "
+	return
+
+opc_comando_dos:
+	color 7,0
+	text 3,19," Comando del DOS "
+	return
+
+; -------------------------------------
+;	Mensaje de COPYRIGHT.
+; -------------------------------------
+copyright:
+	cload SG2INIC,3
+	cfade 1,14,8,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+;	Cuadro de comando DOS.
+; -------------------------------------
+dos:
+	cload SG2DOS,3
+	cfade 2,20,9,3,50
+	cfree 3
+	return
+
+; -------------------------------------
+vtexto:
+	local x @1
+	local y @2
+	local i @3
+	local ancho 42
+	local alto 0
+	local tit ""
+
+	set alto @3+2
+
+	; centra coordenada X
+	if @x==99
+		set x (80-@ancho)/2
+	endif
+
+	; centra coordenada Y
+	if @y==99
+		set y (25-@alto)/2
+	endif
+
+	cgetbuf 8,@x,@y,@x+41,@y+@alto-1
+	color 1
+	box @x,@y,@x+41,@y+@alto-1
+
+	color 15,1
+	set tit @
+	text @x+((42-len(@tit))/2),@y+@alto-1,@tit
+
+	color 2
+	rect @x+1,@y+1,@x+40,@y+@alto-2
+	color 10,2
+
+	mark @3
+		text @x+2,@y+@i,@,@4
+		set i @i-1
+	loop
+
+	color 15,1
+	text @x+12,@y,"<Pulsa una tecla>"
+
+	waitkey
+	putup @x,@y,8
+	cfree 8
+	return
+
